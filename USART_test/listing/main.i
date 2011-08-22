@@ -6909,6 +6909,7 @@ extern double GET_EXTERNAL_TRAVERSE_RATE(void);
 
 
 
+
    
    
 
@@ -6921,13 +6922,13 @@ extern double GET_EXTERNAL_TRAVERSE_RATE(void);
    
    
 
-#line 131 "rs274ngc.h"
+#line 132 "rs274ngc.h"
 
    
-#line 144 "rs274ngc.h"
+#line 145 "rs274ngc.h"
 
    
-#line 202 "rs274ngc.h"
+#line 203 "rs274ngc.h"
 
     
     
@@ -6945,7 +6946,7 @@ typedef int ON_OFF;
 
 typedef struct block_struct
 {
-#line 231 "rs274ngc.h"
+#line 232 "rs274ngc.h"
     char     comment[256];
     int      d_number;
     double   f_number;
@@ -6995,7 +6996,7 @@ typedef block * block_pointer;
 
 typedef struct setup_struct
 {
-#line 295 "rs274ngc.h"
+#line 296 "rs274ngc.h"
     int active_g_codes
         [12];                
     int active_m_codes
@@ -8451,6 +8452,8 @@ char _nc_code_buffer[]=
 
 
 "n0010 G50 L2 P1 X 3.5 Y 17.2;"
+"n0020 G98;"
+"n0030 G99;"
 "%"};
 
 volatile int gAllChar;
@@ -9099,7 +9102,7 @@ int main(int argc, char ** argv)
  
 }
 
-#line 833 "main.c"
+#line 835 "main.c"
 
 
 

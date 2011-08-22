@@ -155,7 +155,7 @@ char * _rs274ngc_errors[] =
     /*  23 */ "Bug code not g4 g50 g28 g30 g53 or g92 series", // convert_modal_0
     /*  24 */ "Bug code not g61 g61 1 or g64", // convert_control_mode
     /*  25 */ "Bug code not g90 or g91", // convert_distance_mode
-    /*  26 */ "Bug code not g93 or g94", // convert_feed_mode
+    /*  26 */ "Bug code not g93 or g98", // convert_feed_mode
     /*  27 */ "Bug code not g98 or g99", // convert_retract_mode
     /*  28 */ "Bug code not in g92 series", // convert_axis_offsets
     /*  29 */ "Bug code not in range g54 to g593", // convert_coordinate_system
@@ -491,7 +491,6 @@ static int convert_cycle_yz(int motion, block_pointer block,
 setup_pointer settings);
 static int convert_cycle_zx(int motion, block_pointer block,
 setup_pointer settings);
-static int convert_distance_mode(int g_code, setup_pointer settings);
 static int convert_dwell(double time);
 static int convert_feed_mode(int g_code, setup_pointer settings);
 static int convert_feed_rate(block_pointer block, setup_pointer settings);
@@ -4764,57 +4763,6 @@ repeat--) \
         return RS274NGC_OK;
     }
 
-   /****************************************************************************/
-
-   /* convert_distance_mode
-
-   Returned Value: int
-   If any of the following errors occur, this returns the error shown.
-   Otherwise, it returns RS274NGC_OK.
-   1. g_code isn't G_90 or G_91: NCE_BUG_CODE_NOT_G90_OR_G91
-
-   Side effects:
-   The interpreter switches the machine settings to indicate the current
-   distance mode (absolute or incremental).
-
-   The canonical machine to which commands are being sent does not have
-   an incremental mode, so no command setting the distance mode is
-   generated in this function. A comment function call explaining the
-   change of mode is made (conditionally), however, if there is a change.
-
-   Called by: convert_g.
-
-   */
-
-    static int convert_distance_mode(             /* ARGUMENTS                             */
-    int g_code,                                   /* g_code being executed (must be G_90 or G_91) */
-    setup_pointer settings)                       /* pointer to machine settings                  */
-    {
-        static char name[] SET_TO "convert_distance_mode";
-        if (g_code IS G_90)
-        {
-            if (settings->distance_mode ISNT MODE_ABSOLUTE)
-            {
-#ifdef DEBUG_EMC
-                COMMENT("interpreter: distance mode changed to absolute");
-#endif
-                settings->distance_mode SET_TO MODE_ABSOLUTE;
-            }
-        }
-        else if (g_code IS G_91)
-        {
-            if (settings->distance_mode ISNT MODE_INCREMENTAL)
-            {
-#ifdef DEBUG_EMC
-                COMMENT("interpreter: distance mode changed to incremental");
-#endif
-                settings->distance_mode SET_TO MODE_INCREMENTAL;
-            }
-        }
-        else
-            ERM(NCE_BUG_CODE_NOT_G90_OR_G91);
-        return RS274NGC_OK;
-    }
 
    /****************************************************************************/
 
@@ -4870,15 +4818,23 @@ repeat--) \
 #endif
             settings->feed_mode SET_TO INVERSE_TIME;
         }
-        else if (g_code IS G_94)
+        else if (g_code IS G_98)
         {
 #ifdef DEBUG_EMC
             COMMENT("interpreter: feed mode set to units per minute");
 #endif
             settings->feed_mode SET_TO UNITS_PER_MINUTE;
         }
+		else if (g_code IS G_99)
+        {
+#ifdef DEBUG_EMC
+            COMMENT("interpreter: feed mode set to units per revolution");
+#endif
+            settings->feed_mode SET_TO UNITS_PER_REVOLUTION;
+        }
+
         else
-            ERM(NCE_BUG_CODE_NOT_G93_OR_G94);
+            ERM(NCE_BUG_CODE_NOT_G93_OR_G98);
         return RS274NGC_OK;
     }
 
@@ -4998,10 +4954,6 @@ repeat--) \
         if (block->g_modes[13] ISNT -1)
         {
             CHP(convert_control_mode(block->g_modes[13], settings));
-        }
-        if (block->g_modes[3] ISNT -1)
-        {
-            CHP(convert_distance_mode(block->g_modes[3], settings));
         }
         if (block->g_modes[10] ISNT -1)
         {
@@ -5682,23 +5634,23 @@ repeat--) \
     int g_code,                                   /* g_code being executed (must be G_98 or G_99) */
     setup_pointer settings)                       /* pointer to machine settings                  */
     {
-        static char name[] SET_TO "convert_retract_mode";
-        if (g_code IS G_98)
-        {
-#ifdef DEBUG_EMC
-            COMMENT("interpreter: retract mode set to old_z");
-#endif
-            settings->retract_mode SET_TO OLD_Z;
-        }
-        else if (g_code IS G_99)
-        {
-#ifdef DEBUG_EMC
-            COMMENT("interpreter: retract mode set to r_plane");
-#endif
-            settings->retract_mode SET_TO R_PLANE;
-        }
-        else
-            ERM(NCE_BUG_CODE_NOT_G98_OR_G99);
+//        static char name[] SET_TO "convert_retract_mode";
+//        if (g_code IS G_98)
+//        {
+//#ifdef DEBUG_EMC
+//            COMMENT("interpreter: retract mode set to old_z");
+//#endif
+//            settings->retract_mode SET_TO OLD_Z;
+//        }
+//        else if (g_code IS G_99)
+//        {
+//#ifdef DEBUG_EMC
+//            COMMENT("interpreter: retract mode set to r_plane");
+//#endif
+//            settings->retract_mode SET_TO R_PLANE;
+//        }
+//        else
+//            ERM(NCE_BUG_CODE_NOT_G98_OR_G99);
         return RS274NGC_OK;
     }
 
@@ -5729,7 +5681,7 @@ repeat--) \
    See documentation of convert_coordinate_system for more information.
 
    */
-
+	
     static int convert_setup(                     /* ARGUMENTS                                    */
     block_pointer block,                          /* pointer to a block of RS274/NGC instructions */
     setup_pointer settings)                       /* pointer to machine settings                  */
@@ -7672,9 +7624,9 @@ repeat--) \
         {
             CHP(convert_comment(block->comment));
         }
-        if (block->g_modes[5] ISNT -1)
+        if (block->g_modes[3] ISNT -1)
         {
-            CHP(convert_feed_mode(block->g_modes[5], settings));
+            CHP(convert_feed_mode(block->g_modes[3], settings));
         }
         if (block->f_number > -1.0)
         {
@@ -11403,14 +11355,14 @@ repeat--) \
         gez[6] SET_TO
             (settings->distance_mode IS MODE_ABSOLUTE) ? G_90 : G_91;
         gez[7] SET_TO
-            (settings->feed_mode IS INVERSE_TIME) ? G_93 : G_94;
+            (settings->feed_mode IS INVERSE_TIME) ? G_93 : G_98;
         gez[8] SET_TO
             (settings->origin_index < 7) ? (530 + (10 * settings->origin_index)) :
         (584 + settings->origin_index);
         gez[9] SET_TO
             (settings->tool_length_offset IS 0.0) ? G_49 : G_43;
-        gez[10] SET_TO
-            (settings->retract_mode IS OLD_Z) ? G_98 : G_99;
+//        gez[10] SET_TO
+//            (settings->retract_mode IS OLD_Z) ? G_98 : G_99;
         gez[11] SET_TO
             (settings->control_mode IS CANON_CONTINUOUS) ? G_64 :
         (settings->control_mode IS CANON_EXACT_PATH) ? G_61 : G_61_1;

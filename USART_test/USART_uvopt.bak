@@ -167,6 +167,23 @@
           <Name>-O14 -S0 -C0 -N00("ARM Cortex-M3") -D00(1BA00477) -L00(4) -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F10x_128 -FS08000000 -FL020000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>5449</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>rs274ngc_pre.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+      </Breakpoint>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
@@ -256,10 +273,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>58</ColumnNumber>
+      <ColumnNumber>59</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>630</TopLine>
-      <CurrentLine>658</CurrentLine>
+      <TopLine>147</TopLine>
+      <CurrentLine>164</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -390,10 +407,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>53</ColumnNumber>
+      <ColumnNumber>25</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>196</TopLine>
-      <CurrentLine>211</CurrentLine>
+      <TopLine>44</TopLine>
+      <CurrentLine>54</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\rs274ngc_return.h</PathWithFileName>
       <FilenameWithoutPath>rs274ngc_return.h</FilenameWithoutPath>
@@ -432,10 +449,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>17</ColumnNumber>
+      <ColumnNumber>24</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>128</TopLine>
-      <CurrentLine>128</CurrentLine>
+      <TopLine>100</TopLine>
+      <CurrentLine>115</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\rs274ngc.h</PathWithFileName>
       <FilenameWithoutPath>rs274ngc.h</FilenameWithoutPath>
@@ -446,10 +463,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>42</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>5425</TopLine>
-      <CurrentLine>5456</CurrentLine>
+      <TopLine>4811</TopLine>
+      <CurrentLine>4826</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\rs274ngc_pre.c</PathWithFileName>
       <FilenameWithoutPath>rs274ngc_pre.c</FilenameWithoutPath>
@@ -465,9 +482,9 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>58</ColumnNumber>
-          <TopLine>630</TopLine>
-          <CurrentLine>658</CurrentLine>
+          <ColumnNumber>28</ColumnNumber>
+          <TopLine>153</TopLine>
+          <CurrentLine>168</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\STM32F10x.s</Name>
@@ -477,15 +494,15 @@
         </Doc>
         <Doc>
           <Name>rs274ngc.h</Name>
-          <ColumnNumber>17</ColumnNumber>
-          <TopLine>128</TopLine>
-          <CurrentLine>128</CurrentLine>
+          <ColumnNumber>24</ColumnNumber>
+          <TopLine>100</TopLine>
+          <CurrentLine>115</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\rs274ngc_pre.c</Name>
-          <ColumnNumber>31</ColumnNumber>
-          <TopLine>5425</TopLine>
-          <CurrentLine>5449</CurrentLine>
+          <ColumnNumber>8</ColumnNumber>
+          <TopLine>4811</TopLine>
+          <CurrentLine>4829</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\canon_pre.c</Name>
@@ -507,9 +524,9 @@
         </Doc>
         <Doc>
           <Name>rs274ngc_return.h</Name>
-          <ColumnNumber>53</ColumnNumber>
-          <TopLine>196</TopLine>
-          <CurrentLine>211</CurrentLine>
+          <ColumnNumber>25</ColumnNumber>
+          <TopLine>44</TopLine>
+          <CurrentLine>54</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

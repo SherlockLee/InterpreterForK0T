@@ -9451,17 +9451,18 @@ N#define MM_PER_INCH 25.4
 N#define INCH_PER_MM 0.039370078740157477
 N
 N   // on-off switch settings
-N#define OFF 0
-N#define ON 1
+N#define OFF 	0
+N#define ON 		1
 N
 N   // feed_mode
-N#define UNITS_PER_MINUTE 0
-N#define INVERSE_TIME 1
+N#define UNITS_PER_MINUTE 		0
+N#define INVERSE_TIME 			1
+N#define UNITS_PER_REVOLUTION 	2
 N
 N   // cutter radius compensation mode, OFF already defined to 0
 N   // not using CANON_SIDE since interpreter handles cutter radius comp
-N#define RIGHT 1
-N#define LEFT 2
+N#define RIGHT 	1
+N#define LEFT 	2
 N
 N   // number of parameters in parameter table
 N#define RS274NGC_MAX_PARAMETERS 5400
@@ -9874,7 +9875,7 @@ N#define NCE_BUG_CODE_NOT_G43_OR_G49 22
 N#define NCE_BUG_CODE_NOT_G4_G50_G28_G30_G53_OR_G92_SERIES 23
 N#define NCE_BUG_CODE_NOT_G61_G61_1_OR_G64 24
 N#define NCE_BUG_CODE_NOT_G90_OR_G91 25
-N#define NCE_BUG_CODE_NOT_G93_OR_G94 26
+N#define NCE_BUG_CODE_NOT_G93_OR_G98 26
 N#define NCE_BUG_CODE_NOT_G98_OR_G99 27
 N#define NCE_BUG_CODE_NOT_IN_G92_SERIES 28
 N#define NCE_BUG_CODE_NOT_IN_RANGE_G54_TO_G593 29
@@ -11660,6 +11661,8 @@ N{
 N//"(this program mills );"
 N//"n0010 g00 x0 y0 z50;"
 N"n0010 G50 L2 P1 X 3.5 Y 17.2;"
+N"n0020 G98;"
+N"n0030 G99;"
 N"%"};
 N
 Nvolatile int gAllChar;

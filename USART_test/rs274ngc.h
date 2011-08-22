@@ -96,17 +96,18 @@
 #define INCH_PER_MM 0.039370078740157477
 
    // on-off switch settings
-#define OFF 0
-#define ON 1
+#define OFF 	0
+#define ON 		1
 
    // feed_mode
-#define UNITS_PER_MINUTE 0
-#define INVERSE_TIME 1
+#define UNITS_PER_MINUTE 		0
+#define INVERSE_TIME 			1
+#define UNITS_PER_REVOLUTION 	2
 
    // cutter radius compensation mode, OFF already defined to 0
    // not using CANON_SIDE since interpreter handles cutter radius comp
-#define RIGHT 1
-#define LEFT 2
+#define RIGHT 	1
+#define LEFT 	2
 
    // number of parameters in parameter table
 #define RS274NGC_MAX_PARAMETERS 5400

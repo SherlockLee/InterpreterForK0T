@@ -3854,6 +3854,7 @@ extern double GET_EXTERNAL_TRAVERSE_RATE(void);
 
 
 
+
    
    
 
@@ -3866,13 +3867,13 @@ extern double GET_EXTERNAL_TRAVERSE_RATE(void);
    
    
 
-#line 131 "rs274ngc.h"
+#line 132 "rs274ngc.h"
 
    
-#line 144 "rs274ngc.h"
+#line 145 "rs274ngc.h"
 
    
-#line 202 "rs274ngc.h"
+#line 203 "rs274ngc.h"
 
     
     
@@ -3890,7 +3891,7 @@ typedef int ON_OFF;
 
 typedef struct block_struct
 {
-#line 231 "rs274ngc.h"
+#line 232 "rs274ngc.h"
     char     comment[256];
     int      d_number;
     double   f_number;
@@ -3940,7 +3941,7 @@ typedef block * block_pointer;
 
 typedef struct setup_struct
 {
-#line 295 "rs274ngc.h"
+#line 296 "rs274ngc.h"
     int active_g_codes
         [12];                
     int active_m_codes
@@ -4164,7 +4165,7 @@ char * _rs274ngc_errors[] =
       "Bug code not g4 g50 g28 g30 g53 or g92 series", 
       "Bug code not g61 g61 1 or g64", 
       "Bug code not g90 or g91", 
-      "Bug code not g93 or g94", 
+      "Bug code not g93 or g98", 
       "Bug code not g98 or g99", 
       "Bug code not in g92 series", 
       "Bug code not in range g54 to g593", 
@@ -4480,7 +4481,6 @@ static int convert_cycle_yz(int motion, block_pointer block,
 setup_pointer settings);
 static int convert_cycle_zx(int motion, block_pointer block,
 setup_pointer settings);
-static int convert_distance_mode(int g_code, setup_pointer settings);
 static int convert_dwell(double time);
 static int convert_feed_mode(int g_code, setup_pointer settings);
 static int convert_feed_rate(block_pointer block, setup_pointer settings);
@@ -4932,30 +4932,30 @@ static const int _gees[] =
     static const int _required_parameters[] =
     {
         5161, 5162, 5163,                          
-#line 955 "rs274ngc_pre.c"
+#line 954 "rs274ngc_pre.c"
             5181, 5182, 5183,                      
-#line 965 "rs274ngc_pre.c"
+#line 964 "rs274ngc_pre.c"
             5211, 5212, 5213,                      
-#line 975 "rs274ngc_pre.c"
+#line 974 "rs274ngc_pre.c"
             5220,                                  
             5221, 5222, 5223,                      
-#line 986 "rs274ngc_pre.c"
+#line 985 "rs274ngc_pre.c"
             5241, 5242, 5243,                      
-#line 996 "rs274ngc_pre.c"
+#line 995 "rs274ngc_pre.c"
             5261, 5262, 5263,                      
-#line 1006 "rs274ngc_pre.c"
+#line 1005 "rs274ngc_pre.c"
             5281, 5282, 5283,                      
-#line 1016 "rs274ngc_pre.c"
+#line 1015 "rs274ngc_pre.c"
             5301, 5302, 5303,                      
-#line 1026 "rs274ngc_pre.c"
+#line 1025 "rs274ngc_pre.c"
             5321, 5322, 5323,                      
-#line 1036 "rs274ngc_pre.c"
+#line 1035 "rs274ngc_pre.c"
             5341, 5342, 5343,                      
-#line 1046 "rs274ngc_pre.c"
+#line 1045 "rs274ngc_pre.c"
             5361, 5362, 5363,                      
-#line 1056 "rs274ngc_pre.c"
+#line 1055 "rs274ngc_pre.c"
             5381, 5382, 5383,                      
-#line 1066 "rs274ngc_pre.c"
+#line 1065 "rs274ngc_pre.c"
             5400
     };
 
@@ -5534,7 +5534,7 @@ static const int _gees[] =
         int motion;
 
         motion = block->motion_to_be;
-#line 1665 "rs274ngc_pre.c"
+#line 1664 "rs274ngc_pre.c"
         if (block->d_number != -1)
         {
             if (((block->g_modes[7] != 410) && (block->g_modes[7] != 420))) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 71; } else;
@@ -5748,7 +5748,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 1887 "rs274ngc_pre.c"
+#line 1886 "rs274ngc_pre.c"
 
         ijk_flag =
             ((block->i_flag || block->j_flag) || block->k_flag) ? 1 : 0;
@@ -5975,7 +5975,7 @@ static const int _gees[] =
     double end1,                                   
     double end2,                                   
     double end3,                                   
-#line 2122 "rs274ngc_pre.c"
+#line 2121 "rs274ngc_pre.c"
     double offset1,                                
     double offset2)                                
     {
@@ -6005,12 +6005,12 @@ static const int _gees[] =
                 turn, end1, end2, end3, block, settings);
         ARC_FEED(end1, end2, center1, center2, turn,
             end3
-#line 2172 "rs274ngc_pre.c"
+#line 2171 "rs274ngc_pre.c"
             );
         *current1 = end1;
         *current2 = end2;
         *current3 = end3;
-#line 2185 "rs274ngc_pre.c"
+#line 2184 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -6049,7 +6049,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z                                   
-#line 2232 "rs274ngc_pre.c"
+#line 2231 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_arc_comp1";
@@ -6105,12 +6105,12 @@ static const int _gees[] =
                 end_x, end_y, end_z, block, settings);
         ARC_FEED(end_x, end_y, center_x, center_y, turn,
             end_z
-#line 2308 "rs274ngc_pre.c"
+#line 2307 "rs274ngc_pre.c"
             );
         settings->current_x = end_x;
         settings->current_y = end_y;
         settings->current_z = end_z;
-#line 2321 "rs274ngc_pre.c"
+#line 2320 "rs274ngc_pre.c"
 
         return 0;
     }
@@ -6161,7 +6161,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z                                   
-#line 2380 "rs274ngc_pre.c"
+#line 2379 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_arc_comp2";
@@ -6252,11 +6252,11 @@ static const int _gees[] =
                 end_x, end_y, end_z, block, settings);
             ARC_FEED(mid_x, mid_y, start_x, start_y, ((side == 2) ? -1 : 1),
                 settings->current_z
-#line 2491 "rs274ngc_pre.c"
+#line 2490 "rs274ngc_pre.c"
                 );
             ARC_FEED(end_x, end_y, center_x, center_y, turn,
                 end_z
-#line 2515 "rs274ngc_pre.c"
+#line 2514 "rs274ngc_pre.c"
                 );
         }
         else                                       
@@ -6267,14 +6267,14 @@ static const int _gees[] =
                     end_x, end_y, end_z, block, settings);
             ARC_FEED(end_x, end_y, center_x, center_y, turn,
                 end_z
-#line 2546 "rs274ngc_pre.c"
+#line 2545 "rs274ngc_pre.c"
                 );
         }
 
         settings->current_x = end_x;
         settings->current_y = end_y;
         settings->current_z = end_z;
-#line 2561 "rs274ngc_pre.c"
+#line 2560 "rs274ngc_pre.c"
 
         return 0;
     }
@@ -6372,21 +6372,21 @@ static const int _gees[] =
                 settings->current_z = block->z_number;
             }
 
-#line 2674 "rs274ngc_pre.c"
+#line 2673 "rs274ngc_pre.c"
 
-#line 2691 "rs274ngc_pre.c"
+#line 2690 "rs274ngc_pre.c"
 
-#line 2708 "rs274ngc_pre.c"
+#line 2707 "rs274ngc_pre.c"
 
             SET_ORIGIN_OFFSETS(settings->origin_offset_x + settings->axis_offset_x,
                 settings->origin_offset_y + settings->axis_offset_y,
                 settings->origin_offset_z + settings->axis_offset_z
-#line 2733 "rs274ngc_pre.c"
+#line 2732 "rs274ngc_pre.c"
                 );
             pars[5211] = settings->axis_offset_x;
             pars[5212] = settings->axis_offset_y;
             pars[5213] = settings->axis_offset_z;
-#line 2749 "rs274ngc_pre.c"
+#line 2748 "rs274ngc_pre.c"
 
         }
         else if ((g_code == 921) || (g_code == 922))
@@ -6397,22 +6397,22 @@ static const int _gees[] =
                 settings->current_y + settings->axis_offset_y;
             settings->current_z =
                 settings->current_z + settings->axis_offset_z;
-#line 2780 "rs274ngc_pre.c"
+#line 2779 "rs274ngc_pre.c"
             SET_ORIGIN_OFFSETS(settings->origin_offset_x,
                 settings->origin_offset_y,
                 settings->origin_offset_z
-#line 2804 "rs274ngc_pre.c"
+#line 2803 "rs274ngc_pre.c"
                 );
             settings->axis_offset_x = 0.0;
             settings->axis_offset_y = 0.0;
             settings->axis_offset_z = 0.0;
-#line 2817 "rs274ngc_pre.c"
+#line 2816 "rs274ngc_pre.c"
             if (g_code == 921)
             {
                 pars[5211] = 0.0;
                 pars[5212] = 0.0;
                 pars[5213] = 0.0;
-#line 2831 "rs274ngc_pre.c"
+#line 2830 "rs274ngc_pre.c"
             }
         }
         else if (g_code == 923)
@@ -6423,15 +6423,15 @@ static const int _gees[] =
                 settings->current_y + settings->axis_offset_y - pars[5212];
             settings->current_z =
                 settings->current_z + settings->axis_offset_z - pars[5213];
-#line 2862 "rs274ngc_pre.c"
+#line 2861 "rs274ngc_pre.c"
             settings->axis_offset_x = pars[5211];
             settings->axis_offset_y = pars[5212];
             settings->axis_offset_z = pars[5213];
-#line 2877 "rs274ngc_pre.c"
+#line 2876 "rs274ngc_pre.c"
             SET_ORIGIN_OFFSETS(settings->origin_offset_x + settings->axis_offset_x,
                 settings->origin_offset_y + settings->axis_offset_y,
                 settings->origin_offset_z + settings->axis_offset_z
-#line 2901 "rs274ngc_pre.c"
+#line 2900 "rs274ngc_pre.c"
                 );
         }
         else
@@ -6635,7 +6635,7 @@ static const int _gees[] =
         double x;
         double y;
         double z;
-#line 3113 "rs274ngc_pre.c"
+#line 3112 "rs274ngc_pre.c"
         double * parameters;
 
         parameters = settings->parameters;
@@ -6692,27 +6692,27 @@ static const int _gees[] =
             (settings->current_y + settings->origin_offset_y);
         settings->current_z =
             (settings->current_z + settings->origin_offset_z);
-#line 3190 "rs274ngc_pre.c"
+#line 3189 "rs274ngc_pre.c"
 
         x = parameters[5201 + (origin * 20)];
         y = parameters[5202 + (origin * 20)];
         z = parameters[5203 + (origin * 20)];
-#line 3203 "rs274ngc_pre.c"
+#line 3202 "rs274ngc_pre.c"
 
         settings->origin_offset_x = x;
         settings->origin_offset_y = y;
         settings->origin_offset_z = z;
-#line 3216 "rs274ngc_pre.c"
+#line 3215 "rs274ngc_pre.c"
 
         settings->current_x = (settings->current_x - x);
         settings->current_y = (settings->current_y - y);
         settings->current_z = (settings->current_z - z);
-#line 3232 "rs274ngc_pre.c"
+#line 3231 "rs274ngc_pre.c"
 
         SET_ORIGIN_OFFSETS(x + settings->axis_offset_x,
             y + settings->axis_offset_y,
             z + settings->axis_offset_z
-#line 3257 "rs274ngc_pre.c"
+#line 3256 "rs274ngc_pre.c"
             );
         return 0;
     }
@@ -7570,7 +7570,7 @@ static const int _gees[] =
 
  
 
-#line 4126 "rs274ngc_pre.c"
+#line 4125 "rs274ngc_pre.c"
 
         static int convert_cycle_xy(               
         int motion,                                
@@ -7629,7 +7629,7 @@ static const int _gees[] =
         if (old_cc < r)
         {
             STRAIGHT_TRAVERSE(settings->current_x, settings->current_y, r
-#line 4205 "rs274ngc_pre.c"
+#line 4204 "rs274ngc_pre.c"
                 );
             old_cc = r;
         }
@@ -7836,7 +7836,7 @@ static const int _gees[] =
         if (old_cc < r)
         {
             STRAIGHT_TRAVERSE(r, settings->current_y, settings->current_z
-#line 4432 "rs274ngc_pre.c"
+#line 4431 "rs274ngc_pre.c"
                 );
             old_cc = r;
         }
@@ -8051,7 +8051,7 @@ static const int _gees[] =
         if (old_cc < r)
         {
             STRAIGHT_TRAVERSE(settings->current_x, r, settings->current_z
-#line 4667 "rs274ngc_pre.c"
+#line 4666 "rs274ngc_pre.c"
                 );
             old_cc = r;
         }
@@ -8152,57 +8152,6 @@ static const int _gees[] =
         return 0;
     }
 
-    
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-    static int convert_distance_mode(              
-    int g_code,                                    
-    setup_pointer settings)                        
-    {
-        static char name[] = "convert_distance_mode";
-        if (g_code == 900)
-        {
-            if (settings->distance_mode != MODE_ABSOLUTE)
-            {
-
-                COMMENT("interpreter: distance mode changed to absolute");
-
-                settings->distance_mode = MODE_ABSOLUTE;
-            }
-        }
-        else if (g_code == 910)
-        {
-            if (settings->distance_mode != MODE_INCREMENTAL)
-            {
-
-                COMMENT("interpreter: distance mode changed to incremental");
-
-                settings->distance_mode = MODE_INCREMENTAL;
-            }
-        }
-        else
-            if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 25; } else;
-        return 0;
-    }
 
     
 
@@ -8258,13 +8207,21 @@ static const int _gees[] =
 
             settings->feed_mode = 1;
         }
-        else if (g_code == 940)
+        else if (g_code == 980)
         {
 
             COMMENT("interpreter: feed mode set to units per minute");
 
             settings->feed_mode = 0;
         }
+		else if (g_code == 990)
+        {
+
+            COMMENT("interpreter: feed mode set to units per revolution");
+
+            settings->feed_mode = 2;
+        }
+
         else
             if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 26; } else;
         return 0;
@@ -8387,10 +8344,6 @@ static const int _gees[] =
         {
             if ((status = (convert_control_mode(block->g_modes[13], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
         }
-        if (block->g_modes[3] != -1)
-        {
-            if ((status = (convert_distance_mode(block->g_modes[3], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-        }
         if (block->g_modes[10] != -1)
         {
             if ((status = (convert_retract_mode(block->g_modes[10], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
@@ -8445,7 +8398,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 5078 "rs274ngc_pre.c"
+#line 5030 "rs274ngc_pre.c"
         double * parameters;
 
         parameters = settings->parameters;
@@ -8467,13 +8420,13 @@ static const int _gees[] =
         if ((settings->cutter_comp_side != 0)) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 60; } else;
 
         STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 5120 "rs274ngc_pre.c"
+#line 5072 "rs274ngc_pre.c"
             );
         if (move == 280)
         {
             find_relative
                 (parameters[5161], parameters[5162], parameters[5163],
-#line 5134 "rs274ngc_pre.c"
+#line 5086 "rs274ngc_pre.c"
                 &end_x, &end_y, &end_z
 
 
@@ -8492,7 +8445,7 @@ static const int _gees[] =
         {
             find_relative
                 (parameters[5181], parameters[5182], parameters[5183],
-#line 5161 "rs274ngc_pre.c"
+#line 5113 "rs274ngc_pre.c"
                 &end_x, &end_y, &end_z
 
 
@@ -8510,12 +8463,12 @@ static const int _gees[] =
         else
             if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 19; } else;
         STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 5199 "rs274ngc_pre.c"
+#line 5151 "rs274ngc_pre.c"
             );
         settings->current_x = end_x;
         settings->current_y = end_y;
         settings->current_z = end_z;
-#line 5212 "rs274ngc_pre.c"
+#line 5164 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -8886,7 +8839,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 5591 "rs274ngc_pre.c"
+#line 5543 "rs274ngc_pre.c"
 
         if ((((block->x_flag == 0) && (block->y_flag == 0)) && (block->z_flag == 0))) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 192; } else;
 
@@ -8910,7 +8863,7 @@ static const int _gees[] =
 
             );
         if (0
-#line 5623 "rs274ngc_pre.c"
+#line 5575 "rs274ngc_pre.c"
             )
             if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 44; } else;
         distance = sqrt(pow((settings->current_x - end_x), 2) +
@@ -8920,7 +8873,7 @@ static const int _gees[] =
 
         TURN_PROBE_ON();
         STRAIGHT_PROBE(end_x, end_y, end_z
-#line 5653 "rs274ngc_pre.c"
+#line 5605 "rs274ngc_pre.c"
             );
         TURN_PROBE_OFF();
         settings->motion_mode = 382;
@@ -8953,23 +8906,23 @@ static const int _gees[] =
     int g_code,                                    
     setup_pointer settings)                        
     {
-        static char name[] = "convert_retract_mode";
-        if (g_code == 980)
-        {
 
-            COMMENT("interpreter: retract mode set to old_z");
 
-            settings->retract_mode = OLD_Z;
-        }
-        else if (g_code == 990)
-        {
 
-            COMMENT("interpreter: retract mode set to r_plane");
 
-            settings->retract_mode = R_PLANE;
-        }
-        else
-            if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 27; } else;
+
+
+
+
+
+
+
+
+
+
+
+
+
         return 0;
     }
 
@@ -9000,7 +8953,7 @@ static const int _gees[] =
 
 
  
-
+	
     static int convert_setup(                      
     block_pointer block,                           
     setup_pointer settings)                        
@@ -9009,7 +8962,7 @@ static const int _gees[] =
         double x;
         double y;
         double z;
-#line 5750 "rs274ngc_pre.c"
+#line 5702 "rs274ngc_pre.c"
         double * parameters;
         int p_int;
 
@@ -9039,11 +8992,11 @@ static const int _gees[] =
         else
             z = parameters[5203 + (p_int * 20)];
 
-#line 5788 "rs274ngc_pre.c"
+#line 5740 "rs274ngc_pre.c"
 
-#line 5798 "rs274ngc_pre.c"
+#line 5750 "rs274ngc_pre.c"
 
-#line 5808 "rs274ngc_pre.c"
+#line 5760 "rs274ngc_pre.c"
 
    
 
@@ -9056,22 +9009,22 @@ static const int _gees[] =
                 (settings->current_y + settings->origin_offset_y);
             settings->current_z =
                 (settings->current_z + settings->origin_offset_z);
-#line 5841 "rs274ngc_pre.c"
+#line 5793 "rs274ngc_pre.c"
 
             settings->origin_offset_x = x;
             settings->origin_offset_y = y;
             settings->origin_offset_z = z;
-#line 5854 "rs274ngc_pre.c"
+#line 5806 "rs274ngc_pre.c"
 
             settings->current_x = (settings->current_x - x);
             settings->current_y = (settings->current_y - y);
             settings->current_z = (settings->current_z - z);
-#line 5870 "rs274ngc_pre.c"
+#line 5822 "rs274ngc_pre.c"
 
             SET_ORIGIN_OFFSETS(x + settings->axis_offset_x,
                 y + settings->axis_offset_y,
                 z + settings->axis_offset_z
-#line 5895 "rs274ngc_pre.c"
+#line 5847 "rs274ngc_pre.c"
                 );
         }
 
@@ -9248,19 +9201,19 @@ static const int _gees[] =
                 + settings->origin_offset_y + settings->axis_offset_y;
             settings->current_z = settings->current_z
                 + settings->origin_offset_z + settings->axis_offset_z;
-#line 6095 "rs274ngc_pre.c"
+#line 6047 "rs274ngc_pre.c"
 
             settings->origin_index = 1;
             settings->parameters[5220] = 1.0;
             settings->origin_offset_x = settings->parameters[5221];
             settings->origin_offset_y = settings->parameters[5222];
             settings->origin_offset_z = settings->parameters[5223];
-#line 6113 "rs274ngc_pre.c"
+#line 6065 "rs274ngc_pre.c"
 
             settings->axis_offset_x = 0;
             settings->axis_offset_x = 0;
             settings->axis_offset_x = 0;
-#line 6126 "rs274ngc_pre.c"
+#line 6078 "rs274ngc_pre.c"
 
             settings->current_x = settings->current_x -
                 settings->origin_offset_x;
@@ -9268,12 +9221,12 @@ static const int _gees[] =
                 settings->origin_offset_y;
             settings->current_z = settings->current_z -
                 settings->origin_offset_z;
-#line 6154 "rs274ngc_pre.c"
+#line 6106 "rs274ngc_pre.c"
 
             SET_ORIGIN_OFFSETS(settings->origin_offset_x,
                 settings->origin_offset_y,
                 settings->origin_offset_z
-#line 6179 "rs274ngc_pre.c"
+#line 6131 "rs274ngc_pre.c"
                 );
 
               if (settings->plane != 1)
@@ -9406,7 +9359,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 6320 "rs274ngc_pre.c"
+#line 6272 "rs274ngc_pre.c"
         int status;
 
         if (move == 10)
@@ -9486,7 +9439,7 @@ static const int _gees[] =
         else if (move == 0)
         {
             STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 6420 "rs274ngc_pre.c"
+#line 6372 "rs274ngc_pre.c"
                 );
             settings->current_x = end_x;
             settings->current_y = end_y;
@@ -9509,7 +9462,7 @@ static const int _gees[] =
 
                     , block, settings);
             STRAIGHT_FEED(end_x, end_y, end_z
-#line 6463 "rs274ngc_pre.c"
+#line 6415 "rs274ngc_pre.c"
                 );
             settings->current_x = end_x;
             settings->current_y = end_y;
@@ -9518,7 +9471,7 @@ static const int _gees[] =
             if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 16; } else;
 
         settings->current_z = end_z;
-#line 6480 "rs274ngc_pre.c"
+#line 6432 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -9565,7 +9518,7 @@ static const int _gees[] =
     double px,                                     
     double py,                                     
     double end_z                                   
-#line 6535 "rs274ngc_pre.c"
+#line 6487 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_straight_comp1";
@@ -9595,7 +9548,7 @@ static const int _gees[] =
         cy = (py + (radius * sin(alpha)));
         if (move == 0)
             STRAIGHT_TRAVERSE(cx, cy, end_z
-#line 6585 "rs274ngc_pre.c"
+#line 6537 "rs274ngc_pre.c"
                 );
         else if (move == 10)
         {
@@ -9615,7 +9568,7 @@ static const int _gees[] =
 
                     , block, settings);
             STRAIGHT_FEED(cx, cy, end_z
-#line 6625 "rs274ngc_pre.c"
+#line 6577 "rs274ngc_pre.c"
                 );
         }
         else
@@ -9707,7 +9660,7 @@ static const int _gees[] =
     double px,                                     
     double py,                                     
     double end_z                                   
-#line 6725 "rs274ngc_pre.c"
+#line 6677 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_straight_comp2";
@@ -9733,7 +9686,7 @@ static const int _gees[] =
             end_y = settings->current_y;
             if (move == 0)
                 STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 6771 "rs274ngc_pre.c"
+#line 6723 "rs274ngc_pre.c"
                     );
             else if (move == 10)
             {
@@ -9753,7 +9706,7 @@ static const int _gees[] =
 
                         , block, settings);
                 STRAIGHT_FEED(end_x, end_y, end_z
-#line 6811 "rs274ngc_pre.c"
+#line 6763 "rs274ngc_pre.c"
                     );
             }
             else
@@ -9793,7 +9746,7 @@ static const int _gees[] =
 
             if (move == 0)
                 STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 6871 "rs274ngc_pre.c"
+#line 6823 "rs274ngc_pre.c"
                     );
             else if (move == 10)
             {
@@ -9818,10 +9771,10 @@ static const int _gees[] =
                         block, settings);
                     ARC_FEED(mid_x,mid_y,start_x, start_y,((side == 2) ? -1 : 1),
                         settings->current_z
-#line 6916 "rs274ngc_pre.c"
+#line 6868 "rs274ngc_pre.c"
                         );
                     STRAIGHT_FEED(end_x, end_y, end_z
-#line 6939 "rs274ngc_pre.c"
+#line 6891 "rs274ngc_pre.c"
                         );
                 }
                 else
@@ -9842,7 +9795,7 @@ static const int _gees[] =
 
                             , block, settings);
                     STRAIGHT_FEED(end_x, end_y, end_z
-#line 6980 "rs274ngc_pre.c"
+#line 6932 "rs274ngc_pre.c"
                         );
                 }
             }
@@ -10066,15 +10019,15 @@ static const int _gees[] =
 
         if (plane == 1)
             STRAIGHT_FEED(end1, end2, end3
-#line 7224 "rs274ngc_pre.c"
+#line 7176 "rs274ngc_pre.c"
                 );
         else if (plane == 2)
             STRAIGHT_FEED(end3, end1, end2
-#line 7248 "rs274ngc_pre.c"
+#line 7200 "rs274ngc_pre.c"
                     );
         else                                       
             STRAIGHT_FEED(end2, end3, end1
-#line 7272 "rs274ngc_pre.c"
+#line 7224 "rs274ngc_pre.c"
                 );
 
         return 0;
@@ -10114,15 +10067,15 @@ static const int _gees[] =
 
         if (plane == 1)
             STRAIGHT_TRAVERSE(end1, end2, end3
-#line 7332 "rs274ngc_pre.c"
+#line 7284 "rs274ngc_pre.c"
                 );
         else if (plane == 2)
             STRAIGHT_TRAVERSE(end3, end1, end2
-#line 7356 "rs274ngc_pre.c"
+#line 7308 "rs274ngc_pre.c"
                     );
         else                                       
             STRAIGHT_TRAVERSE(end2, end3, end1
-#line 7380 "rs274ngc_pre.c"
+#line 7332 "rs274ngc_pre.c"
                 );
         return 0;
     }
@@ -10173,7 +10126,7 @@ static const int _gees[] =
 
         axis_flag = ((block->x_flag == 1) ||
             (block->y_flag == 1) ||
-#line 7439 "rs274ngc_pre.c"
+#line 7391 "rs274ngc_pre.c"
             (block->z_flag == 1));
         mode_zero_covets_axes = ((block->g_modes[0] == 500) ||
             (block->g_modes[0] == 280) ||
@@ -10410,9 +10363,9 @@ static const int _gees[] =
         {
             if ((status = (convert_comment(block->comment))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
         }
-        if (block->g_modes[5] != -1)
+        if (block->g_modes[3] != -1)
         {
-            if ((status = (convert_feed_mode(block->g_modes[5], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
+            if ((status = (convert_feed_mode(block->g_modes[3], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
         }
         if (block->f_number > -1.0)
         {
@@ -10636,7 +10589,7 @@ static const int _gees[] =
     double * px,                                   
     double * py,                                   
     double * pz                                    
-#line 7910 "rs274ngc_pre.c"
+#line 7862 "rs274ngc_pre.c"
     )
     {
         int mode;
@@ -10661,7 +10614,7 @@ static const int _gees[] =
             *pz = (block->z_flag == 1) ? (block->z_number -
                 (settings->tool_length_offset + settings->origin_offset_z
                 + settings->axis_offset_z)) : settings->current_z;
-#line 7968 "rs274ngc_pre.c"
+#line 7920 "rs274ngc_pre.c"
         }
         else if (mode == MODE_ABSOLUTE)
         {
@@ -10675,7 +10628,7 @@ static const int _gees[] =
 
             *pz = (block->z_flag == 1) ? block->z_number     :
             settings->current_z ;
-#line 8002 "rs274ngc_pre.c"
+#line 7954 "rs274ngc_pre.c"
         }
         else                                       
         {
@@ -10693,7 +10646,7 @@ static const int _gees[] =
 
             *pz = (block->z_flag == 1) ?
                 (settings->current_z + block->z_number) : settings->current_z;
-#line 8040 "rs274ngc_pre.c"
+#line 7992 "rs274ngc_pre.c"
         }
         return 0;
     }
@@ -10724,18 +10677,18 @@ static const int _gees[] =
     double x1,                                     
     double y1,                                     
     double z1,                                     
-#line 8079 "rs274ngc_pre.c"
+#line 8031 "rs274ngc_pre.c"
     double * x2,                                   
     double * y2,                                   
     double * z2,                                   
-#line 8091 "rs274ngc_pre.c"
+#line 8043 "rs274ngc_pre.c"
     setup_pointer settings)                        
     {
         *x2 = (x1 - (settings->origin_offset_x + settings->axis_offset_x));
         *y2 = (y1 - (settings->origin_offset_y + settings->axis_offset_y));
         *z2 = (z1 - (settings->tool_length_offset +
             settings->origin_offset_z + settings->axis_offset_z));
-#line 8118 "rs274ngc_pre.c"
+#line 8070 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -10776,21 +10729,21 @@ static const int _gees[] =
     double x2,                                     
     double y2,                                     
     double z2,                                     
-#line 8167 "rs274ngc_pre.c"
+#line 8119 "rs274ngc_pre.c"
     double x1,                                     
     double y1,                                     
     double z1                                      
-#line 8179 "rs274ngc_pre.c"
+#line 8131 "rs274ngc_pre.c"
     )
     {
         if ((x1 != x2) || (y1 != y2) || (z1 != z2) ||
             (1
-#line 8192 "rs274ngc_pre.c"
+#line 8144 "rs274ngc_pre.c"
             ))                                     
             return sqrt(pow((x2 - x1),2) + pow((y2 - y1),2) + pow((z2 - z1),2));
         else
             return sqrt(0 +
-#line 8205 "rs274ngc_pre.c"
+#line 8157 "rs274ngc_pre.c"
                 0);
     }
 
@@ -10882,7 +10835,7 @@ static const int _gees[] =
     block_pointer block)                           
     {
         int n;
-#line 8305 "rs274ngc_pre.c"
+#line 8257 "rs274ngc_pre.c"
         block->comment[0] = 0;
         block->d_number = -1;
         block->f_number = -1.0;
@@ -11041,7 +10994,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z,                                  
-#line 8472 "rs274ngc_pre.c"
+#line 8424 "rs274ngc_pre.c"
     block_pointer block,                           
     setup_pointer settings)                        
     {
@@ -11107,7 +11060,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z,                                  
-#line 8546 "rs274ngc_pre.c"
+#line 8498 "rs274ngc_pre.c"
     block_pointer block,                           
     setup_pointer settings)                        
     {
@@ -11270,7 +11223,7 @@ static const int _gees[] =
 
 
         if ((status = (read_real_value(line, counter, &value, parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-#line 8716 "rs274ngc_pre.c"
+#line 8668 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -11387,7 +11340,7 @@ static const int _gees[] =
 
 
         if ((status = (read_real_value(line, counter, &value, parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-#line 8840 "rs274ngc_pre.c"
+#line 8792 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -11447,7 +11400,7 @@ static const int _gees[] =
 
 
         if ((status = (read_real_value(line, counter, &value, parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-#line 8907 "rs274ngc_pre.c"
+#line 8859 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -13013,7 +12966,7 @@ static const int _gees[] =
 
  
 
-#line 10500 "rs274ngc_pre.c"
+#line 10452 "rs274ngc_pre.c"
 
     
 
@@ -13287,7 +13240,7 @@ static const int _gees[] =
 
  
 
-#line 10798 "rs274ngc_pre.c"
+#line 10750 "rs274ngc_pre.c"
 
     
 
@@ -13320,7 +13273,7 @@ static const int _gees[] =
 
  
 
-#line 10859 "rs274ngc_pre.c"
+#line 10811 "rs274ngc_pre.c"
 
     
 
@@ -13772,11 +13725,11 @@ static const int _gees[] =
         settings->current_x = GET_EXTERNAL_POSITION_X();
         settings->current_y = GET_EXTERNAL_POSITION_Y();
         settings->current_z = GET_EXTERNAL_POSITION_Z();
-#line 11322 "rs274ngc_pre.c"
+#line 11274 "rs274ngc_pre.c"
         settings->parameters[5061] = GET_EXTERNAL_PROBE_POSITION_X();
         settings->parameters[5062] = GET_EXTERNAL_PROBE_POSITION_Y();
         settings->parameters[5063] = GET_EXTERNAL_PROBE_POSITION_Z();
-#line 11337 "rs274ngc_pre.c"
+#line 11289 "rs274ngc_pre.c"
         settings->parameters[5067] = GET_EXTERNAL_PROBE_VALUE();
         return 0;
     }
@@ -13846,14 +13799,14 @@ static const int _gees[] =
         gez[6] =
             (settings->distance_mode == MODE_ABSOLUTE) ? 900 : 910;
         gez[7] =
-            (settings->feed_mode == 1) ? 930 : 940;
+            (settings->feed_mode == 1) ? 930 : 980;
         gez[8] =
             (settings->origin_index < 7) ? (530 + (10 * settings->origin_index)) :
         (584 + settings->origin_index);
         gez[9] =
             (settings->tool_length_offset == 0.0) ? 490 : 430;
-        gez[10] =
-            (settings->retract_mode == OLD_Z) ? 980 : 990;
+
+
         gez[11] =
             (settings->control_mode == 3) ? 640 :
         (settings->control_mode == 2) ? 610 : 611;
@@ -14101,7 +14054,7 @@ static const int _gees[] =
         SET_ORIGIN_OFFSETS((pars[k + 1] + pars[5211]),
             (pars[k + 2] + pars[5212]),
             (pars[k + 3] + pars[5213])
-#line 11682 "rs274ngc_pre.c"
+#line 11634 "rs274ngc_pre.c"
             );
         SET_FEED_REFERENCE(2);
 
@@ -14674,7 +14627,7 @@ static const int _gees[] =
     int rs274ngc_synch()                           
     {
         _setup.control_mode = GET_EXTERNAL_MOTION_CONTROL_MODE();
-#line 12266 "rs274ngc_pre.c"
+#line 12218 "rs274ngc_pre.c"
         _setup.current_slot = GET_EXTERNAL_TOOL_SLOT();
         _setup.current_x = GET_EXTERNAL_POSITION_X();
         _setup.current_y = GET_EXTERNAL_POSITION_Y();

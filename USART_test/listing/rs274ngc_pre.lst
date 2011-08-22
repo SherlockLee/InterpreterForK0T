@@ -5213,17 +5213,18 @@ N#define MM_PER_INCH 25.4
 N#define INCH_PER_MM 0.039370078740157477
 N
 N   // on-off switch settings
-N#define OFF 0
-N#define ON 1
+N#define OFF 	0
+N#define ON 		1
 N
 N   // feed_mode
-N#define UNITS_PER_MINUTE 0
-N#define INVERSE_TIME 1
+N#define UNITS_PER_MINUTE 		0
+N#define INVERSE_TIME 			1
+N#define UNITS_PER_REVOLUTION 	2
 N
 N   // cutter radius compensation mode, OFF already defined to 0
 N   // not using CANON_SIDE since interpreter handles cutter radius comp
-N#define RIGHT 1
-N#define LEFT 2
+N#define RIGHT 	1
+N#define LEFT 	2
 N
 N   // number of parameters in parameter table
 N#define RS274NGC_MAX_PARAMETERS 5400
@@ -5636,7 +5637,7 @@ N#define NCE_BUG_CODE_NOT_G43_OR_G49 22
 N#define NCE_BUG_CODE_NOT_G4_G50_G28_G30_G53_OR_G92_SERIES 23
 N#define NCE_BUG_CODE_NOT_G61_G61_1_OR_G64 24
 N#define NCE_BUG_CODE_NOT_G90_OR_G91 25
-N#define NCE_BUG_CODE_NOT_G93_OR_G94 26
+N#define NCE_BUG_CODE_NOT_G93_OR_G98 26
 N#define NCE_BUG_CODE_NOT_G98_OR_G99 27
 N#define NCE_BUG_CODE_NOT_IN_G92_SERIES 28
 N#define NCE_BUG_CODE_NOT_IN_RANGE_G54_TO_G593 29
@@ -5842,7 +5843,7 @@ N    /*  22 */ "Bug code not g43 or g49", // convert_tool_length_offset
 N    /*  23 */ "Bug code not g4 g50 g28 g30 g53 or g92 series", // convert_modal_0
 N    /*  24 */ "Bug code not g61 g61 1 or g64", // convert_control_mode
 N    /*  25 */ "Bug code not g90 or g91", // convert_distance_mode
-N    /*  26 */ "Bug code not g93 or g94", // convert_feed_mode
+N    /*  26 */ "Bug code not g93 or g98", // convert_feed_mode
 N    /*  27 */ "Bug code not g98 or g99", // convert_retract_mode
 N    /*  28 */ "Bug code not in g92 series", // convert_axis_offsets
 N    /*  29 */ "Bug code not in range g54 to g593", // convert_coordinate_system
@@ -6182,7 +6183,6 @@ Nstatic int convert_cycle_yz(int motion, block_pointer block,
 Nsetup_pointer settings);
 Nstatic int convert_cycle_zx(int motion, block_pointer block,
 Nsetup_pointer settings);
-Nstatic int convert_distance_mode(int g_code, setup_pointer settings);
 Nstatic int convert_dwell(double time);
 Nstatic int convert_feed_mode(int g_code, setup_pointer settings);
 Nstatic int convert_feed_rate(block_pointer block, setup_pointer settings);
@@ -11135,66 +11135,6 @@ N        return RS274NGC_OK;
 X        return 0;
 N    }
 N
-N   /****************************************************************************/
-N
-N   /* convert_distance_mode
-N
-N   Returned Value: int
-N   If any of the following errors occur, this returns the error shown.
-N   Otherwise, it returns RS274NGC_OK.
-N   1. g_code isn't G_90 or G_91: NCE_BUG_CODE_NOT_G90_OR_G91
-N
-N   Side effects:
-N   The interpreter switches the machine settings to indicate the current
-N   distance mode (absolute or incremental).
-N
-N   The canonical machine to which commands are being sent does not have
-N   an incremental mode, so no command setting the distance mode is
-N   generated in this function. A comment function call explaining the
-N   change of mode is made (conditionally), however, if there is a change.
-N
-N   Called by: convert_g.
-N
-N   */
-N
-N    static int convert_distance_mode(             /* ARGUMENTS                             */
-N    int g_code,                                   /* g_code being executed (must be G_90 or G_91) */
-N    setup_pointer settings)                       /* pointer to machine settings                  */
-N    {
-N        static char name[] SET_TO "convert_distance_mode";
-X        static char name[] = "convert_distance_mode";
-N        if (g_code IS G_90)
-X        if (g_code == 900)
-N        {
-N            if (settings->distance_mode ISNT MODE_ABSOLUTE)
-X            if (settings->distance_mode != MODE_ABSOLUTE)
-N            {
-N#ifdef DEBUG_EMC
-N                COMMENT("interpreter: distance mode changed to absolute");
-N#endif
-N                settings->distance_mode SET_TO MODE_ABSOLUTE;
-X                settings->distance_mode = MODE_ABSOLUTE;
-N            }
-N        }
-N        else if (g_code IS G_91)
-X        else if (g_code == 910)
-N        {
-N            if (settings->distance_mode ISNT MODE_INCREMENTAL)
-X            if (settings->distance_mode != MODE_INCREMENTAL)
-N            {
-N#ifdef DEBUG_EMC
-N                COMMENT("interpreter: distance mode changed to incremental");
-N#endif
-N                settings->distance_mode SET_TO MODE_INCREMENTAL;
-X                settings->distance_mode = MODE_INCREMENTAL;
-N            }
-N        }
-N        else
-N            ERM(NCE_BUG_CODE_NOT_G90_OR_G91);
-X            if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 25; } else;
-N        return RS274NGC_OK;
-X        return 0;
-N    }
 N
 N   /****************************************************************************/
 N
@@ -11254,8 +11194,8 @@ N#endif
 N            settings->feed_mode SET_TO INVERSE_TIME;
 X            settings->feed_mode = 1;
 N        }
-N        else if (g_code IS G_94)
-X        else if (g_code == 940)
+N        else if (g_code IS G_98)
+X        else if (g_code == 980)
 N        {
 N#ifdef DEBUG_EMC
 N            COMMENT("interpreter: feed mode set to units per minute");
@@ -11263,8 +11203,18 @@ N#endif
 N            settings->feed_mode SET_TO UNITS_PER_MINUTE;
 X            settings->feed_mode = 0;
 N        }
+N		else if (g_code IS G_99)
+X		else if (g_code == 990)
+N        {
+N#ifdef DEBUG_EMC
+N            COMMENT("interpreter: feed mode set to units per revolution");
+N#endif
+N            settings->feed_mode SET_TO UNITS_PER_REVOLUTION;
+X            settings->feed_mode = 2;
+N        }
+N
 N        else
-N            ERM(NCE_BUG_CODE_NOT_G93_OR_G94);
+N            ERM(NCE_BUG_CODE_NOT_G93_OR_G98);
 X            if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 26; } else;
 N        return RS274NGC_OK;
 X        return 0;
@@ -11403,12 +11353,6 @@ X        if (block->g_modes[13] != -1)
 N        {
 N            CHP(convert_control_mode(block->g_modes[13], settings));
 X            if ((status = (convert_control_mode(block->g_modes[13], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-N        }
-N        if (block->g_modes[3] ISNT -1)
-X        if (block->g_modes[3] != -1)
-N        {
-N            CHP(convert_distance_mode(block->g_modes[3], settings));
-X            if ((status = (convert_distance_mode(block->g_modes[3], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
 N        }
 N        if (block->g_modes[10] ISNT -1)
 X        if (block->g_modes[10] != -1)
@@ -12206,29 +12150,23 @@ N    static int convert_retract_mode(              /* ARGUMENTS                 
 N    int g_code,                                   /* g_code being executed (must be G_98 or G_99) */
 N    setup_pointer settings)                       /* pointer to machine settings                  */
 N    {
-N        static char name[] SET_TO "convert_retract_mode";
-X        static char name[] = "convert_retract_mode";
-N        if (g_code IS G_98)
-X        if (g_code == 980)
-N        {
-N#ifdef DEBUG_EMC
-N            COMMENT("interpreter: retract mode set to old_z");
-N#endif
-N            settings->retract_mode SET_TO OLD_Z;
-X            settings->retract_mode = OLD_Z;
-N        }
-N        else if (g_code IS G_99)
-X        else if (g_code == 990)
-N        {
-N#ifdef DEBUG_EMC
-N            COMMENT("interpreter: retract mode set to r_plane");
-N#endif
-N            settings->retract_mode SET_TO R_PLANE;
-X            settings->retract_mode = R_PLANE;
-N        }
-N        else
-N            ERM(NCE_BUG_CODE_NOT_G98_OR_G99);
-X            if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 27; } else;
+N//        static char name[] SET_TO "convert_retract_mode";
+N//        if (g_code IS G_98)
+N//        {
+N//#ifdef DEBUG_EMC
+N//            COMMENT("interpreter: retract mode set to old_z");
+N//#endif
+N//            settings->retract_mode SET_TO OLD_Z;
+N//        }
+N//        else if (g_code IS G_99)
+N//        {
+N//#ifdef DEBUG_EMC
+N//            COMMENT("interpreter: retract mode set to r_plane");
+N//#endif
+N//            settings->retract_mode SET_TO R_PLANE;
+N//        }
+N//        else
+N//            ERM(NCE_BUG_CODE_NOT_G98_OR_G99);
 N        return RS274NGC_OK;
 X        return 0;
 N    }
@@ -12260,7 +12198,7 @@ N
 N   See documentation of convert_coordinate_system for more information.
 N
 N   */
-N
+N	
 N    static int convert_setup(                     /* ARGUMENTS                                    */
 N    block_pointer block,                          /* pointer to a block of RS274/NGC instructions */
 N    setup_pointer settings)                       /* pointer to machine settings                  */
@@ -14464,11 +14402,11 @@ N        {
 N            CHP(convert_comment(block->comment));
 X            if ((status = (convert_comment(block->comment))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
 N        }
-N        if (block->g_modes[5] ISNT -1)
-X        if (block->g_modes[5] != -1)
+N        if (block->g_modes[3] ISNT -1)
+X        if (block->g_modes[3] != -1)
 N        {
-N            CHP(convert_feed_mode(block->g_modes[5], settings));
-X            if ((status = (convert_feed_mode(block->g_modes[5], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
+N            CHP(convert_feed_mode(block->g_modes[3], settings));
+X            if ((status = (convert_feed_mode(block->g_modes[3], settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
 N        }
 N        if (block->f_number > -1.0)
 N        {
@@ -16780,7 +16718,7 @@ N        char letter;
 N
 N        letter SET_TO line[*counter];             /* check if in array range */
 X        letter = line[*counter];              
-W "rs274ngc_pre.c" 9712 9 pointless comparison of unsigned integer with zero
+W "rs274ngc_pre.c" 9664 9 pointless comparison of unsigned integer with zero
 N        CHK(((letter < 0) OR (letter > 'z')), NCE_BAD_CHARACTER_USED);
 X        if (((letter < 0) || (letter > 'z'))) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 12; } else;
 N        function_pointer SET_TO _readers[letter];
@@ -18748,8 +18686,8 @@ N            (settings->distance_mode IS MODE_ABSOLUTE) ? G_90 : G_91;
 X            (settings->distance_mode == MODE_ABSOLUTE) ? 900 : 910;
 N        gez[7] SET_TO
 X        gez[7] =
-N            (settings->feed_mode IS INVERSE_TIME) ? G_93 : G_94;
-X            (settings->feed_mode == 1) ? 930 : 940;
+N            (settings->feed_mode IS INVERSE_TIME) ? G_93 : G_98;
+X            (settings->feed_mode == 1) ? 930 : 980;
 N        gez[8] SET_TO
 X        gez[8] =
 N            (settings->origin_index < 7) ? (530 + (10 * settings->origin_index)) :
@@ -18758,10 +18696,8 @@ N        gez[9] SET_TO
 X        gez[9] =
 N            (settings->tool_length_offset IS 0.0) ? G_49 : G_43;
 X            (settings->tool_length_offset == 0.0) ? 490 : 430;
-N        gez[10] SET_TO
-X        gez[10] =
-N            (settings->retract_mode IS OLD_Z) ? G_98 : G_99;
-X            (settings->retract_mode == OLD_Z) ? 980 : 990;
+N//        gez[10] SET_TO
+N//            (settings->retract_mode IS OLD_Z) ? G_98 : G_99;
 N        gez[11] SET_TO
 X        gez[11] =
 N            (settings->control_mode IS CANON_CONTINUOUS) ? G_64 :
@@ -19682,7 +19618,7 @@ N            {
 N                break;
 N            }
 N   // try for a variable-value match
-W "rs274ngc_pre.c" 12191 50 argument is incompatible with corresponding format string conversion
+W "rs274ngc_pre.c" 12143 50 argument is incompatible with corresponding format string conversion
 N            if (sscanf(line, "%d %f", &variable, &value) IS 2)
 X            if (sscanf(line, "%d %f", &variable, &value) == 2)
 N            {

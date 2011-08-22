@@ -158,6 +158,8 @@ char _nc_code_buffer[]=
 //"(this program mills );"
 //"n0010 g00 x0 y0 z50;"
 "n0010 G50 L2 P1 X 3.5 Y 17.2;"
+"n0020 G98;"
+"n0030 G99;"
 "%"};
 
 volatile int gAllChar;
