@@ -1,571 +1,14 @@
-L 1 "main.c"
-N/************************************************************************
-N
-N   Copyright 2008 Mark Pictor
-N
-NThis file is part of RS274NGC.
-N
-NRS274NGC is free software: you can redistribute it and/or modify
-Nit under the terms of the GNU General Public License as published by
-Nthe Free Software Foundation, either version 3 of the License, or
-N(at your option) any later version.
-N
-NRS274NGC is distributed in the hope that it will be useful,
-Nbut WITHOUT ANY WARRANTY; without even the implied warranty of
-NMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-NGNU General Public License for more details.
-N
-NYou should have received a copy of the GNU General Public License
-Nalong with RS274NGC.  If not, see <http://www.gnu.org/licenses/>.
-N
-NThis software is based on software that was produced by the National
-NInstitute of Standards and Technology (NIST).
-N
-N************************************************************************/
-N#include <rtl.h>
-L 1 "f:\Keil\ARM\RV31\INC\rtl.h" 1
-N/*----------------------------------------------------------------------------
-N *      RL-ARM - A P I 
-N *----------------------------------------------------------------------------
-N *      Name:    RTL.H 
-N *      Purpose: Application Programming Interface. 
-N *      Rev.:    V4.20
-N *----------------------------------------------------------------------------
-N *      This code is part of the RealView Run-Time Library.
-N *      Copyright (c) 2004-2011 KEIL - An ARM Company. All rights reserved.
-N *---------------------------------------------------------------------------*/
-N
-N#ifndef __RTL_H__
-N#define __RTL_H__
-N
-N/* RL-ARM version number. */
-N#define __RL_ARM_VER    420
-N 
-N#define __task          __declspec(noreturn)
-N
-N#ifndef NULL
-N #ifdef __cplusplus              // EC++
-S  #define NULL          0
-N #else
-N  #define NULL          ((void *) 0)
-N #endif
-N#endif
-N
-N#ifndef EOF
-N #define EOF            -1
-N#endif
-N
-N#ifndef __size_t
-N #define __size_t       1
-N typedef unsigned int   size_t;
-N#endif
-N
-Ntypedef signed char     S8;
-Ntypedef unsigned char   U8;
-Ntypedef short           S16;
-Ntypedef unsigned short  U16;
-Ntypedef int             S32;
-Ntypedef unsigned int    U32;
-Ntypedef long long       S64;
-Ntypedef unsigned long long U64;
-Ntypedef unsigned char   BIT;
-Ntypedef unsigned int    BOOL;
-N
-N#ifndef __TRUE
-N #define __TRUE         1
-N#endif
-N#ifndef __FALSE
-N #define __FALSE        0
-N#endif
-N
-N#ifdef __BIG_ENDIAN
-S #define U32_LE(v) (__rev(v))
-S #define U16_LE(v) (__rev(v) >> 16) 
-S #define U32_BE(v)       (v)
-S #define U16_BE(v)       (v)
-N#else
-N #define U32_BE(v) (__rev(v))
-N #define U16_BE(v) (__rev(v) >> 16) 
-N #define U32_LE(v)       (v)
-N #define U16_LE(v)       (v)
-N#endif
-N
-N/*----------------------------------------------------------------------------
-N *                             RTX Kernel API
-N *---------------------------------------------------------------------------*/
-N
-N#ifdef __cplusplus               // EC++
-Sextern "C"  {
-N#endif
-N
-N/* Definition of Semaphore type */
-Ntypedef U32 OS_SEM[2];
-N
-N/* Definition of Mailbox type */
-N#define os_mbx_declare(name,cnt)    U32 name [4 + cnt]
-Ntypedef U32 OS_MBX[];
-N
-N/* Definition of Mutex type */
-Ntypedef U32 OS_MUT[3];
-N
-N/* Task Identification number. */
-Ntypedef U32 OS_TID;
-N
-N/* Function return of system calls returning an object identification */
-Ntypedef void *OS_ID;
-N
-N/* Function return of system calls indicating an event or completion state */
-Ntypedef U32 OS_RESULT;
-N
-N/* Return codes */
-N#define OS_R_TMO        0x01
-N#define OS_R_EVT        0x02
-N#define OS_R_SEM        0x03
-N#define OS_R_MBX        0x04
-N#define OS_R_MUT        0x05
-N
-N#define OS_R_OK         0x00
-N#define OS_R_NOK        0xff
-N
-N#define OS_TCB_SIZE     48
-N#define OS_TMR_SIZE     8
-N
-N/* Error Codes */
-N#define OS_ERR_STK_OVF  1
-N#define OS_ERR_FIFO_OVF 2
-N#define OS_ERR_MBX_OVF  3
-N
-N#if !(defined(__TARGET_ARCH_6S_M) || defined(__TARGET_ARCH_7_M) || defined(__TARGET_ARCH_7E_M))
-X#if !(0L || 1L || 0L)
-S
-S/*----------------------------------------------------------------------------
-S *      Functions ARM
-S *---------------------------------------------------------------------------*/
-S
-S/* Task Management */
-S#define os_sys_init(tsk)              os_sys_init0(tsk,0,NULL)
-S#define os_sys_init_prio(tsk,prio)    os_sys_init0(tsk,prio,NULL)
-S#define os_sys_init_user(tsk,prio,stk,size)                                   \
-S                                      os_sys_init0(tsk,prio|(size<<8),stk)
-X#define os_sys_init_user(tsk,prio,stk,size)                                                                         os_sys_init0(tsk,prio|(size<<8),stk)
-S#define os_tsk_create(tsk,prio)       os_tsk_create0(tsk,prio,NULL,NULL)
-S#define os_tsk_create_user(tsk,prio,stk,size)                                 \
-S                                      os_tsk_create0(tsk,prio|(size<<8),stk,NULL)
-X#define os_tsk_create_user(tsk,prio,stk,size)                                                                       os_tsk_create0(tsk,prio|(size<<8),stk,NULL)
-S#define os_tsk_create_ex(tsk,prio,argv) os_tsk_create_ex0(tsk,prio,NULL,argv)
-S#define os_tsk_create_user_ex(tsk,prio,stk,size,argv)                         \
-S                                      os_tsk_create_ex0(tsk,prio|(size<<8),stk,argv)
-X#define os_tsk_create_user_ex(tsk,prio,stk,size,argv)                                                               os_tsk_create_ex0(tsk,prio|(size<<8),stk,argv)
-S#define os_tsk_delete_self()          os_tsk_delete(0)
-S#define os_tsk_prio_self(prio)        os_tsk_prio(0,prio)
-S#define isr_tsk_get()                 os_tsk_self()
-S
-Sextern void      os_sys_init0 (void (*task)(void), U32 prio_stksz, void *stk);
-Sextern OS_TID    os_tsk_create0 (void (*task)(void), U32 prio_stksz, 
-S                                 void *stk, void *argv);
-Sextern OS_TID    os_tsk_create_ex0 (void (*task)(void *), U32 prio_stksz, 
-S                                    void *stk, void *argv);
-Sextern OS_TID    os_tsk_self (void);
-Sextern void      os_tsk_pass (void);
-Sextern OS_RESULT os_tsk_prio (OS_TID task_id, U8 new_prio);
-Sextern OS_RESULT os_tsk_delete (OS_TID task_id);
-S
-S/* Event flag Management */
-S#define os_evt_wait_or(wflags,tmo)      os_evt_wait(wflags,tmo,__FALSE)
-S#define os_evt_wait_and(wflags,tmo)     os_evt_wait(wflags,tmo,__TRUE)
-S
-Sextern OS_RESULT os_evt_wait (U16 wait_flags, U16 timeout, BOOL and_wait);
-Sextern void      os_evt_set (U16 event_flags, OS_TID task_id);
-Sextern void      os_evt_clr (U16 clear_flags, OS_TID task_id);
-Sextern void      isr_evt_set (U16 event_flags, OS_TID task_id);
-Sextern U16       os_evt_get (void);
-S
-S/* Semaphore Management */
-Sextern void      os_sem_init (OS_ID semaphore, U16 token_count);
-Sextern OS_RESULT os_sem_send (OS_ID semaphore);
-Sextern OS_RESULT os_sem_wait (OS_ID semaphore, U16 timeout);
-Sextern void      isr_sem_send (OS_ID semaphore);
-S
-S/* Mailbox Management */
-S#define isr_mbx_check(mbx)              os_mbx_check(mbx)
-S
-Sextern void      os_mbx_init (OS_ID mailbox, U16 mbx_size);
-Sextern OS_RESULT os_mbx_send (OS_ID mailbox, void *message_ptr, U16 timeout);
-Sextern OS_RESULT os_mbx_wait (OS_ID mailbox, void  **message, U16 timeout);
-Sextern OS_RESULT os_mbx_check (OS_ID mailbox);
-Sextern void      isr_mbx_send (OS_ID mailbox, void *message_ptr);
-Sextern OS_RESULT isr_mbx_receive (OS_ID mailbox, void **message);
-S
-S/* Mutex Management */
-Sextern void      os_mut_init (OS_ID mutex);
-Sextern OS_RESULT os_mut_release (OS_ID mutex);
-Sextern OS_RESULT os_mut_wait (OS_ID mutex, U16 timeout);
-S
-S/* Time Management */
-Sextern void      os_dly_wait (U16 delay_time);
-Sextern void      os_itv_set (U16 interval_time);
-Sextern void      os_itv_wait (void);
-S
-S/* User Timer Management */
-Sextern OS_ID     os_tmr_create (U16 tcnt, U16 info);
-Sextern OS_ID     os_tmr_kill (OS_ID timer);
-S
-S/* System Functions */
-Sextern void      tsk_lock (void) __swi (5);
-Sextern void      tsk_unlock (void);
-S
-S/* Fixed Memory Block Management Functions */
-Sextern int       _init_box (void *box_mem, U32 box_size, U32 blk_size);
-Sextern void     *_alloc_box (void *box_mem) __swi (1);
-Sextern void     *_calloc_box (void *box_mem);
-Sextern int       _free_box (void *box_mem, void *box) __swi (2);
-S
-N#else
-N
-N/*----------------------------------------------------------------------------
-N *      Functions Cortex-M
-N *---------------------------------------------------------------------------*/
-N
-N#define __SVC_0         __svc_indirect(0)
-N
-N/* Task Management */
-Nextern void      os_set_env    (void);
-Nextern void      rt_sys_init   (void (*task)(void), U8 priority, void *stk);
-Nextern void      rt_tsk_pass   (void);
-Nextern OS_TID    rt_tsk_self   (void);
-Nextern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
-Nextern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
-Nextern OS_RESULT rt_tsk_delete (OS_TID task_id);
-N
-N#define os_sys_init(tsk)              os_set_env();                           \
-N                                      _os_sys_init((U32)rt_sys_init,tsk,0,NULL)
-X#define os_sys_init(tsk)              os_set_env();                                                                 _os_sys_init((U32)rt_sys_init,tsk,0,NULL)
-N#define os_sys_init_user(tsk,prio,stk,size)                                   \
-N                                      os_set_env();                           \
-N                                      _os_sys_init((U32)rt_sys_init,tsk,prio|(size<<8),stk)
-X#define os_sys_init_user(tsk,prio,stk,size)                                                                         os_set_env();                                                                 _os_sys_init((U32)rt_sys_init,tsk,prio|(size<<8),stk)
-N#define os_sys_init_prio(tsk,prio)    os_set_env();                           \
-N                                      _os_sys_init((U32)rt_sys_init,tsk,prio,NULL)
-X#define os_sys_init_prio(tsk,prio)    os_set_env();                                                                 _os_sys_init((U32)rt_sys_init,tsk,prio,NULL)
-N#define os_tsk_create(tsk,prio)       _os_tsk_create((U32)rt_tsk_create,tsk,prio,NULL,NULL)
-N#define os_tsk_create_user(tsk,prio,stk,size)                                 \
-N                                      _os_tsk_create((U32)rt_tsk_create,tsk,prio|(size<<8),stk,NULL)
-X#define os_tsk_create_user(tsk,prio,stk,size)                                                                       _os_tsk_create((U32)rt_tsk_create,tsk,prio|(size<<8),stk,NULL)
-N#define os_tsk_create_ex(tsk,prio,argv) _os_tsk_create_ex((U32)rt_tsk_create,tsk,prio,NULL,argv)
-N#define os_tsk_create_user_ex(tsk,prio,stk,size,argv)                         \
-N                                      _os_tsk_create_ex((U32)rt_tsk_create,tsk,prio|(size<<8),stk,argv)
-X#define os_tsk_create_user_ex(tsk,prio,stk,size,argv)                                                               _os_tsk_create_ex((U32)rt_tsk_create,tsk,prio|(size<<8),stk,argv)
-N#define os_tsk_self()                 _os_tsk_self((U32)rt_tsk_self)
-N#define os_tsk_pass()                 _os_tsk_pass((U32)rt_tsk_pass)
-N#define os_tsk_prio(task_id,new_prio) _os_tsk_prio((U32)rt_tsk_prio,task_id,new_prio)
-N#define os_tsk_prio_self(prio)        _os_tsk_prio((U32)rt_tsk_prio,0,prio)
-N#define os_tsk_delete(task_id)        _os_tsk_delete((U32)rt_tsk_delete,task_id)
-N#define os_tsk_delete_self()          _os_tsk_delete((U32)rt_tsk_delete, 0)
-N#define isr_tsk_get()                 rt_tsk_self()
-N
-Nextern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
-N                                     void *stk)                        __SVC_0;
-X                                     void *stk)                        __svc_indirect(0);
-Nextern OS_TID    _os_tsk_create (U32 p, void (*task)(void), U32 prio_stksz,
-N                                        void *stk, void *argv)         __SVC_0;
-X                                        void *stk, void *argv)         __svc_indirect(0);
-Nextern OS_TID    _os_tsk_create_ex (U32 p, void (*task)(void *), U32 prio_stksz,
-N                                           void *stk, void *argv)      __SVC_0;
-X                                           void *stk, void *argv)      __svc_indirect(0);
-Nextern OS_TID    _os_tsk_self (U32 p)                                  __SVC_0;
-Xextern OS_TID    _os_tsk_self (U32 p)                                  __svc_indirect(0);
-Nextern void      _os_tsk_pass (U32 p)                                  __SVC_0;
-Xextern void      _os_tsk_pass (U32 p)                                  __svc_indirect(0);
-Nextern OS_RESULT _os_tsk_prio (U32 p, OS_TID task_id, U8 new_prio)     __SVC_0;
-Xextern OS_RESULT _os_tsk_prio (U32 p, OS_TID task_id, U8 new_prio)     __svc_indirect(0);
-Nextern OS_RESULT _os_tsk_delete (U32 p, OS_TID task_id)                __SVC_0;
-Xextern OS_RESULT _os_tsk_delete (U32 p, OS_TID task_id)                __svc_indirect(0);
-N
-N/* Event flag Management */
-Nextern OS_RESULT rt_evt_wait (U16 wait_flags,  U16 timeout, BOOL and_wait);
-Nextern void      rt_evt_set  (U16 event_flags, OS_TID task_id);
-Nextern void      rt_evt_clr  (U16 clear_flags, OS_TID task_id);
-Nextern U16       rt_evt_get  (void);
-N
-N#define os_evt_wait_or(wflags,tmo)    _os_evt_wait((U32)rt_evt_wait,wflags,tmo,__FALSE)
-N#define os_evt_wait_and(wflags,tmo)   _os_evt_wait((U32)rt_evt_wait,wflags,tmo,__TRUE)
-N#define os_evt_set(evt_flags,task_id) _os_evt_set((U32)rt_evt_set,evt_flags,task_id)
-N#define os_evt_clr(clr_flags,task_id) _os_evt_clr((U32)rt_evt_clr,clr_flags,task_id)
-N#define os_evt_get()                  _os_evt_get((U32)rt_evt_get)
-N
-Nextern OS_RESULT _os_evt_wait(U32 p, U16 wait_flags, U16 timeout,
-N                                     BOOL and_wait)                    __SVC_0;
-X                                     BOOL and_wait)                    __svc_indirect(0);
-Nextern void      _os_evt_set (U32 p, U16 event_flags, OS_TID task_id)  __SVC_0;
-Xextern void      _os_evt_set (U32 p, U16 event_flags, OS_TID task_id)  __svc_indirect(0);
-Nextern void      _os_evt_clr (U32 p, U16 clear_flags, OS_TID task_id)  __SVC_0;
-Xextern void      _os_evt_clr (U32 p, U16 clear_flags, OS_TID task_id)  __svc_indirect(0);
-Nextern U16       _os_evt_get (U32 p)                                   __SVC_0;
-Xextern U16       _os_evt_get (U32 p)                                   __svc_indirect(0);
-Nextern void      isr_evt_set (U16 event_flags, OS_TID task_id);
-N
-N/* Semaphore Management */
-Nextern void      rt_sem_init (OS_ID semaphore, U16 token_count);
-Nextern OS_RESULT rt_sem_send (OS_ID semaphore);
-Nextern OS_RESULT rt_sem_wait (OS_ID semaphore, U16 timeout);
-N
-N#define os_sem_init(sem,t_count)     _os_sem_init((U32)rt_sem_init,sem,t_count)
-N#define os_sem_send(sem)             _os_sem_send((U32)rt_sem_send,sem)
-N#define os_sem_wait(sem,tmo)         _os_sem_wait((U32)rt_sem_wait,sem,tmo)
-N
-Nextern void      _os_sem_init (U32 p, OS_ID semaphore, 
-N                                      U16 token_count)                 __SVC_0;
-X                                      U16 token_count)                 __svc_indirect(0);
-Nextern OS_RESULT _os_sem_send (U32 p, OS_ID semaphore)                 __SVC_0;
-Xextern OS_RESULT _os_sem_send (U32 p, OS_ID semaphore)                 __svc_indirect(0);
-Nextern OS_RESULT _os_sem_wait (U32 p, OS_ID semaphore, U16 timeout)    __SVC_0;
-Xextern OS_RESULT _os_sem_wait (U32 p, OS_ID semaphore, U16 timeout)    __svc_indirect(0);
-Nextern void      isr_sem_send (OS_ID semaphore);
-N
-N/* Mailbox Management */
-Nextern void      rt_mbx_init  (OS_ID mailbox, U16 mbx_size);
-Nextern OS_RESULT rt_mbx_send  (OS_ID mailbox, void *p_msg,    U16 timeout);
-Nextern OS_RESULT rt_mbx_wait  (OS_ID mailbox, void **message, U16 timeout);
-Nextern OS_RESULT rt_mbx_check (OS_ID mailbox);
-N
-N#define os_mbx_init(mbx,mbx_size)     _os_mbx_init((U32)rt_mbx_init,mbx,mbx_size)
-N#define os_mbx_send(mbx,p_msg,tmo)    _os_mbx_send((U32)rt_mbx_send,mbx,p_msg,tmo)
-N#define os_mbx_wait(mbx,message,tmo)  _os_mbx_wait((U32)rt_mbx_wait,mbx,message,tmo)
-N#define os_mbx_check(mbx)             _os_mbx_check((U32)rt_mbx_check,mbx)
-N#define isr_mbx_check(mbx)            rt_mbx_check(mbx)
-N
-Nextern void      _os_mbx_init (U32 p, OS_ID mailbox, U16 mbx_size)     __SVC_0;
-Xextern void      _os_mbx_init (U32 p, OS_ID mailbox, U16 mbx_size)     __svc_indirect(0);
-Nextern OS_RESULT _os_mbx_send (U32 p, OS_ID mailbox, void *message_ptr,
-N                                      U16 timeout)                     __SVC_0;
-X                                      U16 timeout)                     __svc_indirect(0);
-Nextern OS_RESULT _os_mbx_wait (U32 p, OS_ID mailbox, void  **message,
-N                                      U16 timeout)                     __SVC_0;
-X                                      U16 timeout)                     __svc_indirect(0);
-Nextern OS_RESULT _os_mbx_check (U32 p, OS_ID mailbox)                  __SVC_0;
-Xextern OS_RESULT _os_mbx_check (U32 p, OS_ID mailbox)                  __svc_indirect(0);
-Nextern void      isr_mbx_send (OS_ID mailbox, void *message_ptr);
-Nextern OS_RESULT isr_mbx_receive (OS_ID mailbox, void **message);
-N
-N/* Mutex Management */
-Nextern void      rt_mut_init    (OS_ID mutex);
-Nextern OS_RESULT rt_mut_release (OS_ID mutex);
-Nextern OS_RESULT rt_mut_wait    (OS_ID mutex, U16 timeout);
-N
-N#define os_mut_init(mutex)         _os_mut_init((U32)rt_mut_init,mutex)
-N#define os_mut_release(mutex)      _os_mut_release((U32)rt_mut_release,mutex)
-N#define os_mut_wait(mutex,timeout) _os_mut_wait((U32)rt_mut_wait,mutex,timeout)
-N
-Nextern void      _os_mut_init (U32 p, OS_ID mutex)                     __SVC_0;
-Xextern void      _os_mut_init (U32 p, OS_ID mutex)                     __svc_indirect(0);
-Nextern OS_RESULT _os_mut_release (U32 p, OS_ID mutex)                  __SVC_0;
-Xextern OS_RESULT _os_mut_release (U32 p, OS_ID mutex)                  __svc_indirect(0);
-Nextern OS_RESULT _os_mut_wait (U32 p, OS_ID mutex, U16 timeout)        __SVC_0;
-Xextern OS_RESULT _os_mut_wait (U32 p, OS_ID mutex, U16 timeout)        __svc_indirect(0);
-N
-N/* Time Management */
-Nextern void      rt_dly_wait (U16 delay_time);
-Nextern void      rt_itv_set  (U16 interval_time);
-Nextern void      rt_itv_wait (void);
-N
-N#define os_dly_wait(delay_time)    _os_dly_wait((U32)rt_dly_wait,delay_time)
-N#define os_itv_set(interval_time)  _os_itv_set((U32)rt_itv_set,interval_time)
-N#define os_itv_wait()              _os_itv_wait((U32)rt_itv_wait)
-N
-Nextern void      _os_dly_wait (U32 p, U16 delay_time)                  __SVC_0;
-Xextern void      _os_dly_wait (U32 p, U16 delay_time)                  __svc_indirect(0);
-Nextern void      _os_itv_set (U32 p, U16 interval_time)                __SVC_0;
-Xextern void      _os_itv_set (U32 p, U16 interval_time)                __svc_indirect(0);
-Nextern void      _os_itv_wait (U32 p)                                  __SVC_0;
-Xextern void      _os_itv_wait (U32 p)                                  __svc_indirect(0);
-N
-N/* User Timer Management */
-Nextern OS_ID     rt_tmr_create (U16 tcnt, U16 info);
-Nextern OS_ID     rt_tmr_kill   (OS_ID timer);
-N
-N#define os_tmr_create(tcnt,info)   _os_tmr_create((U32)rt_tmr_create,tcnt,info)
-N#define os_tmr_kill(timer)         _os_tmr_kill((U32)rt_tmr_kill,timer)
-N
-Nextern OS_ID     _os_tmr_create (U32 p, U16 tcnt, U16 info)            __SVC_0;
-Xextern OS_ID     _os_tmr_create (U32 p, U16 tcnt, U16 info)            __svc_indirect(0);
-Nextern OS_ID     _os_tmr_kill (U32 p, OS_ID timer)                     __SVC_0;
-Xextern OS_ID     _os_tmr_kill (U32 p, OS_ID timer)                     __svc_indirect(0);
-N
-N/* System Functions */
-Nextern void      rt_tsk_lock   (void);
-Nextern void      rt_tsk_unlock (void);
-N
-N#define tsk_lock()                 _os_tsk_lock((U32)rt_tsk_lock)
-N#define tsk_unlock()               _os_tsk_unlock((U32)rt_tsk_unlock)
-N
-Nextern void      _os_tsk_lock (U32 p)                                  __SVC_0;
-Xextern void      _os_tsk_lock (U32 p)                                  __svc_indirect(0);
-Nextern void      _os_tsk_unlock (U32 p)                                __SVC_0;
-Xextern void      _os_tsk_unlock (U32 p)                                __svc_indirect(0);
-N
-N/* Fixed Memory Block Management Functions */
-Nextern int       _init_box (void *box_mem, U32 box_size, U32 blk_size);
-Nextern void     *_alloc_box (void *box_mem);
-Nextern void     *_calloc_box (void *box_mem);
-Nextern int       _free_box (void *box_mem, void *box);
-N
-N#endif
-N
-N#define BOX_ALIGN_8     0x80000000
-N#define _declare_box(pool,size,cnt)   U32 pool[(((size)+3)/4)*(cnt) + 3]
-N#define _declare_box8(pool,size,cnt)  U64 pool[(((size)+7)/8)*(cnt) + 2]
-N#define _init_box8(pool,size,bsize)   _init_box (pool,size,bsize | BOX_ALIGN_8)
-N
-N/* For compatibility with older configurations.*/
-N#define os_stk_overflow         os_error
-N
-N/*----------------------------------------------------------------------------
-N *                        Flash File System API
-N *---------------------------------------------------------------------------*/
-N
-Ntypedef struct {                        /* RL Time format (FFS, TCPnet)      */
-N  U8  hr;                               /* Hours    [0..23]                  */
-N  U8  min;                              /* Minutes  [0..59]                  */
-N  U8  sec;                              /* Seconds  [0..59]                  */
-N  U8  day;                              /* Day      [1..31]                  */
-N  U8  mon;                              /* Month    [1..12]                  */
-N  U16 year;                             /* Year     [1980..2107]             */
-N} RL_TIME;
-N
-Ntypedef struct {                        /* Search info record                */
-N  S8  name[256];                        /* Name                              */
-N  U32 size;                             /* File size in bytes                */
-N  U16 fileID;                           /* System Identification             */
-N  U8  attrib;                           /* Attributes                        */
-N  RL_TIME time;                         /* Create/Modify Time                */
-N} FINFO;
-N
-Nextern int finit (const char *drive);
-Nextern int funinit (const char *drive);
-Nextern int fdelete (const char *filename);
-Nextern int frename (const char *oldname, const char *newname);
-Nextern int ffind (const char *pattern, FINFO *info);
-Nextern U64 ffree (const char *drive);
-Nextern int fformat (const char *drive);
-Nextern int fanalyse (const char *drive);
-Nextern int fcheck (const char *drive);
-Nextern int fdefrag (const char *drive);
-N
-N/* The following macros provide for common functions */
-N#define unlink(fn)      fdelete(fn);
-N
-N/*----------------------------------------------------------------------------
-N *                             TCPnet API
-N *---------------------------------------------------------------------------*/
-N
-N/* UDP Options */
-N#define UDP_OPT_SEND_CS    0x01   /* Calculate Checksum for UDP send frames  */
-N#define UDP_OPT_CHK_CS     0x02   /* Verify Checksum for received UDP frames */
-N
-N/* TCP Socket Types */
-N#define TCP_TYPE_SERVER    0x01   /* Socket Type Server (open for listening) */
-N#define TCP_TYPE_CLIENT    0x02   /* Socket Type Client (initiate connect)   */
-N#define TCP_TYPE_DELAY_ACK 0x04   /* Socket Type Delayed Acknowledge         */
-N#define TCP_TYPE_FLOW_CTRL 0x08   /* Socket Type Flow Control                */
-N#define TCP_TYPE_KEEP_ALIVE 0x10  /* Socket Type Keep Alive                  */
-N#define TCP_TYPE_CLIENT_SERVER (TCP_TYPE_SERVER | TCP_TYPE_CLIENT)
-N
-N/* TCP Callback Events */
-N#define TCP_EVT_CONREQ     0      /* Connect request received event          */
-N#define TCP_EVT_CONNECT    1      /* Connection established event            */
-N#define TCP_EVT_CLOSE      2      /* Connection was properly closed          */
-N#define TCP_EVT_ABORT      3      /* Connection is for some reason aborted   */
-N#define TCP_EVT_ACK        4      /* Previously send data acknowledged       */
-N#define TCP_EVT_DATA       5      /* Data received event                     */
-N
-N/* TCP States */
-N#define TCP_STATE_FREE     0      /* Entry is free and unused                */
-N#define TCP_STATE_CLOSED   1      /* Entry allocated, socket still closed    */
-N#define TCP_STATE_LISTEN   2      /* Socket waiting for incoming connection  */
-N#define TCP_STATE_SYN_REC  3      /* SYN frame received                      */
-N#define TCP_STATE_SYN_SENT 4      /* SYN packet sent to establish a connect. */
-N#define TCP_STATE_FINW1    5      /* Tcp_close started FIN packet was sent   */
-N#define TCP_STATE_FINW2    6      /* Our FIN ack-ed, waiting for remote FIN  */
-N#define TCP_STATE_CLOSING  7      /* Received FIN independently of our FIN   */
-N#define TCP_STATE_LAST_ACK 8      /* Waiting for last ACK for our FIN        */
-N#define TCP_STATE_TWAIT    9      /* Timed waiting for 2MSL                  */
-N#define TCP_STATE_CONNECT  10     /* TCP Connection established              */
-N
-N/* DNS Callback Events */
-N#define DNS_EVT_SUCCESS    0      /* Host name successfully resolved         */
-N#define DNS_EVT_NONAME     1      /* DNS Error, no such name                 */
-N#define DNS_EVT_TIMEOUT    2      /* Timeout resolving host                  */
-N#define DNS_EVT_ERROR      3      /* Erroneous response packet               */
-N
-N/* DNS 'get_host_by_name()' result codes */
-N#define DNS_RES_OK         0      /* Function finished OK                    */
-N#define DNS_ERROR_BUSY     1      /* DNS Client busy, can't process request  */
-N#define DNS_ERROR_LABEL    2      /* Host name Label too long                */
-N#define DNS_ERROR_NAME     3      /* Host name loo long                      */
-N#define DNS_ERROR_NOSRV    4      /* Prim. DNS server not specified (0.0.0.0)*/
-N#define DNS_ERROR_UDPSEND  5      /* UDP Send frame error                    */
-N
-N/* SMTP Callback Events */
-N#define SMTP_EVT_SUCCESS   0      /* Email successfully sent                 */
-N#define SMTP_EVT_TIMEOUT   1      /* Timeout sending email                   */
-N#define SMTP_EVT_ERROR     2      /* Error when sending email                */
-N
-N/* ARP Cache Entry types */
-N#define ARP_FIXED_IP       0      /* Fixed IP adrs is refreshed after tout   */
-N#define ARP_TEMP_IP        1      /* Temp adrs is removed after timeout      */
-N
-Nextern void init_TcpNet (void);
-Nextern void main_TcpNet (void);
-Nextern void timer_tick (void);
-Nextern U8   udp_get_socket (U8 tos, U8 opt, 
-N                            U16 (*listener)(U8 socket, U8 *remip, U16 port, U8 *buf, U16 len));
-Nextern BOOL udp_release_socket (U8 socket);
-Nextern BOOL udp_open (U8 socket, U16 locport);
-Nextern BOOL udp_close (U8 socket);
-Nextern BOOL udp_mcast_ttl (U8 socket, U8 ttl);
-Nextern U8  *udp_get_buf (U16 size);
-Nextern BOOL udp_send (U8 socket, U8 *remip, U16 remport, U8 *buf, U16 dlen);
-Nextern U8   tcp_get_socket (U8 type, U8 tos, U16 tout,
-N                            U16 (*listener)(U8 socket, U8 event, U8 *buf, U16 len));
-Nextern BOOL tcp_release_socket (U8 socket);
-Nextern BOOL tcp_listen (U8 socket, U16 locport);
-Nextern BOOL tcp_connect (U8 socket, U8 *remip, U16 remport, U16 locport);
-Nextern U8  *tcp_get_buf (U16 size);
-Nextern U16  tcp_max_dsize (U8 socket);
-Nextern BOOL tcp_check_send (U8 socket);
-Nextern U8   tcp_get_state (U8 socket);
-Nextern BOOL tcp_send (U8 socket, U8 *buf, U16 dlen);
-Nextern BOOL tcp_close (U8 socket);
-Nextern BOOL tcp_abort (U8 socket);
-Nextern void tcp_reset_window (U8 socket);
-Nextern BOOL arp_cache_ip (U8 *ipadr, U8 type);
-Nextern void ppp_listen (char const *user, char const *passw);
-Nextern void ppp_connect (char const *dialnum, char const *user, char const *passw);
-Nextern void ppp_close (void);
-Nextern BOOL ppp_is_up (void);
-Nextern void slip_listen (void);
-Nextern void slip_connect (char const *dialnum);
-Nextern void slip_close (void);
-Nextern BOOL slip_is_up (void);
-Nextern U8   get_host_by_name (U8 *hostn, void (*cbfunc)(U8 event, U8 *host_ip));
-Nextern BOOL smtp_connect (U8 *ipadr, U16 port, void (*cbfunc)(U8 event));
-Nextern void dhcp_disable (void);
-Nextern BOOL igmp_join (U8 *group_ip);
-Nextern BOOL igmp_leave (U8 *group_ip);
-Nextern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
-Nextern BOOL snmp_set_community (const char *community);
-N#ifdef __cplusplus               // EC++
-S}
-N#endif
-N
-N/*----------------------------------------------------------------------------
-N * end of file
-N *---------------------------------------------------------------------------*/
-N  
-N#endif
-N 
-L 25 "main.c" 2
-N#include <stdio.h>                                /* gets, etc. */
+L 1 "Queue.c"
+N#include "Queue.h"
+L 1 "Queue.h" 1
+N#ifndef _QUEUE_H_
+N#define _QUEUE_H_
+N
+N   /**********************/
+N   /* INCLUDE DIRECTIVES */
+N   /**********************/
+N
+N#include <stdio.h>
 L 1 "f:\Keil\ARM\RV31\INC\stdio.h" 1
 N/* stdio.h: ANSI 'C' (X3J11 Oct 88) library header, section 4.9 */
 N/* Copyright (C) Codemist Ltd., 1988-1993                       */
@@ -602,7 +45,7 @@ N      #define __CLIBNS
 N    #endif /* ndef __cplusplus */
 N
 N#if defined(__cplusplus) || !defined(__STRICT_ANSI__) || !defined(__size_t)
-X#if 0L || !0L || !1L
+X#if 0L || !0L || !0L
 N /* always defined in C++ and non-strict C for consistency of debug info */
 N  typedef unsigned int size_t;   /* see <stddef.h> */
 N  #if !defined(__cplusplus) && defined(__STRICT_ANSI__)
@@ -1589,8 +1032,8 @@ N
 N#endif /* ndef __stdio_h */
 N
 N/* end of stdio.h */
-L 26 "main.c" 2
-N#include <stdlib.h>                               /* exit       */
+L 9 "Queue.h" 2
+N#include <stdlib.h>
 L 1 "f:\Keil\ARM\RV31\INC\stdlib.h" 1
 N/* stdlib.h: ANSI draft (X3J11 May 88) library header, section 4.10 */
 N/* Copyright (C) Codemist Ltd., 1988-1993.                          */
@@ -2529,8 +1972,8 @@ N  #endif /* __cplusplus */
 N
 N#endif
 N/* end of stdlib.h */
-L 27 "main.c" 2
-N#include <string.h>                               /* strcpy     */
+L 10 "Queue.h" 2
+N#include <string.h>
 L 1 "f:\Keil\ARM\RV31\INC\string.h" 1
 N/* string.h: ANSI 'C' (X3J11 Oct 88) library header, section 4.11 */
 N/* Copyright (C) Codemist Ltd., 1988-1993.                        */
@@ -3069,7 +2512,7 @@ N
 N#endif
 N
 N/* end of string.h */
-L 28 "main.c" 2
+L 11 "Queue.h" 2
 N#include <stm32f10x_lib.h>
 L 1 "f:\Keil\ARM\INC\ST\STM32F10x\stm32f10x_lib.h" 1
 N/******************** (C) COPYRIGHT 2008 STMicroelectronics ********************
@@ -9985,7 +9428,7 @@ N
 N#endif /* __STM32F10x_LIB_H */
 N
 N/******************* (C) COPYRIGHT 2008 STMicroelectronics *****END OF FILE****/
-L 29 "main.c" 2
+L 12 "Queue.h" 2
 N#include "rs274ngc.h"
 L 1 "rs274ngc.h" 1
 N   /************************************************************************
@@ -11289,1351 +10732,263 @@ Nextern void rs274ngc_stack_name(int stack_index, char * function_name,
 Nint max_size);
 N
 N#endif
-L 30 "main.c" 2
-N#include "rs274ngc_return.h"
-L 1 "rs274ngc_return.h" 1
-N   /************************************************************************
-N
-N       Copyright 2008 Mark Pictor
-N
-N   This file is part of RS274NGC.
-N
-N   RS274NGC is free software: you can redistribute it and/or modify
-N   it under the terms of the GNU General Public License as published by
-N   the Free Software Foundation, either version 3 of the License, or
-N   (at your option) any later version.
-N
-N   RS274NGC is distributed in the hope that it will be useful,
-N   but WITHOUT ANY WARRANTY; without even the implied warranty of
-N   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-N   GNU General Public License for more details.
-N
-N   You should have received a copy of the GNU General Public License
-N   along with RS274NGC.  If not, see <http://www.gnu.org/licenses/>.
-N
-N   This software is based on software that was produced by the National
-N   Institute of Standards and Technology (NIST).
-N
-N   ************************************************************************/
-N
-N#ifndef RS274NGC_RETURN_H
-N#define RS274NGC_RETURN_H
-N
-N#define RS274NGC_OK 0
-N#define RS274NGC_EXIT 1
-N#define RS274NGC_EXECUTE_FINISH 2
-N#define RS274NGC_ENDFILE 3
-N#define NCE_A_FILE_IS_ALREADY_OPEN 4
-N#define NCE_ALL_AXES_MISSING_WITH_G92 5
-N#define NCE_ALL_AXES_MISSING_WITH_MOTION_CODE 6
-N#define NCE_ARC_RADIUS_TOO_SMALL_TO_REACH_END_POINT 7
-N#define NCE_ARGUMENT_TO_ACOS_OUT_OF_RANGE 8
-N#define NCE_ARGUMENT_TO_ASIN_OUT_OF_RANGE 9
-N#define NCE_ATTEMPT_TO_DIVIDE_BY_ZERO 10
-N#define NCE_ATTEMPT_TO_RAISE_NEGATIVE_TO_NON_INTEGER_POWER 11
-N#define NCE_BAD_CHARACTER_USED 12
-N#define NCE_BAD_FORMAT_UNSIGNED_INTEGER 13
-N#define NCE_BAD_NUMBER_FORMAT 14
-N#define NCE_BUG_BAD_G_CODE_MODAL_GROUP_0 15
-N#define NCE_BUG_CODE_NOT_G0_OR_G1 16
-N#define NCE_BUG_CODE_NOT_G17_G18_OR_G19 17
-N#define NCE_BUG_CODE_NOT_G20_OR_G21 18
-N#define NCE_BUG_CODE_NOT_G28_OR_G30 19
-N#define NCE_BUG_CODE_NOT_G2_OR_G3 20
-N#define NCE_BUG_CODE_NOT_G40_G41_OR_G42 21
-N#define NCE_BUG_CODE_NOT_G43_OR_G49 22
-N#define NCE_BUG_CODE_NOT_G4_G50_G28_G30_G53_OR_G92_SERIES 23
-N#define NCE_BUG_CODE_NOT_G61_G61_1_OR_G64 24
-N#define NCE_BUG_CODE_NOT_G90_OR_G91 25
-N#define NCE_BUG_CODE_NOT_G93_OR_G98 26
-N#define NCE_BUG_CODE_NOT_G98_OR_G99 27
-N#define NCE_BUG_CODE_NOT_IN_G92_SERIES 28
-N#define NCE_BUG_CODE_NOT_IN_RANGE_G54_TO_G593 29
-N#define NCE_BUG_CODE_NOT_M0_M1_M2_M30_M60 30
-N#define NCE_BUG_DISTANCE_MODE_NOT_G90_OR_G91 31
-N#define NCE_BUG_FUNCTION_SHOULD_NOT_HAVE_BEEN_CALLED 32
-N#define NCE_BUG_IN_TOOL_RADIUS_COMP 33
-N#define NCE_BUG_PLANE_NOT_XY_YZ_OR_XZ 34
-N#define NCE_BUG_SIDE_NOT_RIGHT_OR_LEFT 35
-N#define NCE_BUG_UNKNOWN_MOTION_CODE 36
-N#define NCE_BUG_UNKNOWN_OPERATION 37
-N#define NCE_CANNOT_CHANGE_AXIS_OFFSETS_WITH_CUTTER_RADIUS_COMP 38
-N#define NCE_CANNOT_CHANGE_UNITS_WITH_CUTTER_RADIUS_COMP 39
-N#define NCE_CANNOT_CREATE_BACKUP_FILE 40
-N#define NCE_CANNOT_DO_G1_WITH_ZERO_FEED_RATE 41
-N#define NCE_CANNOT_DO_ZERO_REPEATS_OF_CYCLE 42
-N#define NCE_CANNOT_MAKE_ARC_WITH_ZERO_FEED_RATE 43
-N#define NCE_CANNOT_MOVE_ROTARY_AXES_DURING_PROBING 44
-N#define NCE_CANNOT_OPEN_BACKUP_FILE 45
-N#define NCE_CANNOT_OPEN_VARIABLE_FILE 46
-N#define NCE_CANNOT_PROBE_IN_INVERSE_TIME_FEED_MODE 47
-N#define NCE_CANNOT_PROBE_WITH_CUTTER_RADIUS_COMP_ON 48
-N#define NCE_CANNOT_PROBE_WITH_ZERO_FEED_RATE 49
-N#define NCE_CANNOT_PUT_A_B_IN_CANNED_CYCLE 50
-N#define NCE_CANNOT_PUT_A_C_IN_CANNED_CYCLE 51
-N#define NCE_CANNOT_PUT_AN_A_IN_CANNED_CYCLE 52
-N#define NCE_CANNOT_TURN_CUTTER_RADIUS_COMP_ON_OUT_OF_XY_PLANE 53
-N#define NCE_CANNOT_TURN_CUTTER_RADIUS_COMP_ON_WHEN_ON 54
-N#define NCE_CANNOT_USE_A_WORD 55
-N#define NCE_CANNOT_USE_AXIS_VALUES_WITH_G80 56
-N#define NCE_CANNOT_USE_AXIS_VALUES_WITHOUT_A_G_CODE_THAT_USES_THEM 57
-N#define NCE_CANNOT_USE_B_WORD 58
-N#define NCE_CANNOT_USE_C_WORD 59
-N#define NCE_CANNOT_USE_G28_OR_G30_WITH_CUTTER_RADIUS_COMP 60
-N#define NCE_CANNOT_USE_G53_INCREMENTAL 61
-N#define NCE_CANNOT_USE_G53_WITH_CUTTER_RADIUS_COMP 62
-N#define NCE_CANNOT_USE_TWO_G_CODES_THAT_BOTH_USE_AXIS_VALUES 63
-N#define NCE_CANNOT_USE_XZ_PLANE_WITH_CUTTER_RADIUS_COMP 64
-N#define NCE_CANNOT_USE_YZ_PLANE_WITH_CUTTER_RADIUS_COMP 65
-N#define NCE_COMMAND_TOO_LONG 66
-N#define NCE_CONCAVE_CORNER_WITH_CUTTER_RADIUS_COMP 67
-N#define NCE_COORDINATE_SYSTEM_INDEX_PARAMETER_5220_OUT_OF_RANGE 68
-N#define NCE_CURRENT_POINT_SAME_AS_END_POINT_OF_ARC 69
-N#define NCE_CUTTER_GOUGING_WITH_CUTTER_RADIUS_COMP 70
-N#define NCE_D_WORD_WITH_NO_G41_OR_G42 71
-N#define NCE_DWELL_TIME_MISSING_WITH_G4 72
-N#define NCE_DWELL_TIME_P_WORD_MISSING_WITH_G82 73
-N#define NCE_DWELL_TIME_P_WORD_MISSING_WITH_G86 74
-N#define NCE_DWELL_TIME_P_WORD_MISSING_WITH_G88 75
-N#define NCE_DWELL_TIME_P_WORD_MISSING_WITH_G89 76
-N#define NCE_EQUAL_SIGN_MISSING_IN_PARAMETER_SETTING 77
-N#define NCE_F_WORD_MISSING_WITH_INVERSE_TIME_ARC_MOVE 78
-N#define NCE_F_WORD_MISSING_WITH_INVERSE_TIME_G1_MOVE 79
-N#define NCE_FILE_ENDED_WITH_NO_PERCENT_SIGN 80
-N#define NCE_FILE_ENDED_WITH_NO_PERCENT_SIGN_OR_PROGRAM_END 81
-N#define NCE_FILE_NAME_TOO_LONG 82
-N#define NCE_FILE_NOT_OPEN 83
-N#define NCE_G_CODE_OUT_OF_RANGE 84
-N#define NCE_H_WORD_WITH_NO_G43 85
-N#define NCE_I_WORD_GIVEN_FOR_ARC_IN_YZ_PLANE 86
-N#define NCE_I_WORD_MISSING_WITH_G87 87
-N#define NCE_I_WORD_WITH_NO_G2_OR_G3_OR_G87_TO_USE_IT 88
-N#define NCE_J_WORD_GIVEN_FOR_ARC_IN_XZ_PLANE 89
-N#define NCE_J_WORD_MISSING_WITH_G87 90
-N#define NCE_J_WORD_WITH_NO_G2_OR_G3_OR_G87_TO_USE_IT 91
-N#define NCE_K_WORD_GIVEN_FOR_ARC_IN_XY_PLANE 92
-N#define NCE_K_WORD_MISSING_WITH_G87 93
-N#define NCE_K_WORD_WITH_NO_G2_OR_G3_OR_G87_TO_USE_IT 94
-N#define NCE_L_WORD_WITH_NO_CANNED_CYCLE_OR_G50 95
-N#define NCE_LEFT_BRACKET_MISSING_AFTER_SLASH_WITH_ATAN 96
-N#define NCE_LEFT_BRACKET_MISSING_AFTER_UNARY_OPERATION_NAME 97
-N#define NCE_LINE_NUMBER_GREATER_THAN_99999 98
-N#define NCE_LINE_WITH_G50_DOES_NOT_HAVE_L2 99
-N#define NCE_M_CODE_GREATER_THAN_99 100
-N#define NCE_MIXED_RADIUS_IJK_FORMAT_FOR_ARC 101
-N#define NCE_MULTIPLE_A_WORDS_ON_ONE_LINE 102
-N#define NCE_MULTIPLE_B_WORDS_ON_ONE_LINE 103
-N#define NCE_MULTIPLE_C_WORDS_ON_ONE_LINE 104
-N#define NCE_MULTIPLE_D_WORDS_ON_ONE_LINE 105
-N#define NCE_MULTIPLE_F_WORDS_ON_ONE_LINE 106
-N#define NCE_MULTIPLE_H_WORDS_ON_ONE_LINE 107
-N#define NCE_MULTIPLE_I_WORDS_ON_ONE_LINE 108
-N#define NCE_MULTIPLE_J_WORDS_ON_ONE_LINE 109
-N#define NCE_MULTIPLE_K_WORDS_ON_ONE_LINE 110
-N#define NCE_MULTIPLE_L_WORDS_ON_ONE_LINE 111
-N#define NCE_MULTIPLE_P_WORDS_ON_ONE_LINE 112
-N#define NCE_MULTIPLE_Q_WORDS_ON_ONE_LINE 113
-N#define NCE_MULTIPLE_R_WORDS_ON_ONE_LINE 114
-N#define NCE_MULTIPLE_S_WORDS_ON_ONE_LINE 115
-N#define NCE_MULTIPLE_T_WORDS_ON_ONE_LINE 116
-N#define NCE_MULTIPLE_X_WORDS_ON_ONE_LINE 117
-N#define NCE_MULTIPLE_Y_WORDS_ON_ONE_LINE 118
-N#define NCE_MULTIPLE_Z_WORDS_ON_ONE_LINE 119
-N#define NCE_MUST_USE_G0_OR_G1_WITH_G53 120
-N#define NCE_NEGATIVE_ARGUMENT_TO_SQRT 121
-N#define NCE_NEGATIVE_D_WORD_TOOL_RADIUS_INDEX_USED 122
-N#define NCE_NEGATIVE_F_WORD_USED 123
-N#define NCE_NEGATIVE_G_CODE_USED 124
-N#define NCE_NEGATIVE_H_WORD_TOOL_LENGTH_OFFSET_INDEX_USED 125
-N#define NCE_NEGATIVE_L_WORD_USED 126
-N#define NCE_NEGATIVE_M_CODE_USED 127
-N#define NCE_NEGATIVE_OR_ZERO_Q_VALUE_USED 128
-N#define NCE_NEGATIVE_P_WORD_USED 129
-N#define NCE_NEGATIVE_SPINDLE_SPEED_USED 130
-N#define NCE_NEGATIVE_TOOL_ID_USED 131
-N#define NCE_NESTED_COMMENT_FOUND 132
-N#define NCE_NO_CHARACTERS_FOUND_IN_READING_REAL_VALUE 133
-N#define NCE_NO_DIGITS_FOUND_WHERE_REAL_NUMBER_SHOULD_BE 134
-N#define NCE_NON_INTEGER_VALUE_FOR_INTEGER 135
-N#define NCE_NULL_MISSING_AFTER_NEWLINE 136
-N#define NCE_OFFSET_INDEX_MISSING 137
-N#define NCE_P_VALUE_NOT_AN_INTEGER_WITH_G50_L2 138
-N#define NCE_P_VALUE_OUT_OF_RANGE_WITH_G50_L2 139
-N#define NCE_P_WORD_WITH_NO_G4_G50_G82_G86_G88_G89 140
-N#define NCE_PARAMETER_FILE_OUT_OF_ORDER 141
-N#define NCE_PARAMETER_NUMBER_OUT_OF_RANGE 142
-N#define NCE_Q_WORD_MISSING_WITH_G83 143
-N#define NCE_Q_WORD_WITH_NO_G83 144
-N#define NCE_QUEUE_IS_NOT_EMPTY_AFTER_PROBING 145
-N#define NCE_R_CLEARANCE_PLANE_UNSPECIFIED_IN_CYCLE 146
-N#define NCE_R_I_J_K_WORDS_ALL_MISSING_FOR_ARC 147
-N#define NCE_R_LESS_THAN_X_IN_CYCLE_IN_YZ_PLANE 148
-N#define NCE_R_LESS_THAN_Y_IN_CYCLE_IN_XZ_PLANE 149
-N#define NCE_R_LESS_THAN_Z_IN_CYCLE_IN_XY_PLANE 150
-N#define NCE_R_WORD_WITH_NO_G_CODE_THAT_USES_IT 151
-N#define NCE_RADIUS_TO_END_OF_ARC_DIFFERS_FROM_RADIUS_TO_START 152
-N#define NCE_RADIUS_TOO_SMALL_TO_REACH_END_POINT 153
-N#define NCE_REQUIRED_PARAMETER_MISSING 154
-N#define NCE_SELECTED_TOOL_SLOT_NUMBER_TOO_LARGE 155
-N#define NCE_SLASH_MISSING_AFTER_FIRST_ATAN_ARGUMENT 156
-N#define NCE_SPINDLE_NOT_TURNING_CLOCKWISE_IN_G84 157
-N#define NCE_SPINDLE_NOT_TURNING_IN_G86 158
-N#define NCE_SPINDLE_NOT_TURNING_IN_G87 159
-N#define NCE_SPINDLE_NOT_TURNING_IN_G88 160
-N#define NCE_SSCANF_FAILED 161
-N#define NCE_START_POINT_TOO_CLOSE_TO_PROBE_POINT 162
-N#define NCE_TOO_MANY_M_CODES_ON_LINE 163
-N#define NCE_TOOL_LENGTH_OFFSET_INDEX_TOO_BIG 164
-N#define NCE_TOOL_MAX_TOO_LARGE 165
-N#define NCE_TOOL_RADIUS_INDEX_TOO_BIG 166
-N#define NCE_TOOL_RADIUS_NOT_LESS_THAN_ARC_RADIUS_WITH_COMP 167
-N#define NCE_TWO_G_CODES_USED_FROM_SAME_MODAL_GROUP 168
-N#define NCE_TWO_M_CODES_USED_FROM_SAME_MODAL_GROUP 169
-N#define NCE_UNABLE_TO_OPEN_FILE 170
-N#define NCE_UNCLOSED_COMMENT_FOUND 171
-N#define NCE_UNCLOSED_EXPRESSION 172
-N#define NCE_UNKNOWN_G_CODE_USED 173
-N#define NCE_UNKNOWN_M_CODE_USED 174
-N#define NCE_UNKNOWN_OPERATION 175
-N#define NCE_UNKNOWN_OPERATION_NAME_STARTING_WITH_A 176
-N#define NCE_UNKNOWN_OPERATION_NAME_STARTING_WITH_M 177
-N#define NCE_UNKNOWN_OPERATION_NAME_STARTING_WITH_O 178
-N#define NCE_UNKNOWN_OPERATION_NAME_STARTING_WITH_X 179
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_A 180
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_C 181
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_E 182
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_F 183
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_L 184
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_R 185
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_S 186
-N#define NCE_UNKNOWN_WORD_STARTING_WITH_T 187
-N#define NCE_UNKNOWN_WORD_WHERE_UNARY_OPERATION_COULD_BE 188
-N#define NCE_X_AND_Y_WORDS_MISSING_FOR_ARC_IN_XY_PLANE 189
-N#define NCE_X_AND_Z_WORDS_MISSING_FOR_ARC_IN_XZ_PLANE 190
-N#define NCE_X_VALUE_UNSPECIFIED_IN_YZ_PLANE_CANNED_CYCLE 191
-N#define NCE_X_Y_AND_Z_WORDS_ALL_MISSING_WITH_G38_2 192
-N#define NCE_Y_AND_Z_WORDS_MISSING_FOR_ARC_IN_YZ_PLANE 193
-N#define NCE_Y_VALUE_UNSPECIFIED_IN_XZ_PLANE_CANNED_CYCLE 194
-N#define NCE_Z_VALUE_UNSPECIFIED_IN_XY_PLANE_CANNED_CYCLE 195
-N#define NCE_ZERO_OR_NEGATIVE_ARGUMENT_TO_LN 196
-N#define NCE_ZERO_RADIUS_ARC 197
-N
-N#define RS274NGC_MIN_ERROR 3
-N#define RS274NGC_MAX_ERROR 197
-N#endif                                            /* RS274NGC_RETURN_H */				
-L 31 "main.c" 2
-N
-Nextern CANON_TOOL_TABLE _tools[];                 /* in canon.cc */
-Nextern int _tool_max;                             /* in canon.cc */
-Nextern char _parameter_file_name[];               /* in canon.cc */
-N
-NFILE * _outfile;                                  /* where to print, set in main */
+L 13 "Queue.h" 2
 N
 N
-N#define Line_Length 256
-N/*
+Ntypedef block Item;
 N
-NThis file contains the source code for an emulation of using the six-axis
-Nrs274 interpreter from the EMC system.
 N
-N*/
+N#define MAXQUEUE 10
 N
-N/*********************************************************************/
-N
-N/* report_error
-N
-NReturned Value: none
-N
-NSide effects: an error message is printed on stderr
-N
-NCalled by:
-Ninterpret_from_file
-Ninterpret_from_keyboard
-Nmain
-N
-NThis
-N
-N1. calls rs274ngc_error_text to get the text of the error message whose
-Ncode is error_code and prints the message,
-N
-N2. calls rs274ngc_line_text to get the text of the line on which the
-Nerror occurred and prints the text, and
-N
-N3. if print_stack is on, repeatedly calls rs274ngc_stack_name to get
-Nthe names of the functions on the function call stack and prints the
-Nnames. The first function named is the one that sent the error
-Nmessage.
-N
-N*/
-N
-Nvoid report_error(                                /* ARGUMENTS                            */
-Nint error_code,                                   /* the code number of the error message */
-Nint print_stack)                                  /* print stack if ON, otherwise not     */
+Ntypedef struct node
 N{
-N    char buffer[RS274NGC_TEXT_SIZE];
-X    char buffer[256];
-N    int k;
+N	Item item;
+N	struct node * next;
+N}Node;
 N
-N    rs274ngc_error_text(error_code, buffer, 5);   /* for coverage of code */
-N    rs274ngc_error_text(error_code, buffer, RS274NGC_TEXT_SIZE);
-X    rs274ngc_error_text(error_code, buffer, 256);
-N    fprintf(stderr, "%s\r\n",
-X    fprintf((& __stderr), "%s\r\n",
-N        ((buffer[0] IS 0) ? "Unknown error, bad error code" : buffer));
-X        ((buffer[0] == 0) ? "Unknown error, bad error code" : buffer));
-N    rs274ngc_line_text(buffer, RS274NGC_TEXT_SIZE);
-X    rs274ngc_line_text(buffer, 256);
-N    fprintf(stderr, "%s\r\n", buffer);
-X    fprintf((& __stderr), "%s\r\n", buffer);
-N    if (print_stack IS ON)
-X    if (print_stack == 1)
-N    {
-N        for (k SET_TO 0; ; k++)
-X        for (k = 0; ; k++)
-N        {
-N            rs274ngc_stack_name(k, buffer, RS274NGC_TEXT_SIZE);
-X            rs274ngc_stack_name(k, buffer, 256);
-N            if (buffer[0] ISNT 0)
-X            if (buffer[0] != 0)
-N                fprintf(stderr, "%s\r\n", buffer);
-X                fprintf((& __stderr), "%s\r\n", buffer);
-N            else
-N                break;
-N        }
-N    }
+Ntypedef struct queue
+N{
+N	Node *front;		/*指向队列首的指针*/
+N	Node *rear;			/*指向队列尾的指针*/
+N	int items;			/*队列中项目的个数*/
+N}Queue;
+N
+N/*操作：初始化队列									*/
+N/*操作前：pq指向一个队列							*/
+N/*操作后：该队列初始化为空队列						*/
+Nextern void InitializeQueue(Queue *pq);
+N
+N/*操作：检查队列是否已满								*/
+N/*操作前：pq指向一个先前已初始化过的队列				*/
+N/*操作后：如果该队列已满，则返回true；否则，返回false;	*/
+Nextern bool QueueIsFull(const Queue *pq);
+N
+N/*操作：检查队列是否为空								*/
+N/*操作前：pq指向一个先前已初始化过的队列				*/
+N/*操作后：如果该队列为空，则返回true；否则，返回false;	*/
+Nextern bool QueueIsEmpty(const Queue *pq);
+N
+N/*操作：确定队列中项目的个数							*/
+N/*操作前：pq指向一个先前已初始化过的队列				*/
+N/*操作后：返回队列中项目的个数						*/
+Nextern int QueueItemCount(const Queue *pq);
+N
+N/*操作：向队列尾端添加项目							*/
+N/*操作前：pq指向一个先前已初始化过的队列，item是要添加到队列尾端的项目					*/
+N/*操作后：如果队列未满，item被添加到队列尾部，函数返回true；否则，不改变队列，函数返回false	*/
+Nextern bool EnQueue(Item item,Queue *pq);
+N
+N/*操作：从队列首端删除项目							*/
+N/*操作前：pq指向一个先前已初始化过的队列				*/
+N/*操作后：如果队列非空，队列首端的项目被复制到*pitem，并从队列中删除，函数返回true；如果这个操作使队列为空，把队列重置为空队列；如果队列开始时为空，不改变队列，函数返回false*/
+Nextern bool DeQueue(Item *pitem,Queue *pq);
+N
+N/*操作：清空队列									*/
+N/*操作前：pq指向一个先前已初始化过的队列				*/
+N/*操作后：队列被清空								*/
+Nextern void EmptyTheQueue(Queue *pq);
+N#endif
+L 2 "Queue.c" 2
+N
+Nstatic void CopyToNode(Item item,Node *pn);
+Nstatic void CopyToItem(Node *pn,Item *pi);
+N
+Nvoid InitializeQueue(Queue *pq)
+N{
+N	pq->front=pq->rear=NULL;
+X	pq->front=pq->rear=0;
+N	pq->items=0;
 N}
 N
-N
-N/***********************************************************************/
-N
-N/* interpret_from_keyboard
-N
-NReturned Value: int (0)
-N
-NSide effects:
-NLines of NC code entered by the user are interpreted.
-N
-NCalled by:
-Ninterpret_from_file
-Nmain
-N
-NThis prompts the user to enter a line of rs274 code. When the user
-Nhits <enter> at the end of the line, the line is executed.
-NThen the user is prompted to enter another line.
-N
-NAny canonical commands resulting from executing the line are printed
-Non the monitor (stdout).  If there is an error in reading or executing
-Nthe line, an error message is printed on the monitor (stderr).
-N
-NTo exit, the user must enter "quit" (followed by a carriage return).
-N
-N*/
-N/*测试代码一*/
-N//char _nc_code_buffer[]=
-N//{
-N//"(this program mills);"
-N//"n0010 g21 g0 x0 y0 z50(top of part should be on XY plane);"
-N//"n0020 t1 m6 m3 f20 s4000(use an engraver or small ball-nose endmill);"
-N//"n0030 g0 x0 y0 z2;"
-N//"n0040 g1 z-0.5 (start H);"
-N//"n0050 y10;"
-N//"n0060 g0 z2;"
-N//"n0070 y5;"
-N//"n0080 g1 z-0.5;"
-N//"n0090 x 7;"
-N//"n0620 m2;"
-N//"%"};
-N
-N/*测试代码二*/
-Nchar _nc_code_buffer[]=
+Nbool QueueIsFull(const Queue *pq)
 N{
-N//"(this program mills );"
-N//"n0010 g00 x0 y0 z50;"
-N"n0010 G50 L2 P1 X 3.5 Y 17.2;"
-N"n0020 G98;"
-N"n0030 G99;"
-N"%"};
-N
-Nvolatile int gAllChar;
-Nvolatile int gNowCount=0;
-N
-Nint interpret_from_keyboard(                      /* ARGUMENTS                 */
-Nint block_delete,                                 /* switch which is ON or OFF */
-Nint print_stack)                                  /* option which is ON or OFF */
-N{
-N    char line[RS274NGC_TEXT_SIZE];
-X    char line[256];
-N    int status;
-N	char temp;
-N	u16 count=0;
-N
-N    for(; ;)
-N    {
-N		while(1)
-N		{	
-N			temp =  _nc_code_buffer[gNowCount];
-N			gNowCount = gNowCount + 1;
-N			if(gNowCount<strlen(_nc_code_buffer))
-N			{
-N				if(temp=='%')
-N				{
-N					//整段结束
-N					break;
-N				}
-N				else
-N				{
-N					if(temp==';')
-N					{
-N						for(;count<RS274NGC_TEXT_SIZE;count++)			
-X						for(;count<256;count++)			
-N						{
-N							line[count]='\0';	/*将数组line中count与RS274NGC_TEXT_SIZE之间的空间填充为‘\0’*/
-N						}
-N						count=0;
-N						break;
-N					}
-N					else
-N					{
-N						line[count++]=temp;
-N					}
-N				}
-N			}
-N		}
-N        if (strcmp (line, "quit") IS 0)
-X        if (strcmp (line, "quit") == 0)
-N            return 0;
-N        status SET_TO rs274ngc_read(line);
-X        status = rs274ngc_read(line);
-N		
-N        if ((status IS RS274NGC_EXECUTE_FINISH) AND (block_delete IS ON));
-X        if ((status == 2) && (block_delete == 1));
-N        else if (status IS RS274NGC_ENDFILE);
-X        else if (status == 3);
-N        else if ((status ISNT RS274NGC_EXECUTE_FINISH) AND
-X        else if ((status != 2) &&
-N            (status ISNT RS274NGC_OK))
-X            (status != 0))
-N            report_error(status, print_stack);
-N        else
-N        {
-N            status SET_TO rs274ngc_execute();    
-X            status = rs274ngc_execute();    
-N            if ((status IS RS274NGC_EXIT) OR
-X            if ((status == 1) ||
-N                (status IS RS274NGC_EXECUTE_FINISH));
-X                (status == 2));
-N            else if (status ISNT RS274NGC_OK)
-X            else if (status != 0)
-N                report_error(status, print_stack);
-N        }
-N    }
+N	if(pq->items == MAXQUEUE)
+X	if(pq->items == 10)
+N	{
+N		return TRUE;
+N	}
+N	return FALSE;
 N}
 N
-N
-N/*********************************************************************/
-N
-N/* interpret_from_file
-N
-NReturned Value: int (0 or 1)
-NIf any of the following errors occur, this returns 1.
-NOtherwise, it returns 0.
-N1. rs274ngc_read returns something other than RS274NGC_OK or
-NRS274NGC_EXECUTE_FINISH, no_stop is off, and the user elects
-Nnot to continue.
-N2. rs274ngc_execute returns something other than RS274NGC_OK,
-NEXIT, or RS274NGC_EXECUTE_FINISH, no_stop is off, and the user
-Nelects not to continue.
-N
-NSide Effects:
-NAn open NC-program file is interpreted.
-N
-NCalled By:
-Nmain
-N
-NThis emulates the way the EMC system uses the interpreter.
-N
-NIf the do_next argument is 1, this goes into MDI mode if an error is
-Nfound. In that mode, the user may (1) enter code or (2) enter "quit" to
-Nget out of MDI. Once out of MDI, this asks the user whether to continue
-Ninterpreting the file.
-N
-NIf the do_next argument is 0, an error does not stop interpretation.
-N
-NIf the do_next argument is 2, an error stops interpretation.
-N
-N*/
-N
-Nint interpret_from_file(                          /* ARGUMENTS                  */
-Nint do_next,                                      /* what to do if error        */
-Nint block_delete,                                 /* switch which is ON or OFF  */
-Nint print_stack)                                  /* option which is ON or OFF  */
+Nbool QueueIsEmpty(const Queue *pq)
 N{
-N    int status;
-N    char line[RS274NGC_TEXT_SIZE];
-X    char line[256];
-N
-N    for(; ;)
-N    {
-N        status SET_TO rs274ngc_read(NULL);
-X        status = rs274ngc_read(0);
-N        if ((status IS RS274NGC_EXECUTE_FINISH) AND (block_delete IS ON))
-X        if ((status == 2) && (block_delete == 1))
-N            continue;
-N        else if (status IS RS274NGC_ENDFILE)
-X        else if (status == 3)
-N            break;
-N        if ((status ISNT RS274NGC_OK) AND         // should not be EXIT
-X        if ((status != 0) &&         
-N            (status ISNT RS274NGC_EXECUTE_FINISH))
-X            (status != 2))
-N        {
-N            report_error(status, print_stack);
-N            if ((status IS NCE_FILE_ENDED_WITH_NO_PERCENT_SIGN) OR
-X            if ((status == 80) ||
-N                (do_next IS 2))                   /* 2 means stop */
-X                (do_next == 2))                    
-N            {
-N                status SET_TO 1;
-X                status = 1;
-N                break;
-N            }
-N            else if (do_next IS 1)                /* 1 means MDI */
-X            else if (do_next == 1)                 
-N            {
-N                fprintf(stderr, "starting MDI\r\n");
-X                fprintf((& __stderr), "starting MDI\r\n");
-N                interpret_from_keyboard(block_delete, print_stack);
-N                fprintf(stderr, "continue program? y/n =>");
-X                fprintf((& __stderr), "continue program? y/n =>");
-N                gets(line);
-N                if (line[0] ISNT 'y')
-X                if (line[0] != 'y')
-N                {
-N                    status SET_TO 1;
-X                    status = 1;
-N                    break;
-N                }
-N                else
-N                    continue;
-N            }
-N            else                                  /* if do_next IS 0 -- 0 means continue */
-N                continue;
-N        }
-N        status SET_TO rs274ngc_execute();
-X        status = rs274ngc_execute();
-N        if ((status ISNT RS274NGC_OK) AND
-X        if ((status != 0) &&
-N            (status ISNT RS274NGC_EXIT) AND
-X            (status != 1) &&
-N            (status ISNT RS274NGC_EXECUTE_FINISH))
-X            (status != 2))
-N        {
-N            report_error(status, print_stack);
-N            status SET_TO 1;
-X            status = 1;
-N            if (do_next IS 1)                     /* 1 means MDI */
-X            if (do_next == 1)                      
-N            {
-N                fprintf(stderr, "starting MDI\r\n");
-X                fprintf((& __stderr), "starting MDI\r\n");
-N                interpret_from_keyboard(block_delete, print_stack);
-N                fprintf(stderr, "continue program? y/n =>");
-X                fprintf((& __stderr), "continue program? y/n =>");
-N                gets(line);
-N                if (line[0] ISNT 'y')
-X                if (line[0] != 'y')
-N                    break;
-N            }
-N            else if (do_next IS 2)                /* 2 means stop */
-X            else if (do_next == 2)                 
-N                break;
-N        }
-N        else if (status IS RS274NGC_EXIT)
-X        else if (status == 1)
-N            break;
-N    }
-N    return ((status IS 1) ? 1 : 0);
-X    return ((status == 1) ? 1 : 0);
+N	if(pq->items == 0)
+N	{
+N		return TRUE;
+N	}
+N	return FALSE;
 N}
 N
-N
-N/************************************************************************/
-N
-N/* read_tool_file
-N
-NReturned Value: int
-NIf any of the following errors occur, this returns 1.
-NOtherwise, it returns 0.
-N1. The file named by the user cannot be opened.
-N2. No blank line is found.
-N3. A line of data cannot be read.
-N4. A tool slot number is less than 1 or >= _tool_max
-N
-NSide Effects:
-NValues in the tool table of the machine setup are changed,
-Nas specified in the file.
-N
-NCalled By: main
-N
-NTool File Format
-N-----------------
-NEverything above the first blank line is read and ignored, so any sort
-Nof header material may be used.
-N
-NEverything after the first blank line should be data. Each line of
-Ndata should have four or more items separated by white space. The four
-Nrequired items are slot, tool id, tool length offset, and tool diameter.
-NOther items might be the holder id and tool description, but these are
-Noptional and will not be read. Here is a sample line:
-N
-N20  1419  4.299  1.0   1 inch carbide end mill
-N
-NThe tool_table is indexed by slot number.
-N
-N*/
-N
-Nint read_tool_file(                               /* ARGUMENTS         */
-Nchar * file_name)                                 /* name of tool file */
+Nint QueueItemCount(const Queue *pq)
 N{
-N//    FILE * tool_file_port;
-N//    char buffer[1000];
-N		int slot;
-N//    int tool_id;
-N//    double offset;
-N//    double diameter;
-N//
-N//    if (file_name[0] IS 0)                        /* ask for name if given name is empty string */
-N//    {
-N//        fprintf(stderr, "name of tool file => ");
-N//        gets(buffer);
-N//        tool_file_port SET_TO fopen(buffer, "r");
-N//    }
-N//    else
-N//        tool_file_port SET_TO fopen(file_name, "r");
-N//    if (tool_file_port IS NULL)
-N//    {
-N//        fprintf(stderr, "Cannot open %s\r\n",
-N//            ((file_name[0] IS 0) ? buffer : file_name));
-N//        return 1;
-N//    }
-N//    for(;;)                                       /* read and discard header, checking for blank line */
-N//    {
-N//        if (fgets(buffer, 1000, tool_file_port) IS NULL)
-N//        {
-N//            fprintf(stderr, "Bad tool file format\r\n");
-N//            return 1;
-N//        }
-N//        else if (buffer[0] IS '\n')
-N//            break;
-N//    }
-N//
-N//    for (slot SET_TO 0; slot <= _tool_max; slot++)/* initialize */
-N//    {
-N//        _tools[slot].id SET_TO -1;
-N//        _tools[slot].length SET_TO 0;
-N//        _tools[slot].diameter SET_TO 0;
-N//    }
-N//    for (; (fgets(buffer, 1000, tool_file_port) ISNT NULL); )
-N//    {
-N//        if (sscanf(buffer, "%d %d %lf %lf", &slot,
-N//            &tool_id, &offset, &diameter) < 4)
-N//        {
-N//            fprintf(stderr, "Bad input line \"%s\" in tool file\r\n", buffer);
-N//            return 1;
-N//        }
-N//        if ((slot < 0) OR (slot > _tool_max))     /* zero and max both OK */
-N//        {
-N//            fprintf(stderr, "Out of range tool slot number %d\r\n", slot);
-N//            return 1;
-N//        }
-N//        _tools[slot].id SET_TO tool_id;
-N//        _tools[slot].length SET_TO offset;
-N//        _tools[slot].diameter SET_TO diameter;
-N	    for (slot SET_TO 0; slot <= _tool_max; slot++)/* initialize */
-X	    for (slot = 0; slot <= _tool_max; slot++) 
-N	    {
-N	        _tools[slot].id SET_TO -1;
-X	        _tools[slot].id = -1;
-N	        _tools[slot].length SET_TO 0;
-X	        _tools[slot].length = 0;
-N	        _tools[slot].diameter SET_TO 0;
-X	        _tools[slot].diameter = 0;
-N	    }
-N
-N        _tools[5].id SET_TO 5;
-X        _tools[5].id = 5;
-N        _tools[5].length SET_TO 1.5;
-X        _tools[5].length = 1.5;
-N        _tools[5].diameter SET_TO 0.25;
-X        _tools[5].diameter = 0.25;
-N
-N//    }
-N//    fclose(tool_file_port);
-N    return 0;
+N	return (pq->items);
 N}
 N
-N
-N/************************************************************************/
-N
-N/* designate_parameter_file
-N
-NReturned Value: int
-NIf any of the following errors occur, this returns 1.
-NOtherwise, it returns 0.
-N1. The file named by the user cannot be opened.
-N
-NSide Effects:
-NThe name of a parameter file given by the user is put in the
-Nfile_name string.
-N
-NCalled By: main
-N
-N*/
-N
-Nint designate_parameter_file(char * file_name)
+Nbool EnQueue(Item item,Queue *pq)
 N{
-N    FILE * test_port;
-N
-N    fprintf(stderr, "name of parameter file => ");
-X    fprintf((& __stderr), "name of parameter file => ");
-N    gets(file_name);
-N    test_port SET_TO fopen(file_name, "r");
-X    test_port = fopen(file_name, "r");
-N    if (test_port IS NULL)
-X    if (test_port == 0)
-N    {
-N        fprintf(stderr, "Cannot open %s\r\n", file_name);
-X        fprintf((& __stderr), "Cannot open %s\r\n", file_name);
-N        return 1;
-N    }
-N    fclose(test_port);
-N    return 0;
-N}
-N
-N
-N/************************************************************************/
-N
-N/* adjust_error_handling
-N
-NReturned Value: int (0)
-N
-NSide Effects:
-NThe values of print_stack and do_next are set.
-N
-NCalled By: main
-N
-NThis function allows the user to set one or two aspects of error handling.
-N
-NBy default the driver does not print the function stack in case of error.
-NThis function always allows the user to turn stack printing on if it is off
-Nor to turn stack printing off if it is on.
-N
-NWhen interpreting from the keyboard, the driver always goes ahead if there
-Nis an error.
-N
-NWhen interpreting from a file, the default behavior is to stop in case of
-Nan error. If the user is interpreting from a file (indicated by args being
-N2 or 3), this lets the user change what it does on an error.
-N
-NIf the user has not asked for output to a file (indicated by args being 2),
-Nthe user can choose any of three behaviors in case of an error (1) continue,
-N(2) stop, (3) go into MDI mode. This function allows the user to cycle among
-Nthe three.
-N
-NIf the user has asked for output to a file (indicated by args being 3),
-Nthe user can choose any of two behaviors in case of an error (1) continue,
-N(2) stop. This function allows the user to toggle between the two.
-N
-N*/
-N
-Nint adjust_error_handling(
-Nint args,
-Nint * print_stack,
-Nint * do_next)
-N{
-N    char buffer[80];
-N    int choice;
-N
-N    for(;;)
-N    {
-N        fprintf(stderr, "enter a number:\r\n");
-X        fprintf((& __stderr), "enter a number:\r\n");
-N        fprintf(stderr, "1 = done with error handling\r\n");
-X        fprintf((& __stderr), "1 = done with error handling\r\n");
-N        fprintf(stderr, "2 = %sprint stack on error\r\n",
-X        fprintf((& __stderr), "2 = %sprint stack on error\r\n",
-N            ((*print_stack IS ON) ? "do not " : ""));
-X            ((*print_stack == 1) ? "do not " : ""));
-N        if (args IS 3)
-X        if (args == 3)
-N        {
-N            if (*do_next IS 0)                    /* 0 means continue */
-X            if (*do_next == 0)                     
-N                fprintf(stderr,
-X                fprintf((& __stderr),
-N                    "3 = stop on error (do not continue)\r\n");
-N            else                                  /* if do_next IS 2 -- 2 means stopping on error */
-N                fprintf(stderr,
-X                fprintf((& __stderr),
-N                    "3 = continue on error (do not stop)\r\n");
-N        }
-N        else if (args IS 2)
-X        else if (args == 2)
-N        {
-N            if (*do_next IS 0)                    /* 0 means continue */
-X            if (*do_next == 0)                     
-N                fprintf(stderr,
-X                fprintf((& __stderr),
-N                    "3 = mdi on error (do not continue or stop)\r\n");
-N            else if (*do_next IS 1)               /* 1 means MDI */
-X            else if (*do_next == 1)                
-N                fprintf(stderr,
-X                fprintf((& __stderr),
-N                        "3 = stop on error (do not mdi or continue)\r\n");
-N            else                                  /* if do_next IS 2 -- 2 means stopping on error */
-N                fprintf(stderr,
-X                fprintf((& __stderr),
-N                    "3 = continue on error (do not stop or mdi)\r\n");
-N        }
-N        fprintf(stderr, "enter choice => ");
-X        fprintf((& __stderr), "enter choice => ");
-N        gets(buffer);
-N        if (sscanf(buffer, "%d", &choice) ISNT 1)
-X        if (sscanf(buffer, "%d", &choice) != 1)
-N            continue;
-N        if (choice IS 1)
-X        if (choice == 1)
-N            break;
-N        else if (choice IS 2)
-X        else if (choice == 2)
-N            *print_stack SET_TO ((*print_stack IS OFF) ? ON : OFF);
-X            *print_stack = ((*print_stack == 0) ? 1 : 0);
-N        else if ((choice IS 3) AND (args IS 3))
-X        else if ((choice == 3) && (args == 3))
-N            *do_next SET_TO ((*do_next IS 0) ? 2 : 0);
-X            *do_next = ((*do_next == 0) ? 2 : 0);
-N        else if ((choice IS 3) AND (args IS 2))
-X        else if ((choice == 3) && (args == 2))
-N            *do_next SET_TO ((*do_next IS 2) ? 0 : (*do_next + 1));
-X            *do_next = ((*do_next == 2) ? 0 : (*do_next + 1));
-N    }
-N    return 0;
-N}
-N
-N
-N   /***********************************************************************/
-N
-N
-N/* Private typedef -----------------------------------------------------------*/
-N/* Private define ------------------------------------------------------------*/
-N/* Private macro -------------------------------------------------------------*/
-N/* Private variables ---------------------------------------------------------*/
-NErrorStatus HSEStartUpStatus;
-N
-N/* Private function prototypes -----------------------------------------------*/
-Nvoid RCC_Configuration(void);
-Nvoid NVIC_Configuration(void);
-Nvoid GPIO_Configuration(void);
-Nvoid USART_Configuration(void);
-N
-N/* Private functions ---------------------------------------------------------*/
-N
-N
-N
-N
-N
-N/************************************************************************/
-N
-N/* main
-N
-NThe executable exits with either 0 (under all conditions not listed
-Nbelow) or 1 (under the following conditions):
-N1. A fatal error occurs while interpreting from a file.
-N2. Read_tool_file fails.
-N3. An error occurs in rs274ngc_init.
-N
-N***********************************************************************
-N
-NHere are three ways in which the rs274abc executable may be called.
-NAny other sort of call to the executable will cause an error message
-Nto be printed and the interpreter will not run. Other executables
-Nmay be called similarly.
-N
-N1. If the rs274abc stand-alone executable is called with no arguments,
-Ninput is taken from the keyboard, and an error in the input does not
-Ncause the rs274abc executable to exit.
-N
-NEXAMPLE:
-N
-N1A. To interpret from the keyboard, enter:
-N
-Nrs274abc
-N
-N***********************************************************************
-N
-N2. If the executable is called with one argument, the argument is
-Ntaken to be the name of an NC file and the file is interpreted as
-Ndescribed in the documentation of interpret_from_file.
-N
-NEXAMPLES:
-N
-N2A. To interpret the file "cds.abc" and read the results on the
-Nscreen, enter:
-N
-Nrs274abc cds.abc
-N
-N2B. To interpret the file "cds.abc" and print the results in the file
-N"cds.prim", enter:
-N
-Nrs274abc cds.abc > cds.prim
-N
-N***********************************************************************
-N
-NWhichever way the executable is called, this gives the user several
-Nchoices before interpretation starts
-N
-N1 = start interpreting
-N2 = choose parameter file
-N3 = read tool file ...
-N4 = turn block delete switch ON
-N5 = adjust error handling...
-N
-NInterpretation starts when option 1 is chosen. Until that happens, the
-Nuser is repeatedly given the five choices listed above.  Item 4
-Ntoggles between "turn block delete switch ON" and "turn block delete
-Nswitch OFF".  See documentation of adjust_error_handling regarding
-Nwhat option 5 does.
-N
-NUser instructions are printed to stderr (with fprintf) so that output
-Ncan be redirected to a file. When output is redirected and user
-Ninstructions are printed to stdout (with printf), the instructions get
-Nredirected and the user does not see them.
-N
-N*/
-N
-N/*******************************************************************************
-N* Function Name  : main
-N* Description    : Main program.
-N* Input          : None
-N* Output         : None
-N* Return         : None
-N*******************************************************************************/
-N
-Nint main(int argc, char ** argv)
-N{  
-N/******************************RS274NGC之变量声明部分开始******************************/
-N	int status;
-N	int choice;
-N	int do_next;                                  /* 0=continue, 1=mdi, 2=stop */
-N	int block_delete;
-N	int tool_flag;
-N	int gees[RS274NGC_ACTIVE_G_CODES];
-X	int gees[12];
-N	int ems[RS274NGC_ACTIVE_M_CODES];
-X	int ems[7];
-N	double sets[RS274NGC_ACTIVE_SETTINGS];
-X	double sets[3];
-N	char default_name[] SET_TO "rs274ngc.var";
-X	char default_name[] = "rs274ngc.var";
-N	int print_stack;
-N/******************************RS274NGC之变量声明部分结束******************************/	
+N	Node *pnew;
+N	if (QueueIsFull(pq))
+N	{
+N		return FALSE;
+N	}
 N	
-N	
-N   
-N   
-N#ifdef DEBUG
-S  debug();
+N	pnew=(Node *)malloc(sizeof(Node));
+N	if (pnew == NULL)
+X	if (pnew == 0)
+N	{
+N		fprintf(stderr,"Unable to allocate memory!\n");
+X		fprintf((& __stderr),"Unable to allocate memory!\n");
+N		return FALSE;
+N	}
+N	CopyToNode(item,pnew);
+N	pnew->next = NULL;
+X	pnew->next = 0;
+N	if (QueueIsEmpty(pq))
+N	{
+N		pq->front = pnew;		//假如队列为空队列，将队列头指针指向新节点
+N	} 
+N	else
+N	{
+N		pq->rear->next = pnew;	//假如队列为非空队列，将新节点添加到队列尾部
+N	}
+N	pq->rear=pnew;				//假如队列为空队列，将队列尾指针指向新节点
+N	pq->items++;
+N	return TRUE;
+N}
+N
+Nbool DeQueue(Item *pitem,Queue *pq)
+N{
+N	Node *pt;
+N	if (QueueIsEmpty(pq))
+N	{
+N		return FALSE;
+N	}
+N	CopyToItem(pq->front,pitem);
+N	pt = pq->front;
+N	pq->front = pq->front->next;
+N	free(pt);
+N	pq->items--;
+N	if (pq->items == 0)
+N	{
+N		pq->rear = NULL;
+X		pq->rear = 0;
+N	}
+N	return TRUE;
+N}
+N
+Nvoid EmptyTheQueue(Queue *pq)
+N{
+N	Item dummy;
+N	while(!QueueIsEmpty(pq))
+N	{
+N		DeQueue(&dummy,pq);
+N	}
+N}
+N
+Nstatic void CopyToNode(Item item,Node *pn)
+N{
+N	/*结构体拷贝之——直接赋值法*/
+N	int i=0,j=0;
+N#ifdef AA
+S	(pn->item).a_flag=item.a_flag;
+S	(pn->item).a_number=item.a_number;
 N#endif
 N
-N	/* Configure the system clocks */
-N	RCC_Configuration();
-N	
-N	/* NVIC Configuration */
-N	NVIC_Configuration();
-N	
-N	/* Configure the GPIOs */
-N	GPIO_Configuration();
-N	
-N	/* Configure the USART1 */
-N	USART_Configuration();
-N	
-N	
-N	//printf("\r\n Welcome to www.PowerAVR.com \r\n");
-N	//printf("\r\n Please Input Character From Keyboard \r\n");
-N
-N    
-N/******************************RS274/NGC源码的main函数开始******************************/
-N  	/*
-N	if (argc > 3)
-N	{
-N	    fprintf(stderr, "Usage \"%s\"\r\n", argv[0]);
-N	    fprintf(stderr, "   or \"%s <input file>\"\r\n", argv[0]);
-N	    fprintf(stderr, "   or \"%s <input file> <output file>\"\r\n", argv[0])
-N	    //exit(1);
-N		return 1;
-N	}
-N	*/
-N	choice=1;
-N
-N	do_next SET_TO 2;                             /* 2=stop */
-X	do_next = 2;                              
-N	block_delete SET_TO OFF;
-X	block_delete = 0;
-N	print_stack SET_TO OFF;
-X	print_stack = 0;
-N	tool_flag SET_TO 0;
-X	tool_flag = 0;
-N	strcpy(_parameter_file_name, default_name);
-N	_outfile SET_TO stdout;                       /* may be reset below */
-X	_outfile = (& __stdout);                        
-N	
-N	for(; ;)
-N	{
-N	    fprintf(stderr, "\r\nenter a number:\r\n");
-X	    fprintf((& __stderr), "\r\nenter a number:\r\n");
-N	    fprintf(stderr, "1 = start interpreting\r\n");
-X	    fprintf((& __stderr), "1 = start interpreting\r\n");
-N	    fprintf(stderr, "2 = choose parameter file ...\r\n");
-X	    fprintf((& __stderr), "2 = choose parameter file ...\r\n");
-N	    fprintf(stderr, "3 = read tool file ...\r\n");
-X	    fprintf((& __stderr), "3 = read tool file ...\r\n");
-N	    fprintf(stderr, "4 = turn block delete switch %s\r\n",
-X	    fprintf((& __stderr), "4 = turn block delete switch %s\r\n",
-N	        ((block_delete IS OFF) ? "ON" : "OFF"));
-X	        ((block_delete == 0) ? "ON" : "OFF"));
-N	    fprintf(stderr, "5 = adjust error handling...\r\n");
-X	    fprintf((& __stderr), "5 = adjust error handling...\r\n");
-N	    fprintf(stderr, "enter choice => 1\r\n");
-X	    fprintf((& __stderr), "enter choice => 1\r\n");
-N	    //gets(buffer);
-N	    //if (sscanf(buffer, "%d", &choice) ISNT 1)
-N	    //    continue;
-N	    if (choice IS 1)
-X	    if (choice == 1)
-N	        break;
-N	    else if (choice IS 2)
-X	    else if (choice == 2)
-N	    {
-N	        if (designate_parameter_file(_parameter_file_name) ISNT 0)
-X	        if (designate_parameter_file(_parameter_file_name) != 0)
-N				return 1;
-N/*	            exit(1);*/
-N	    }
-N	    else if (choice IS 3)
-X	    else if (choice == 3)
-N	    {
-N	        if (read_tool_file("") ISNT 0)
-X	        if (read_tool_file("") != 0)
-N				return 1;
-N/*	            exit(1);*/
-N	        tool_flag SET_TO 1;
-X	        tool_flag = 1;
-N	    }
-N	    else if (choice IS 4)
-X	    else if (choice == 4)
-N	        block_delete SET_TO ((block_delete IS OFF) ? ON : OFF);
-X	        block_delete = ((block_delete == 0) ? 1 : 0);
-N	    else if (choice IS 5)
-X	    else if (choice == 5)
-N	        adjust_error_handling(argc, &print_stack, &do_next);
-N	}
-N	fprintf(stderr, "executing\r\n");
-X	fprintf((& __stderr), "executing\r\n");
-N	if (tool_flag IS 0)
-X	if (tool_flag == 0)
-N	{
-N	    if (read_tool_file("rs274ngc.tool_default") ISNT 0)
-X	    if (read_tool_file("rs274ngc.tool_default") != 0)
-N			return 1;
-N/*	        exit(1);*/
-N	}
-N	
-N	if (argc IS 3)
-X	if (argc == 3)
-N	{
-N	    _outfile SET_TO fopen(argv[2], "w");
-X	    _outfile = fopen(argv[2], "w");
-N	    if (_outfile IS NULL)
-X	    if (_outfile == 0)
-N	    {
-N	        fprintf(stderr, "could not open output file %s\r\n", argv[2]);
-X	        fprintf((& __stderr), "could not open output file %s\r\n", argv[2]);
-N			return 1;
-N/*	        exit(1);*/
-N	    }
-N	}
-N	
-N	if ((status SET_TO rs274ngc_init()) ISNT RS274NGC_OK)
-X	if ((status = rs274ngc_init()) != 0)
-N	{
-N	    report_error(status, print_stack);
-N		return 1;
-N/*	    exit(1);*/
-N	}
-N	
-N//	if (argc IS 1)
-N	    status SET_TO interpret_from_keyboard(block_delete, print_stack);
-X	    status = interpret_from_keyboard(block_delete, print_stack);
-N//	else                                          /* if (argc IS 2 or argc IS 3) */
-N//	{
-N//	    status SET_TO rs274ngc_open(argv[1]);
-N//	    if (status ISNT RS274NGC_OK)              /* do not need to close since not open */
-N//	    {
-N//	        report_error(status, print_stack);
-N//			return 1;
-N///*	        exit(1);*/
-N//	    }
-N//	    status SET_TO interpret_from_file(do_next, block_delete, print_stack);
-N//	    rs274ngc_file_name(buffer, 5);            /* called to exercise the function */
-N//	    rs274ngc_file_name(buffer, 79);           /* called to exercise the function */
-N//	    rs274ngc_close();
-N//	}
-N	rs274ngc_line_length();                       /* called to exercise the function */
-N	rs274ngc_sequence_number();                   /* called to exercise the function */
-N	rs274ngc_active_g_codes(gees);                /* called to exercise the function */
-N	rs274ngc_active_m_codes(ems);                 /* called to exercise the function */
-N	rs274ngc_active_settings(sets);               /* called to exercise the function */
-N	rs274ngc_exit();                              /* saves parameters */
-N	return(status);
-N/*	exit(status);*/
-N/******************************RS274/NGC源码的main函数结束******************************/
-N/*	while(1)
-N	{	
-N		if(USART_GetFlagStatus(USART1,USART_IT_RXNE)==SET)
-N		{	           
-N			i = USART_ReceiveData(USART1);
-N			printf("  %c",i&0xFF);
-N					
-N		}
-N	}*/
-N}
-N
-N#ifdef  DEBUG
-S/*******************************************************************************
-S* Function Name  : assert_failed
-S* Description    : Reports the name of the source file and the source line number
-S*                  where the assert error has occurred.
-S* Input          : - file: pointer to the source file name
-S*                  - line: assert error line source number
-S* Output         : None
-S* Return         : None
-S*******************************************************************************/
-Svoid assert_failed(u8* file, u32 line)
-S{ 
-S  /* User can add his own implementation to report the file name and line number */
-S
-S  printf("\n\r Wrong parameter value detected on\r\n");
-S  printf("       file  %s\r\n", file);
-S  printf("       line  %d\r\n", line);
-S    
-S  /* Infinite loop */
-S  /* while (1)
-S  {
-S  } */
-S}
+N#ifdef BB
+S	(pn->item).b_flag=item.b_flag;
+S	(pn->item).b_number=item.b_number;
 N#endif
 N
-N/*******************************************************************************
-N* Function Name  : RCC_Configuration
-N* Description    : Configures the different system clocks.
-N* Input          : None
-N* Output         : None
-N* Return         : None
-N*******************************************************************************/
-Nvoid RCC_Configuration(void)
-N{
-N  /* RCC system reset(for debug purpose) */
-N  RCC_DeInit();
-N
-N  /* Enable HSE */
-N  RCC_HSEConfig(RCC_HSE_ON);
-X  RCC_HSEConfig(((u32)0x00010000));
-N
-N  /* Wait till HSE is ready */
-N  HSEStartUpStatus = RCC_WaitForHSEStartUp();
-N
-N  if(HSEStartUpStatus == SUCCESS)
-N  {
-N    /* HCLK = SYSCLK */
-N    RCC_HCLKConfig(RCC_SYSCLK_Div1); 
-X    RCC_HCLKConfig(((u32)0x00000000)); 
-N  
-N    /* PCLK2 = HCLK */
-N    RCC_PCLK2Config(RCC_HCLK_Div1); 
-X    RCC_PCLK2Config(((u32)0x00000000)); 
-N
-N    /* PCLK1 = HCLK/2 */
-N    RCC_PCLK1Config(RCC_HCLK_Div2);
-X    RCC_PCLK1Config(((u32)0x00000400));
-N
-N    /* Flash 2 wait state */
-N    FLASH_SetLatency(FLASH_Latency_2);
-X    FLASH_SetLatency(((u32)0x00000002));
-N    /* Enable Prefetch Buffer */
-N    FLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);
-X    FLASH_PrefetchBufferCmd(((u32)0x00000010));
-N
-N    /* PLLCLK = 8MHz * 9 = 72 MHz */
-N    RCC_PLLConfig(RCC_PLLSource_HSE_Div1, RCC_PLLMul_9);
-X    RCC_PLLConfig(((u32)0x00010000), ((u32)0x001C0000));
-N
-N    /* Enable PLL */ 
-N    RCC_PLLCmd(ENABLE);
-N
-N    /* Wait till PLL is ready */
-N    while(RCC_GetFlagStatus(RCC_FLAG_PLLRDY) == RESET)
-X    while(RCC_GetFlagStatus(((u8)0x39)) == RESET)
-N    {
-N    }
-N
-N    /* Select PLL as system clock source */
-N    RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
-X    RCC_SYSCLKConfig(((u32)0x00000002));
-N
-N    /* Wait till PLL is used as system clock source */
-N    while(RCC_GetSYSCLKSource() != 0x08)
-N    {
-N    }
-N  }
-N   
-N  /* Enable USART1 and GPIOA clock */
-N  RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE);
-X  RCC_APB2PeriphClockCmd(((u32)0x00004000) | ((u32)0x00000004), ENABLE);
-N}
-N
-N/*******************************************************************************
-N* Function Name  : NVIC_Configuration
-N* Description    : Configures Vector Table base location.
-N* Input          : None
-N* Output         : None
-N* Return         : None
-N*******************************************************************************/
-Nvoid NVIC_Configuration(void)
-N{
-N#ifdef  VECT_TAB_RAM  
-S  /* Set the Vector Table base location at 0x20000000 */ 
-S  NVIC_SetVectorTable(NVIC_VectTab_RAM, 0x0); 
-N#else  /* VECT_TAB_FLASH  */
-N  /* Set the Vector Table base location at 0x08000000 */ 
-N  NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0);   
-X  NVIC_SetVectorTable(((u32)0x08000000), 0x0);   
+N#ifdef CC
+S	(pn->item).c_flag=item.c_flag;
+S	(pn->item).c_number=item.c_number;
 N#endif
+N	strcpy((pn->item).comment,item.comment);
+N	(pn->item).d_number=item.d_number;
+N	(pn->item).f_number=item.f_number;
+N	for(;i<14;i++)
+N	{
+N		(pn->item).g_modes[i]=item.g_modes[i];
+N	}
+N	(pn->item).h_number=item.h_number;
+N	(pn->item).i_flag=item.i_flag;
+N	(pn->item).i_number=item.i_number;
+N	(pn->item).j_flag=item.j_flag;
+N	(pn->item).j_number=item.j_number;
+N	(pn->item).k_flag=item.k_flag;
+N	(pn->item).k_number=item.k_number;
+N	(pn->item).l_number=item.l_number;
+N	(pn->item).line_number=item.line_number;
+N	(pn->item).motion_to_be=item.motion_to_be;
+N	(pn->item).m_count=item.m_count;
+N	for(;j<10;j++)
+N	{
+N		(pn->item).m_modes[j]=item.m_modes[j];
+N	}
+N	(pn->item).p_number=item.p_number;
+N	(pn->item).q_number=item.q_number;
+N	(pn->item).r_flag=item.r_flag;
+N	(pn->item).r_number=item.r_number;
+N	(pn->item).s_number=item.s_number;
+N	(pn->item).t_number=item.t_number;
+N	(pn->item).x_flag=item.x_flag;
+N	(pn->item).x_number=item.x_number;
+N	(pn->item).y_flag=item.y_flag;
+N	(pn->item).y_number=item.y_number;
+N	(pn->item).z_flag=item.z_flag;
+N	(pn->item).z_number=item.z_number;	
+N	/*结构体拷贝之——内存复制法*/
 N}
 N
-N/*******************************************************************************
-N* Function Name  : GPIO_Configuration
-N* Description    : Configures the different GPIO ports.
-N* Input          : None
-N* Output         : None
-N* Return         : None
-N*******************************************************************************/
-Nvoid GPIO_Configuration(void)
+Nstatic void CopyToItem(Node *pn,Item *pi)
 N{
-N  GPIO_InitTypeDef GPIO_InitStructure;
+N	int i=0,j=0;
+N#ifdef AA
+S	(*pi).a_flag=(pn->item).a_flag;
+S	(*pi).a_number=(pn->item).a_number;
+N#endif
 N
-N  /* Configure USART1 Tx (PA.09) as alternate function push-pull */
-N  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
-X  GPIO_InitStructure.GPIO_Pin = ((u16)0x0200);
-N  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-N  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-N  GPIO_Init(GPIOA, &GPIO_InitStructure);
-X  GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0800)), &GPIO_InitStructure);
-N    
-N  /* Configure USART1 Rx (PA.10) as input floating */
-N  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-X  GPIO_InitStructure.GPIO_Pin = ((u16)0x0400);
-N  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-N  GPIO_Init(GPIOA, &GPIO_InitStructure);
-X  GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0800)), &GPIO_InitStructure);
+N#ifdef BB
+S	(*pi).b_flag=(pn->item).b_flag;
+S	(*pi).b_number=(pn->item).b_number;
+N#endif
+N
+N#ifdef CC
+S	(*pi).c_flag=(pn->item).c_flag;
+S	(*pi).c_number=(pn->item).c_number;
+N#endif
+N	strcpy((*pi).comment,(pn->item).comment);
+N	(*pi).d_number=(pn->item).d_number;
+N	(*pi).f_number=(pn->item).f_number;
+N	for(;i<14;i++)
+N	{
+N		(*pi).g_modes[i]=(pn->item).g_modes[i];
+N	}
+N	(*pi).h_number=(pn->item).h_number;
+N	(*pi).i_flag=(pn->item).i_flag;
+N	(*pi).i_number=(pn->item).i_number;
+N	(*pi).j_flag=(pn->item).j_flag;
+N	(*pi).j_number=(pn->item).j_number;
+N	(*pi).k_flag=(pn->item).k_flag;
+N	(*pi).k_number=(pn->item).k_number;
+N	(*pi).l_number=(pn->item).l_number;
+N	(*pi).line_number=(pn->item).line_number;
+N	(*pi).motion_to_be=(pn->item).motion_to_be;
+N	(*pi).m_count=(pn->item).m_count;
+N	for(;j<10;j++)
+N	{
+N		(*pi).m_modes[j]=(pn->item).m_modes[j];
+N	}
+N	(*pi).p_number=(pn->item).p_number;
+N	(*pi).q_number=(pn->item).q_number;
+N	(*pi).r_flag=(pn->item).r_flag;
+N	(*pi).r_number=(pn->item).r_number;
+N	(*pi).s_number=(pn->item).s_number;
+N	(*pi).t_number=(pn->item).t_number;
+N	(*pi).x_flag=(pn->item).x_flag;
+N	(*pi).x_number=(pn->item).x_number;
+N	(*pi).y_flag=(pn->item).y_flag;
+N	(*pi).y_number=(pn->item).y_number;
+N	(*pi).z_flag=(pn->item).z_flag;
+N	(*pi).z_number=(pn->item).z_number;
 N}
-N
-N/*******************************************************************************
-N* Function Name  : USART_Configuration
-N* Description    : Configures the USART1.
-N* Input          : None
-N* Output         : None
-N* Return         : None
-N*******************************************************************************/
-Nvoid USART_Configuration(void)
-N{
-N  USART_InitTypeDef USART_InitStructure;
-N  USART_ClockInitTypeDef  USART_ClockInitStructure;
-N/* USART1 configuration -----------------------------------------------
-N
-N-------*/
-N  /* USART1 configured as follow:
-N        - BaudRate = 115200 baud  
-N        - Word Length = 8 Bits
-N        - One Stop Bit
-N        - No parity
-N        - Hardware flow control disabled (RTS and CTS signals)
-N        - Receive and transmit enabled
-N        - USART Clock disabled
-N        - USART CPOL: Clock is active low
-N        - USART CPHA: Data is captured on the middle 
-N        - USART LastBit: The clock pulse of the last data bit is not 
-N
-Noutput to 
-N                         the SCLK pin
-N  */
-NUSART_ClockInitStructure.USART_Clock = USART_Clock_Disable;
-XUSART_ClockInitStructure.USART_Clock = ((u16)0x0000);
-NUSART_ClockInitStructure.USART_CPOL = USART_CPOL_Low;
-XUSART_ClockInitStructure.USART_CPOL = ((u16)0x0000);
-NUSART_ClockInitStructure.USART_CPHA = USART_CPHA_2Edge;
-XUSART_ClockInitStructure.USART_CPHA = ((u16)0x0200);
-NUSART_ClockInitStructure.USART_LastBit = USART_LastBit_Disable;
-XUSART_ClockInitStructure.USART_LastBit = ((u16)0x0000);
-N/* Configure the USART1 synchronous paramters */
-NUSART_ClockInit(USART1, &USART_ClockInitStructure);
-XUSART_ClockInit(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), &USART_ClockInitStructure);
-N
-NUSART_InitStructure.USART_BaudRate = 115200;
-NUSART_InitStructure.USART_WordLength = USART_WordLength_8b;
-XUSART_InitStructure.USART_WordLength = ((u16)0x0000);
-NUSART_InitStructure.USART_StopBits = USART_StopBits_1;
-XUSART_InitStructure.USART_StopBits = ((u16)0x0000);
-NUSART_InitStructure.USART_Parity = USART_Parity_No ;
-XUSART_InitStructure.USART_Parity = ((u16)0x0000) ;
-NUSART_InitStructure.USART_HardwareFlowControl = 
-N
-NUSART_HardwareFlowControl_None;
-X((u16)0x0000);
-N
-N
-NUSART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-XUSART_InitStructure.USART_Mode = ((u16)0x0004) | ((u16)0x0008);
-N/* Configure USART1 basic and asynchronous paramters */
-NUSART_Init(USART1, &USART_InitStructure);
-XUSART_Init(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), &USART_InitStructure);
-N    
-N  /* Enable USART1 */
-N  USART_Cmd(USART1, ENABLE);
-X  USART_Cmd(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), ENABLE);
-N}
-N
-N/*******************************************************************************
-N* Function Name  : fputc
-N* Description    : Retargets the C library printf function to the USART.
-N* Input          : None
-N* Output         : None
-N* Return         : None
-N*******************************************************************************/
-Nint fputc(int ch, FILE *f)
-N{
-N  /* Place your implementation of fputc here */
-N  /* e.g. write a character to the USART */
-N  USART_SendData(USART1, (u8) ch);
-X  USART_SendData(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), (u8) ch);
-N
-N  /* Loop until the end of transmission */
-N  while(USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
-X  while(USART_GetFlagStatus(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), ((u16)0x0040)) == RESET)
-N  {
-N  }
-N
-N  return ch;
-N}
-N
-N/******************* (C) COPYRIGHT 2007 STMicroelectronics *****END OF FILE****/
-N

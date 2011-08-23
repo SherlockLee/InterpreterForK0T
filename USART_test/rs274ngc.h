@@ -51,13 +51,13 @@
 #define OR               ||
 #define SET_TO           =
 
-#ifndef TRUE
-#define TRUE             1
-#endif
-
-#ifndef FALSE
-#define FALSE            0
-#endif
+//#ifndef TRUE
+//#define TRUE             1
+//#endif
+//
+//#ifndef FALSE
+//#define FALSE            0
+//#endif
 
 #define RS274NGC_TEXT_SIZE 256
 
@@ -368,6 +368,7 @@ typedef setup * setup_pointer;
    // pointer to function that reads
 typedef int (*read_function_pointer) (char *, int *, block_pointer, double *);
 
+
    /*************************************************************************/
    /*
 
@@ -455,4 +456,5 @@ extern int rs274ngc_sequence_number(void);
    // the function name string, but stop at max_size if the name is longer
 extern void rs274ngc_stack_name(int stack_index, char * function_name,
 int max_size);
+
 #endif

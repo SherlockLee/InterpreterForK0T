@@ -119,6 +119,6915 @@
  
 
     
+#line 1 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+ 
+ 
+ 
+
+
+
+
+ 
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+ 
+
+
+
+
+
+
+
+
+#line 45 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+
+
+  
+  typedef unsigned int size_t;
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    typedef unsigned short wchar_t;  
+#line 74 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+
+typedef struct div_t { int quot, rem; } div_t;
+    
+typedef struct ldiv_t { long int quot, rem; } ldiv_t;
+    
+
+typedef struct lldiv_t { __int64 quot, rem; } lldiv_t;
+    
+
+
+#line 95 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+   
+
+
+
+ 
+
+   
+
+
+
+
+ 
+#line 114 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+   
+
+
+ 
+extern __declspec(__nothrow) int __aeabi_MB_CUR_MAX(void);
+
+   
+
+
+
+
+ 
+
+   
+
+
+
+
+ 
+
+
+
+
+extern __declspec(__nothrow) double atof(const char *  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+ 
+extern __declspec(__nothrow) int atoi(const char *  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+ 
+extern __declspec(__nothrow) long int atol(const char *  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+ 
+
+extern __declspec(__nothrow) __int64 atoll(const char *  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+ 
+
+
+extern __declspec(__nothrow) double strtod(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) float strtof(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
+extern __declspec(__nothrow) long double strtold(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
+   
+
+ 
+
+extern __declspec(__nothrow) long int strtol(const char * __restrict  ,
+                        char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) unsigned long int strtoul(const char * __restrict  ,
+                                       char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+extern __declspec(__nothrow) __int64 strtoll(const char * __restrict  ,
+                               char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+ 
+extern __declspec(__nothrow) unsigned __int64 strtoull(const char * __restrict  ,
+                                         char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+ 
+
+extern __declspec(__nothrow) int rand(void);
+   
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) void srand(unsigned int  );
+   
+
+
+
+
+
+
+ 
+
+struct _rand_state { int __x[57]; };
+extern __declspec(__nothrow) int _rand_r(struct _rand_state *);
+extern __declspec(__nothrow) void _srand_r(struct _rand_state *, unsigned int);
+struct _ANSI_rand_state { int __x[1]; };
+extern __declspec(__nothrow) int _ANSI_rand_r(struct _ANSI_rand_state *);
+extern __declspec(__nothrow) void _ANSI_srand_r(struct _ANSI_rand_state *, unsigned int);
+   
+
+
+ 
+
+extern __declspec(__nothrow) void *calloc(size_t  , size_t  );
+   
+
+
+
+ 
+extern __declspec(__nothrow) void free(void *  );
+   
+
+
+
+
+
+ 
+extern __declspec(__nothrow) void *malloc(size_t  );
+   
+
+
+
+ 
+extern __declspec(__nothrow) void *realloc(void *  , size_t  );
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) int posix_memalign(void **  , size_t  , size_t  );
+   
+
+
+
+
+
+
+
+
+
+ 
+
+typedef int (*__heapprt)(void *, char const *, ...);
+extern __declspec(__nothrow) void __heapstats(int (*  )(void *  ,
+                                           char const *  , ...),
+                        void *  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int __heapvalid(int (*  )(void *  ,
+                                           char const *  , ...),
+                       void *  , int  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) __declspec(__noreturn) void abort(void);
+   
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) int atexit(void (*  )(void)) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+ 
+#line 414 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+
+
+extern __declspec(__nothrow) __declspec(__noreturn) void exit(int  );
+   
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) __declspec(__noreturn) void _Exit(int  );
+   
+
+
+
+
+
+
+
+      
+
+extern __declspec(__nothrow) char *getenv(const char *  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) int  system(const char *  );
+   
+
+
+
+
+
+
+
+
+
+ 
+
+extern  void *bsearch(const void *  , const void *  ,
+              size_t  , size_t  ,
+              int (*  )(const void *, const void *)) __attribute__((__nonnull__(1,2,5)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#line 502 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+
+
+extern  void qsort(void *  , size_t  , size_t  ,
+           int (*  )(const void *, const void *)) __attribute__((__nonnull__(1,4)));
+   
+
+
+
+
+
+
+
+
+
+ 
+
+#line 531 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+
+extern __declspec(__nothrow) __pure int abs(int  );
+   
+
+
+
+ 
+
+extern __declspec(__nothrow) __pure div_t div(int  , int  );
+   
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) __pure long int labs(long int  );
+   
+
+
+
+ 
+
+
+
+
+extern __declspec(__nothrow) __pure ldiv_t ldiv(long int  , long int  );
+   
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+extern __declspec(__nothrow) __pure __int64 llabs(__int64  );
+   
+
+
+
+ 
+
+
+
+
+extern __declspec(__nothrow) __pure lldiv_t lldiv(__int64  , __int64  );
+   
+
+
+
+
+
+
+
+
+
+
+
+ 
+#line 612 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+
+
+
+ 
+typedef struct __sdiv32by16 { int quot, rem; } __sdiv32by16;
+typedef struct __udiv32by16 { unsigned int quot, rem; } __udiv32by16;
+    
+typedef struct __sdiv64by32 { int rem, quot; } __sdiv64by32;
+
+__value_in_regs extern __declspec(__nothrow) __pure __sdiv32by16 __rt_sdiv32by16(
+     int  ,
+     short int  );
+   
+
+ 
+__value_in_regs extern __declspec(__nothrow) __pure __udiv32by16 __rt_udiv32by16(
+     unsigned int  ,
+     unsigned short  );
+   
+
+ 
+__value_in_regs extern __declspec(__nothrow) __pure __sdiv64by32 __rt_sdiv64by32(
+     int  , unsigned int  ,
+     int  );
+   
+
+ 
+
+
+
+ 
+extern __declspec(__nothrow) unsigned int __fp_status(unsigned int  , unsigned int  );
+   
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int mblen(const char *  , size_t  );
+   
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int mbtowc(wchar_t * __restrict  ,
+                   const char * __restrict  , size_t  );
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int wctomb(char *  , wchar_t  );
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+extern __declspec(__nothrow) size_t mbstowcs(wchar_t * __restrict  ,
+                      const char * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) size_t wcstombs(char * __restrict  ,
+                      const wchar_t * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) void __use_realtime_heap(void);
+extern __declspec(__nothrow) void __use_realtime_division(void);
+extern __declspec(__nothrow) void __use_two_region_memory(void);
+extern __declspec(__nothrow) void __use_no_heap(void);
+extern __declspec(__nothrow) void __use_no_heap_region(void);
+
+extern __declspec(__nothrow) char const *__C_library_version_string(void);
+extern __declspec(__nothrow) int __C_library_version_number(void);
+
+
+
+
+
+
+
+
+
+
+
+#line 866 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
+
+
+ 
+#line 122 "rs274ngc_pre.c"
+#line 1 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+#line 47 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+#line 61 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+   
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#line 92 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+extern __softfp unsigned __ARM_dcmp4(double  , double  );
+extern __softfp unsigned __ARM_fcmp4(float  , float  );
+    
+
+
+
+
+ 
+
+extern __declspec(__nothrow) __softfp int __ARM_fpclassifyf(float  );
+extern __declspec(__nothrow) __softfp int __ARM_fpclassify(double  );
+     
+     
+
+__inline __declspec(__nothrow) __softfp int __ARM_isfinitef(float __x)
+{
+    return (((*(unsigned *)&(__x)) >> 23) & 0xff) != 0xff;
+}
+__inline __declspec(__nothrow) __softfp int __ARM_isfinite(double __x)
+{
+    return (((*(1 + (unsigned *)&(__x))) >> 20) & 0x7ff) != 0x7ff;
+}
+     
+     
+
+__inline __declspec(__nothrow) __softfp int __ARM_isinff(float __x)
+{
+    return ((*(unsigned *)&(__x)) << 1) == 0xff000000;
+}
+__inline __declspec(__nothrow) __softfp int __ARM_isinf(double __x)
+{
+    return (((*(1 + (unsigned *)&(__x))) << 1) == 0xffe00000) && ((*(unsigned *)&(__x)) == 0);
+}
+     
+     
+
+__inline __declspec(__nothrow) __softfp int __ARM_islessgreaterf(float __x, float __y)
+{
+    unsigned __f = __ARM_fcmp4(__x, __y) >> 28;
+    return (__f == 8) || (__f == 2);  
+}
+__inline __declspec(__nothrow) __softfp int __ARM_islessgreater(double __x, double __y)
+{
+    unsigned __f = __ARM_dcmp4(__x, __y) >> 28;
+    return (__f == 8) || (__f == 2);  
+}
+    
+
+
+ 
+
+__inline __declspec(__nothrow) __softfp int __ARM_isnanf(float __x)
+{
+    return (0x7f800000 - ((*(unsigned *)&(__x)) & 0x7fffffff)) >> 31;
+}
+__inline __declspec(__nothrow) __softfp int __ARM_isnan(double __x)
+{
+    unsigned __xf = (*(1 + (unsigned *)&(__x))) | (((*(unsigned *)&(__x)) == 0) ? 0 : 1);
+    return (0x7ff00000 - (__xf & 0x7fffffff)) >> 31;
+}
+     
+     
+
+__inline __declspec(__nothrow) __softfp int __ARM_isnormalf(float __x)
+{
+    unsigned __xe = ((*(unsigned *)&(__x)) >> 23) & 0xff;
+    return (__xe != 0xff) && (__xe != 0);
+}
+__inline __declspec(__nothrow) __softfp int __ARM_isnormal(double __x)
+{
+    unsigned __xe = ((*(1 + (unsigned *)&(__x))) >> 20) & 0x7ff;
+    return (__xe != 0x7ff) && (__xe != 0);
+}
+     
+     
+
+__inline __declspec(__nothrow) __softfp int __ARM_signbitf(float __x)
+{
+    return (*(unsigned *)&(__x)) >> 31;
+}
+__inline __declspec(__nothrow) __softfp int __ARM_signbit(double __x)
+{
+    return (*(1 + (unsigned *)&(__x))) >> 31;
+}
+     
+     
+
+
+
+
+
+
+
+
+#line 210 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+
+
+   
+  typedef float float_t;
+  typedef double double_t;
+
+
+
+
+
+
+
+extern const int math_errhandling;
+
+
+
+extern __declspec(__nothrow) double acos(double  );
+    
+    
+    
+extern __declspec(__nothrow) double asin(double  );
+    
+    
+    
+    
+
+extern __declspec(__nothrow) __pure double atan(double  );
+    
+    
+
+extern __declspec(__nothrow) double atan2(double  , double  );
+    
+    
+    
+    
+
+extern __declspec(__nothrow) double cos(double  );
+    
+    
+    
+    
+extern __declspec(__nothrow) double sin(double  );
+    
+    
+    
+    
+
+extern void __use_accurate_range_reduction(void);
+    
+    
+
+extern __declspec(__nothrow) double tan(double  );
+    
+    
+    
+    
+
+extern __declspec(__nothrow) double cosh(double  );
+    
+    
+    
+    
+extern __declspec(__nothrow) double sinh(double  );
+    
+    
+    
+    
+    
+
+extern __declspec(__nothrow) __pure double tanh(double  );
+    
+    
+
+extern __declspec(__nothrow) double exp(double  );
+    
+    
+    
+    
+    
+
+extern __declspec(__nothrow) double frexp(double  , int *  ) __attribute__((__nonnull__(2)));
+    
+    
+    
+    
+    
+    
+
+extern __declspec(__nothrow) double ldexp(double  , int  );
+    
+    
+    
+    
+extern __declspec(__nothrow) double log(double  );
+    
+    
+    
+    
+    
+extern __declspec(__nothrow) double log10(double  );
+    
+    
+    
+extern __declspec(__nothrow) double modf(double  , double *  ) __attribute__((__nonnull__(2)));
+    
+    
+    
+    
+
+extern __declspec(__nothrow) double pow(double  , double  );
+    
+    
+    
+    
+    
+    
+extern __declspec(__nothrow) double sqrt(double  );
+    
+    
+    
+
+
+
+
+    __inline double _sqrt(double __x) { return sqrt(__x); }
+
+
+
+
+    __inline float _sqrtf(float __x) { return (float)sqrt(__x); }
+
+    
+
+
+
+ 
+
+extern __declspec(__nothrow) __pure double ceil(double  );
+    
+    
+extern __declspec(__nothrow) __pure double fabs(double  );
+    
+    
+
+extern __declspec(__nothrow) __pure double floor(double  );
+    
+    
+
+extern __declspec(__nothrow) double fmod(double  , double  );
+    
+    
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+extern __declspec(__nothrow) double acosh(double  );
+    
+
+ 
+extern __declspec(__nothrow) double asinh(double  );
+    
+
+ 
+extern __declspec(__nothrow) double atanh(double  );
+    
+
+ 
+extern __declspec(__nothrow) double cbrt(double  );
+    
+
+ 
+__inline __declspec(__nothrow) __pure double copysign(double __x, double __y)
+    
+
+ 
+{
+    (*(1 + (unsigned *)&(__x))) = ((*(1 + (unsigned *)&(__x))) & 0x7fffffff) | ((*(1 + (unsigned *)&(__y))) & 0x80000000);
+    return __x;
+}
+__inline __declspec(__nothrow) __pure float copysignf(float __x, float __y)
+    
+
+ 
+{
+    (*(unsigned *)&(__x)) = ((*(unsigned *)&(__x)) & 0x7fffffff) | ((*(unsigned *)&(__y)) & 0x80000000);
+    return __x;
+}
+extern __declspec(__nothrow) double erf(double  );
+    
+
+ 
+extern __declspec(__nothrow) double erfc(double  );
+    
+
+ 
+extern __declspec(__nothrow) double expm1(double  );
+    
+
+ 
+
+
+
+    
+
+ 
+
+
+
+
+
+
+#line 444 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+
+extern __declspec(__nothrow) double hypot(double  , double  );
+    
+
+
+
+
+ 
+extern __declspec(__nothrow) int ilogb(double  );
+    
+
+ 
+extern __declspec(__nothrow) int ilogbf(float  );
+    
+
+ 
+extern __declspec(__nothrow) int ilogbl(long double  );
+    
+
+ 
+
+
+
+
+
+
+
+    
+
+ 
+
+
+
+
+
+    
+
+
+
+ 
+
+
+
+
+
+    
+
+
+
+ 
+
+
+
+
+
+    
+
+ 
+
+
+
+
+
+    
+
+
+
+ 
+
+
+
+
+
+    
+
+
+
+ 
+
+
+
+
+
+    
+
+
+
+ 
+
+
+
+
+
+    
+
+ 
+
+
+
+
+
+    
+
+ 
+
+
+
+
+
+    
+
+
+ 
+
+extern __declspec(__nothrow) double lgamma (double  );
+    
+
+
+ 
+extern __declspec(__nothrow) double log1p(double  );
+    
+
+ 
+extern __declspec(__nothrow) double logb(double  );
+    
+
+ 
+extern __declspec(__nothrow) float logbf(float  );
+    
+
+ 
+extern __declspec(__nothrow) long double logbl(long double  );
+    
+
+ 
+extern __declspec(__nothrow) double nextafter(double  , double  );
+    
+
+
+ 
+extern __declspec(__nothrow) float nextafterf(float  , float  );
+    
+
+
+ 
+extern __declspec(__nothrow) long double nextafterl(long double  , long double  );
+    
+
+
+ 
+extern __declspec(__nothrow) double nexttoward(double  , long double  );
+    
+
+
+ 
+extern __declspec(__nothrow) float nexttowardf(float  , long double  );
+    
+
+
+ 
+extern __declspec(__nothrow) long double nexttowardl(long double  , long double  );
+    
+
+
+ 
+extern __declspec(__nothrow) double remainder(double  , double  );
+    
+
+ 
+extern __declspec(__nothrow) __pure double rint(double  );
+    
+
+ 
+extern __declspec(__nothrow) double scalbln(double  , long int  );
+    
+
+ 
+extern __declspec(__nothrow) float scalblnf(float  , long int  );
+    
+
+ 
+extern __declspec(__nothrow) long double scalblnl(long double  , long int  );
+    
+
+ 
+extern __declspec(__nothrow) double scalbn(double  , int  );
+    
+
+ 
+extern __declspec(__nothrow) float scalbnf(float  , int  );
+    
+
+ 
+extern __declspec(__nothrow) long double scalbnl(long double  , int  );
+    
+
+ 
+
+
+
+
+    
+
+ 
+
+
+
+ 
+extern __declspec(__nothrow) __pure float _fabsf(float);  
+__inline __declspec(__nothrow) __pure float fabsf(float __f) { return _fabsf(__f); }
+extern __declspec(__nothrow) float sinf(float  );
+extern __declspec(__nothrow) float cosf(float  );
+extern __declspec(__nothrow) float tanf(float  );
+extern __declspec(__nothrow) float acosf(float  );
+extern __declspec(__nothrow) float asinf(float  );
+extern __declspec(__nothrow) float atanf(float  );
+extern __declspec(__nothrow) float atan2f(float  , float  );
+extern __declspec(__nothrow) float sinhf(float  );
+extern __declspec(__nothrow) float coshf(float  );
+extern __declspec(__nothrow) float tanhf(float  );
+extern __declspec(__nothrow) float expf(float  );
+extern __declspec(__nothrow) float logf(float  );
+extern __declspec(__nothrow) float log10f(float  );
+extern __declspec(__nothrow) float powf(float  , float  );
+extern __declspec(__nothrow) float sqrtf(float  );
+extern __declspec(__nothrow) float ldexpf(float  , int  );
+extern __declspec(__nothrow) float frexpf(float  , int *  ) __attribute__((__nonnull__(2)));
+extern __declspec(__nothrow) __pure float ceilf(float  );
+extern __declspec(__nothrow) __pure float floorf(float  );
+extern __declspec(__nothrow) float fmodf(float  , float  );
+extern __declspec(__nothrow) float modff(float  , float *  ) __attribute__((__nonnull__(2)));
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+__declspec(__nothrow) long double acosl(long double );
+__declspec(__nothrow) long double asinl(long double );
+__declspec(__nothrow) long double atanl(long double );
+__declspec(__nothrow) long double atan2l(long double , long double );
+__declspec(__nothrow) long double ceill(long double );
+__declspec(__nothrow) long double cosl(long double );
+__declspec(__nothrow) long double coshl(long double );
+__declspec(__nothrow) long double expl(long double );
+__declspec(__nothrow) long double fabsl(long double );
+__declspec(__nothrow) long double floorl(long double );
+__declspec(__nothrow) long double fmodl(long double , long double );
+__declspec(__nothrow) long double frexpl(long double , int* ) __attribute__((__nonnull__(2)));
+__declspec(__nothrow) long double ldexpl(long double , int );
+__declspec(__nothrow) long double logl(long double );
+__declspec(__nothrow) long double log10l(long double );
+__declspec(__nothrow) long double modfl(long double  , long double *  ) __attribute__((__nonnull__(2)));
+__declspec(__nothrow) long double powl(long double , long double );
+__declspec(__nothrow) long double sinl(long double );
+__declspec(__nothrow) long double sinhl(long double );
+__declspec(__nothrow) long double sqrtl(long double );
+__declspec(__nothrow) long double tanl(long double );
+__declspec(__nothrow) long double tanhl(long double );
+
+
+
+
+
+ 
+extern __declspec(__nothrow) float acoshf(float  );
+__declspec(__nothrow) long double acoshl(long double );
+extern __declspec(__nothrow) float asinhf(float  );
+__declspec(__nothrow) long double asinhl(long double );
+extern __declspec(__nothrow) float atanhf(float  );
+__declspec(__nothrow) long double atanhl(long double );
+__declspec(__nothrow) long double copysignl(long double , long double );
+extern __declspec(__nothrow) float cbrtf(float  );
+__declspec(__nothrow) long double cbrtl(long double );
+extern __declspec(__nothrow) float erff(float  );
+__declspec(__nothrow) long double erfl(long double );
+extern __declspec(__nothrow) float erfcf(float  );
+__declspec(__nothrow) long double erfcl(long double );
+extern __declspec(__nothrow) float expm1f(float  );
+__declspec(__nothrow) long double expm1l(long double );
+extern __declspec(__nothrow) float log1pf(float  );
+__declspec(__nothrow) long double log1pl(long double );
+extern __declspec(__nothrow) float hypotf(float  , float  );
+__declspec(__nothrow) long double hypotl(long double , long double );
+extern __declspec(__nothrow) float lgammaf(float  );
+__declspec(__nothrow) long double lgammal(long double );
+extern __declspec(__nothrow) float remainderf(float  , float  );
+__declspec(__nothrow) long double remainderl(long double , long double );
+extern __declspec(__nothrow) float rintf(float  );
+__declspec(__nothrow) long double rintl(long double );
+
+
+
+#line 824 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+
+
+
+
+#line 979 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+
+
+
+
+
+
+
+
+
+
+#line 1181 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
+
+
+
+ 
+#line 123 "rs274ngc_pre.c"
+#line 1 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+ 
+ 
+ 
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+#line 37 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+
+
+  
+  typedef unsigned int size_t;
+
+
+
+
+
+
+
+
+extern __declspec(__nothrow) void *memcpy(void * __restrict  ,
+                    const void * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+ 
+extern __declspec(__nothrow) void *memmove(void *  ,
+                    const void *  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) char *strcpy(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+ 
+extern __declspec(__nothrow) char *strncpy(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) char *strcat(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+ 
+extern __declspec(__nothrow) char *strncat(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) int memcmp(const void *  , const void *  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int strcmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+ 
+extern __declspec(__nothrow) int strncmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int strcasecmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int strncasecmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+
+ 
+extern __declspec(__nothrow) int strcoll(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) size_t strxfrm(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+#line 184 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+extern __declspec(__nothrow) void *memchr(const void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
+
+   
+
+
+
+
+
+ 
+
+#line 200 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+extern __declspec(__nothrow) char *strchr(const char *  , int  ) __attribute__((__nonnull__(1)));
+
+   
+
+
+
+
+ 
+
+extern __declspec(__nothrow) size_t strcspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+ 
+
+#line 223 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+extern __declspec(__nothrow) char *strpbrk(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+
+   
+
+
+
+
+ 
+
+#line 238 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+extern __declspec(__nothrow) char *strrchr(const char *  , int  ) __attribute__((__nonnull__(1)));
+
+   
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) size_t strspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+ 
+
+#line 261 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+extern __declspec(__nothrow) char *strstr(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
+
+   
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) char *strtok(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(2)));
+extern __declspec(__nothrow) char *_strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
+
+extern __declspec(__nothrow) char *strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) void *memset(void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+ 
+extern __declspec(__nothrow) char *strerror(int  );
+   
+
+
+
+
+
+ 
+extern __declspec(__nothrow) size_t strlen(const char *  ) __attribute__((__nonnull__(1)));
+   
+
+
+
+ 
+
+extern __declspec(__nothrow) size_t strlcpy(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) size_t strlcat(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+extern __declspec(__nothrow) void _membitcpybl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitcpybb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitcpyhl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitcpyhb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitcpywl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitcpywb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitmovebl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitmovebb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitmovehl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitmovehb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitmovewl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+extern __declspec(__nothrow) void _membitmovewb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+#line 493 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
+
+
+
+ 
+#line 124 "rs274ngc_pre.c"
+#line 1 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
+ 
+ 
+ 
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+#line 32 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
+
+
+
+
+
+
+#line 46 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
+
+ 
+#line 56 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+ 
+#line 78 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
+
+
+
+
+
+#line 130 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
+
+extern __declspec(__nothrow) __pure unsigned char **__rt_ctype_table(void);
+
+
+
+
+
+
+
+    extern int (isalnum)(int  );
+
+     
+
+
+
+
+
+    extern int (isalpha)(int  );
+
+     
+
+
+
+
+
+    extern int (iscntrl)(int  );
+
+     
+     
+
+ 
+
+
+
+
+    extern int (isdigit)(int  );
+
+     
+
+    extern int (isblank)(int  );
+     
+     
+     
+
+
+
+
+
+    extern int (isgraph)(int  );
+
+     
+
+
+
+
+
+    extern int (islower)(int  );
+
+     
+
+
+
+
+
+    extern int (isprint)(int  );
+
+     
+     
+
+
+
+
+
+    extern int (ispunct)(int  );
+
+     
+
+
+
+
+
+    extern int (isspace)(int  );
+
+     
+
+
+
+
+
+    extern int (isupper)(int  );
+
+     
+
+ 
+ 
+
+__inline int __isxdigit_helper(int __t) { return (__t ^ (__t << 2)); }
+
+
+
+
+    extern int (isxdigit)(int  );
+
+     
+
+
+
+extern int tolower(int  );
+     
+     
+
+extern int toupper(int  );
+     
+     
+
+
+
+
+
+
+
+#line 269 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
+
+
+
+ 
+#line 125 "rs274ngc_pre.c"
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+ 
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_conf.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_type.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+ 
+typedef signed long  s32;
+typedef signed short s16;
+typedef signed char  s8;
+
+typedef signed long  const sc32;   
+typedef signed short const sc16;   
+typedef signed char  const sc8;    
+
+typedef volatile signed long  vs32;
+typedef volatile signed short vs16;
+typedef volatile signed char  vs8;
+
+typedef volatile signed long  const vsc32;   
+typedef volatile signed short const vsc16;   
+typedef volatile signed char  const vsc8;    
+
+typedef unsigned long  u32;
+typedef unsigned short u16;
+typedef unsigned char  u8;
+
+typedef unsigned long  const uc32;   
+typedef unsigned short const uc16;   
+typedef unsigned char  const uc8;    
+
+typedef volatile unsigned long  vu32;
+typedef volatile unsigned short vu16;
+typedef volatile unsigned char  vu8;
+
+typedef volatile unsigned long  const vuc32;   
+typedef volatile unsigned short const vuc16;   
+typedef volatile unsigned char  const vuc8;    
+
+typedef enum {FALSE = 0, TRUE = !FALSE} bool;
+
+typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+
+typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+
+
+typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+
+#line 73 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_type.h"
+
+ 
+ 
+ 
+
+
+
+ 
+#line 22 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_conf.h"
+
+ 
+ 
+
+
+ 
+ 
+
+ 
+ 
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+#line 66 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_conf.h"
+
+ 
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+ 
+#line 90 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_conf.h"
+
+ 
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+ 
+
+
+ 
+#line 133 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_conf.h"
+
+ 
+#line 141 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_conf.h"
+
+ 
+
+
+
+ 
+
+
+ 
+#line 167 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_conf.h"
+
+
+
+ 
+#line 27 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+#line 28 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\cortexm3_macro.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 22 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\cortexm3_macro.h"
+
+ 
+ 
+ 
+ 
+void __WFI(void);
+void __WFE(void);
+void __SEV(void);
+void __ISB(void);
+void __DSB(void);
+void __DMB(void);
+void __SVC(void);
+u32 __MRS_CONTROL(void);
+void __MSR_CONTROL(u32 Control);
+u32 __MRS_PSP(void);
+void __MSR_PSP(u32 TopOfProcessStack);
+u32 __MRS_MSP(void);
+void __MSR_MSP(u32 TopOfMainStack);
+void __RESETPRIMASK(void);
+void __SETPRIMASK(void);
+u32 __READ_PRIMASK(void);
+void __RESETFAULTMASK(void);
+void __SETFAULTMASK(void);
+u32 __READ_FAULTMASK(void);
+void __BASEPRICONFIG(u32 NewPriority);
+u32 __GetBASEPRI(void);
+u16 __REV_HalfWord(u16 Data);
+u32 __REV_Word(u32 Data);
+
+
+
+ 
+#line 29 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+
+ 
+ 
+ 
+ 
+
+ 
+typedef struct
+{
+  vu32 SR;
+  vu32 CR1;
+  vu32 CR2;
+  vu32 SMPR1;
+  vu32 SMPR2;
+  vu32 JOFR1;
+  vu32 JOFR2;
+  vu32 JOFR3;
+  vu32 JOFR4;
+  vu32 HTR;
+  vu32 LTR;
+  vu32 SQR1;
+  vu32 SQR2;
+  vu32 SQR3;
+  vu32 JSQR;
+  vu32 JDR1;
+  vu32 JDR2;
+  vu32 JDR3;
+  vu32 JDR4;
+  vu32 DR;
+} ADC_TypeDef;
+
+ 
+typedef struct
+{
+  u32  RESERVED0;
+  vu16 DR1;
+  u16  RESERVED1;
+  vu16 DR2;
+  u16  RESERVED2;
+  vu16 DR3;
+  u16  RESERVED3;
+  vu16 DR4;
+  u16  RESERVED4;
+  vu16 DR5;
+  u16  RESERVED5;
+  vu16 DR6;
+  u16  RESERVED6;
+  vu16 DR7;
+  u16  RESERVED7;
+  vu16 DR8;
+  u16  RESERVED8;
+  vu16 DR9;
+  u16  RESERVED9;
+  vu16 DR10;
+  u16  RESERVED10; 
+  vu16 RTCCR;
+  u16  RESERVED11;
+  vu16 CR;
+  u16  RESERVED12;
+  vu16 CSR;
+  u16  RESERVED13[5];
+  vu16 DR11;
+  u16  RESERVED14;
+  vu16 DR12;
+  u16  RESERVED15;
+  vu16 DR13;
+  u16  RESERVED16;
+  vu16 DR14;
+  u16  RESERVED17;
+  vu16 DR15;
+  u16  RESERVED18;
+  vu16 DR16;
+  u16  RESERVED19;
+  vu16 DR17;
+  u16  RESERVED20;
+  vu16 DR18;
+  u16  RESERVED21;
+  vu16 DR19;
+  u16  RESERVED22;
+  vu16 DR20;
+  u16  RESERVED23;
+  vu16 DR21;
+  u16  RESERVED24;
+  vu16 DR22;
+  u16  RESERVED25;
+  vu16 DR23;
+  u16  RESERVED26;
+  vu16 DR24;
+  u16  RESERVED27;
+  vu16 DR25;
+  u16  RESERVED28;
+  vu16 DR26;
+  u16  RESERVED29;
+  vu16 DR27;
+  u16  RESERVED30;
+  vu16 DR28;
+  u16  RESERVED31;
+  vu16 DR29;
+  u16  RESERVED32;
+  vu16 DR30;
+  u16  RESERVED33; 
+  vu16 DR31;
+  u16  RESERVED34;
+  vu16 DR32;
+  u16  RESERVED35;
+  vu16 DR33;
+  u16  RESERVED36;
+  vu16 DR34;
+  u16  RESERVED37;
+  vu16 DR35;
+  u16  RESERVED38;
+  vu16 DR36;
+  u16  RESERVED39;
+  vu16 DR37;
+  u16  RESERVED40;
+  vu16 DR38;
+  u16  RESERVED41;
+  vu16 DR39;
+  u16  RESERVED42;
+  vu16 DR40;
+  u16  RESERVED43;
+  vu16 DR41;
+  u16  RESERVED44;
+  vu16 DR42;
+  u16  RESERVED45;    
+} BKP_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 TIR;
+  vu32 TDTR;
+  vu32 TDLR;
+  vu32 TDHR;
+} CAN_TxMailBox_TypeDef;
+
+typedef struct
+{
+  vu32 RIR;
+  vu32 RDTR;
+  vu32 RDLR;
+  vu32 RDHR;
+} CAN_FIFOMailBox_TypeDef;
+
+typedef struct
+{
+  vu32 FR1;
+  vu32 FR2;
+} CAN_FilterRegister_TypeDef;
+
+typedef struct
+{
+  vu32 MCR;
+  vu32 MSR;
+  vu32 TSR;
+  vu32 RF0R;
+  vu32 RF1R;
+  vu32 IER;
+  vu32 ESR;
+  vu32 BTR;
+  u32  RESERVED0[88];
+  CAN_TxMailBox_TypeDef sTxMailBox[3];
+  CAN_FIFOMailBox_TypeDef sFIFOMailBox[2];
+  u32  RESERVED1[12];
+  vu32 FMR;
+  vu32 FM1R;
+  u32  RESERVED2;
+  vu32 FS1R;
+  u32  RESERVED3;
+  vu32 FFA1R;
+  u32  RESERVED4;
+  vu32 FA1R;
+  u32  RESERVED5[8];
+  CAN_FilterRegister_TypeDef sFilterRegister[14];
+} CAN_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 DR;
+  vu8  IDR;
+  u8   RESERVED0;
+  u16  RESERVED1;
+  vu32 CR;
+} CRC_TypeDef;
+
+
+ 
+typedef struct
+{
+  vu32 CR;
+  vu32 SWTRIGR;
+  vu32 DHR12R1;
+  vu32 DHR12L1;
+  vu32 DHR8R1;
+  vu32 DHR12R2;
+  vu32 DHR12L2;
+  vu32 DHR8R2;
+  vu32 DHR12RD;
+  vu32 DHR12LD;
+  vu32 DHR8RD;
+  vu32 DOR1;
+  vu32 DOR2;
+} DAC_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 IDCODE;
+  vu32 CR;	
+}DBGMCU_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 CCR;
+  vu32 CNDTR;
+  vu32 CPAR;
+  vu32 CMAR;
+} DMA_Channel_TypeDef;
+
+typedef struct
+{
+  vu32 ISR;
+  vu32 IFCR;
+} DMA_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 IMR;
+  vu32 EMR;
+  vu32 RTSR;
+  vu32 FTSR;
+  vu32 SWIER;
+  vu32 PR;
+} EXTI_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 ACR;
+  vu32 KEYR;
+  vu32 OPTKEYR;
+  vu32 SR;
+  vu32 CR;
+  vu32 AR;
+  vu32 RESERVED;
+  vu32 OBR;
+  vu32 WRPR;
+} FLASH_TypeDef;
+
+typedef struct
+{
+  vu16 RDP;
+  vu16 USER;
+  vu16 Data0;
+  vu16 Data1;
+  vu16 WRP0;
+  vu16 WRP1;
+  vu16 WRP2;
+  vu16 WRP3;
+} OB_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 BTCR[8];   
+} FSMC_Bank1_TypeDef; 
+
+typedef struct
+{
+  vu32 BWTR[7];
+} FSMC_Bank1E_TypeDef;
+
+typedef struct
+{
+  vu32 PCR2;
+  vu32 SR2;
+  vu32 PMEM2;
+  vu32 PATT2;
+  u32  RESERVED0;   
+  vu32 ECCR2; 
+} FSMC_Bank2_TypeDef;  
+
+typedef struct
+{
+  vu32 PCR3;
+  vu32 SR3;
+  vu32 PMEM3;
+  vu32 PATT3;
+  u32  RESERVED0;   
+  vu32 ECCR3; 
+} FSMC_Bank3_TypeDef; 
+
+typedef struct
+{
+  vu32 PCR4;
+  vu32 SR4;
+  vu32 PMEM4;
+  vu32 PATT4;
+  vu32 PIO4; 
+} FSMC_Bank4_TypeDef; 
+
+ 
+typedef struct
+{
+  vu32 CRL;
+  vu32 CRH;
+  vu32 IDR;
+  vu32 ODR;
+  vu32 BSRR;
+  vu32 BRR;
+  vu32 LCKR;
+} GPIO_TypeDef;
+
+typedef struct
+{
+  vu32 EVCR;
+  vu32 MAPR;
+  vu32 EXTICR[4];
+} AFIO_TypeDef;
+
+ 
+typedef struct
+{
+  vu16 CR1;
+  u16  RESERVED0;
+  vu16 CR2;
+  u16  RESERVED1;
+  vu16 OAR1;
+  u16  RESERVED2;
+  vu16 OAR2;
+  u16  RESERVED3;
+  vu16 DR;
+  u16  RESERVED4;
+  vu16 SR1;
+  u16  RESERVED5;
+  vu16 SR2;
+  u16  RESERVED6;
+  vu16 CCR;
+  u16  RESERVED7;
+  vu16 TRISE;
+  u16  RESERVED8;
+} I2C_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 KR;
+  vu32 PR;
+  vu32 RLR;
+  vu32 SR;
+} IWDG_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 ISER[2];
+  u32  RESERVED0[30];
+  vu32 ICER[2];
+  u32  RSERVED1[30];
+  vu32 ISPR[2];
+  u32  RESERVED2[30];
+  vu32 ICPR[2];
+  u32  RESERVED3[30];
+  vu32 IABR[2];
+  u32  RESERVED4[62];
+  vu32 IPR[15];
+} NVIC_TypeDef;
+
+typedef struct
+{
+  vuc32 CPUID;
+  vu32 ICSR;
+  vu32 VTOR;
+  vu32 AIRCR;
+  vu32 SCR;
+  vu32 CCR;
+  vu32 SHPR[3];
+  vu32 SHCSR;
+  vu32 CFSR;
+  vu32 HFSR;
+  vu32 DFSR;
+  vu32 MMFAR;
+  vu32 BFAR;
+  vu32 AFSR;
+} SCB_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 CR;
+  vu32 CSR;
+} PWR_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 CR;
+  vu32 CFGR;
+  vu32 CIR;
+  vu32 APB2RSTR;
+  vu32 APB1RSTR;
+  vu32 AHBENR;
+  vu32 APB2ENR;
+  vu32 APB1ENR;
+  vu32 BDCR;
+  vu32 CSR;
+} RCC_TypeDef;
+
+ 
+typedef struct
+{
+  vu16 CRH;
+  u16  RESERVED0;
+  vu16 CRL;
+  u16  RESERVED1;
+  vu16 PRLH;
+  u16  RESERVED2;
+  vu16 PRLL;
+  u16  RESERVED3;
+  vu16 DIVH;
+  u16  RESERVED4;
+  vu16 DIVL;
+  u16  RESERVED5;
+  vu16 CNTH;
+  u16  RESERVED6;
+  vu16 CNTL;
+  u16  RESERVED7;
+  vu16 ALRH;
+  u16  RESERVED8;
+  vu16 ALRL;
+  u16  RESERVED9;
+} RTC_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 POWER;
+  vu32 CLKCR;
+  vu32 ARG;
+  vu32 CMD;
+  vuc32 RESPCMD;
+  vuc32 RESP1;
+  vuc32 RESP2;
+  vuc32 RESP3;
+  vuc32 RESP4;
+  vu32 DTIMER;
+  vu32 DLEN;
+  vu32 DCTRL;
+  vuc32 DCOUNT;
+  vuc32 STA;
+  vu32 ICR;
+  vu32 MASK;
+  u32  RESERVED0[2];
+  vuc32 FIFOCNT;
+  u32  RESERVED1[13];
+  vu32 FIFO;
+} SDIO_TypeDef;
+
+ 
+typedef struct
+{
+  vu16 CR1;
+  u16  RESERVED0;
+  vu16 CR2;
+  u16  RESERVED1;
+  vu16 SR;
+  u16  RESERVED2;
+  vu16 DR;
+  u16  RESERVED3;
+  vu16 CRCPR;
+  u16  RESERVED4;
+  vu16 RXCRCR;
+  u16  RESERVED5;
+  vu16 TXCRCR;
+  u16  RESERVED6;
+  vu16 I2SCFGR;
+  u16  RESERVED7;
+  vu16 I2SPR;
+  u16  RESERVED8;  
+} SPI_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 CTRL;
+  vu32 LOAD;
+  vu32 VAL;
+  vuc32 CALIB;
+} SysTick_TypeDef;
+
+ 
+typedef struct
+{
+  vu16 CR1;
+  u16  RESERVED0;
+  vu16 CR2;
+  u16  RESERVED1;
+  vu16 SMCR;
+  u16  RESERVED2;
+  vu16 DIER;
+  u16  RESERVED3;
+  vu16 SR;
+  u16  RESERVED4;
+  vu16 EGR;
+  u16  RESERVED5;
+  vu16 CCMR1;
+  u16  RESERVED6;
+  vu16 CCMR2;
+  u16  RESERVED7;
+  vu16 CCER;
+  u16  RESERVED8;
+  vu16 CNT;
+  u16  RESERVED9;
+  vu16 PSC;
+  u16  RESERVED10;
+  vu16 ARR;
+  u16  RESERVED11;
+  vu16 RCR;
+  u16  RESERVED12;
+  vu16 CCR1;
+  u16  RESERVED13;
+  vu16 CCR2;
+  u16  RESERVED14;
+  vu16 CCR3;
+  u16  RESERVED15;
+  vu16 CCR4;
+  u16  RESERVED16;
+  vu16 BDTR;
+  u16  RESERVED17;
+  vu16 DCR;
+  u16  RESERVED18;
+  vu16 DMAR;
+  u16  RESERVED19;
+} TIM_TypeDef;
+
+ 
+typedef struct
+{
+  vu16 SR;
+  u16  RESERVED0;
+  vu16 DR;
+  u16  RESERVED1;
+  vu16 BRR;
+  u16  RESERVED2;
+  vu16 CR1;
+  u16  RESERVED3;
+  vu16 CR2;
+  u16  RESERVED4;
+  vu16 CR3;
+  u16  RESERVED5;
+  vu16 GTPR;
+  u16  RESERVED6;
+} USART_TypeDef;
+
+ 
+typedef struct
+{
+  vu32 CR;
+  vu32 CFR;
+  vu32 SR;
+} WWDG_TypeDef;
+
+ 
+ 
+ 
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+
+
+#line 634 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+
+#line 651 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+
+
+
+#line 670 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+ 
+ 
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 924 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#line 1180 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_map.h"
+
+ 
+ 
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+ 
+ 
+typedef struct
+{
+  u32 ADC_Mode;
+  FunctionalState ADC_ScanConvMode; 
+  FunctionalState ADC_ContinuousConvMode;
+  u32 ADC_ExternalTrigConv;
+  u32 ADC_DataAlign;
+  u8 ADC_NbrOfChannel;
+}ADC_InitTypeDef;
+
+ 
+
+
+
+                                 
+
+
+
+ 
+#line 55 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+#line 66 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+ 
+ 
+#line 75 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+ 
+
+
+ 
+#line 85 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+#line 100 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+ 
+
+
+
+
+
+
+ 
+#line 127 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+#line 137 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+ 
+#line 147 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+#line 156 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+ 
+ 
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+#line 188 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+#line 208 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+#line 216 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_adc.h"
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+ 
+void ADC_DeInit(ADC_TypeDef* ADCx);
+void ADC_Init(ADC_TypeDef* ADCx, ADC_InitTypeDef* ADC_InitStruct);
+void ADC_StructInit(ADC_InitTypeDef* ADC_InitStruct);
+void ADC_Cmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+void ADC_DMACmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+void ADC_ITConfig(ADC_TypeDef* ADCx, u16 ADC_IT, FunctionalState NewState);
+void ADC_ResetCalibration(ADC_TypeDef* ADCx);
+FlagStatus ADC_GetResetCalibrationStatus(ADC_TypeDef* ADCx);
+void ADC_StartCalibration(ADC_TypeDef* ADCx);
+FlagStatus ADC_GetCalibrationStatus(ADC_TypeDef* ADCx);
+void ADC_SoftwareStartConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+FlagStatus ADC_GetSoftwareStartConvStatus(ADC_TypeDef* ADCx);
+void ADC_DiscModeChannelCountConfig(ADC_TypeDef* ADCx, u8 Number);
+void ADC_DiscModeCmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+void ADC_RegularChannelConfig(ADC_TypeDef* ADCx, u8 ADC_Channel, u8 Rank, u8 ADC_SampleTime);
+void ADC_ExternalTrigConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+u16 ADC_GetConversionValue(ADC_TypeDef* ADCx);
+u32 ADC_GetDualModeConversionValue(void);
+void ADC_AutoInjectedConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+void ADC_InjectedDiscModeCmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+void ADC_ExternalTrigInjectedConvConfig(ADC_TypeDef* ADCx, u32 ADC_ExternalTrigInjecConv);
+void ADC_ExternalTrigInjectedConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+void ADC_SoftwareStartInjectedConvCmd(ADC_TypeDef* ADCx, FunctionalState NewState);
+FlagStatus ADC_GetSoftwareStartInjectedConvCmdStatus(ADC_TypeDef* ADCx);
+void ADC_InjectedChannelConfig(ADC_TypeDef* ADCx, u8 ADC_Channel, u8 Rank, u8 ADC_SampleTime);
+void ADC_InjectedSequencerLengthConfig(ADC_TypeDef* ADCx, u8 Length);
+void ADC_SetInjectedOffset(ADC_TypeDef* ADCx, u8 ADC_InjectedChannel, u16 Offset);
+u16 ADC_GetInjectedConversionValue(ADC_TypeDef* ADCx, u8 ADC_InjectedChannel);
+void ADC_AnalogWatchdogCmd(ADC_TypeDef* ADCx, u32 ADC_AnalogWatchdog);
+void ADC_AnalogWatchdogThresholdsConfig(ADC_TypeDef* ADCx, u16 HighThreshold, u16 LowThreshold);
+void ADC_AnalogWatchdogSingleChannelConfig(ADC_TypeDef* ADCx, u8 ADC_Channel);
+void ADC_TempSensorVrefintCmd(FunctionalState NewState);
+FlagStatus ADC_GetFlagStatus(ADC_TypeDef* ADCx, u8 ADC_FLAG);
+void ADC_ClearFlag(ADC_TypeDef* ADCx, u8 ADC_FLAG);
+ITStatus ADC_GetITStatus(ADC_TypeDef* ADCx, u16 ADC_IT);
+void ADC_ClearITPendingBit(ADC_TypeDef* ADCx, u16 ADC_IT);
+
+
+
+ 
+#line 26 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_bkp.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_bkp.h"
+
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+#line 87 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_bkp.h"
+
+#line 102 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_bkp.h"
+
+
+
+ 
+ 
+void BKP_DeInit(void);
+void BKP_TamperPinLevelConfig(u16 BKP_TamperPinLevel);
+void BKP_TamperPinCmd(FunctionalState NewState);
+void BKP_ITConfig(FunctionalState NewState);
+void BKP_RTCOutputConfig(u16 BKP_RTCOutputSource);
+void BKP_SetRTCCalibrationValue(u8 CalibrationValue);
+void BKP_WriteBackupRegister(u16 BKP_DR, u16 Data);
+u16 BKP_ReadBackupRegister(u16 BKP_DR);
+FlagStatus BKP_GetFlagStatus(void);
+void BKP_ClearFlag(void);
+ITStatus BKP_GetITStatus(void);
+void BKP_ClearITPendingBit(void);
+
+
+
+ 
+#line 30 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_can.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_can.h"
+
+ 
+ 
+typedef struct
+{
+  FunctionalState CAN_TTCM;
+  FunctionalState CAN_ABOM;
+  FunctionalState CAN_AWUM;
+  FunctionalState CAN_NART;
+  FunctionalState CAN_RFLM;
+  FunctionalState CAN_TXFP;
+  u8 CAN_Mode;
+  u8 CAN_SJW;
+  u8 CAN_BS1;
+  u8 CAN_BS2;
+  u16 CAN_Prescaler;
+} CAN_InitTypeDef;
+
+ 
+typedef struct
+{
+  u8 CAN_FilterNumber;
+  u8 CAN_FilterMode;
+  u8 CAN_FilterScale;
+  u16 CAN_FilterIdHigh;
+  u16 CAN_FilterIdLow;
+  u16 CAN_FilterMaskIdHigh;
+  u16 CAN_FilterMaskIdLow;
+  u16 CAN_FilterFIFOAssignment;
+  FunctionalState CAN_FilterActivation;
+} CAN_FilterInitTypeDef;
+
+ 
+typedef struct
+{
+  u32 StdId;
+  u32 ExtId;
+  u8 IDE;
+  u8 RTR;
+  u8 DLC;
+  u8 Data[8];
+} CanTxMsg;
+
+ 
+typedef struct
+{
+  u32 StdId;
+  u32 ExtId;
+  u8 IDE;
+  u8 RTR;
+  u8 DLC;
+  u8 Data[8];
+  u8 FMI;
+} CanRxMsg;
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+#line 119 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_can.h"
+
+
+
+ 
+#line 131 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_can.h"
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+#line 225 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_can.h"
+
+#line 233 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_can.h"
+
+#line 240 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_can.h"
+
+ 
+ 
+void CAN_DeInit(void);
+u8 CAN_Init(CAN_InitTypeDef* CAN_InitStruct);
+void CAN_FilterInit(CAN_FilterInitTypeDef* CAN_FilterInitStruct);
+void CAN_StructInit(CAN_InitTypeDef* CAN_InitStruct);
+void CAN_ITConfig(u32 CAN_IT, FunctionalState NewState);
+u8 CAN_Transmit(CanTxMsg* TxMessage);
+u8 CAN_TransmitStatus(u8 TransmitMailbox);
+void CAN_CancelTransmit(u8 Mailbox);
+void CAN_FIFORelease(u8 FIFONumber);
+u8 CAN_MessagePending(u8 FIFONumber);
+void CAN_Receive(u8 FIFONumber, CanRxMsg* RxMessage);
+u8 CAN_Sleep(void);
+u8 CAN_WakeUp(void);
+FlagStatus CAN_GetFlagStatus(u32 CAN_FLAG);
+void CAN_ClearFlag(u32 CAN_FLAG);
+ITStatus CAN_GetITStatus(u32 CAN_IT);
+void CAN_ClearITPendingBit(u32 CAN_IT);
+
+
+
+ 
+#line 34 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_crc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_crc.h"
+
+ 
+ 
+ 
+ 
+void CRC_ResetDR(void);
+u32 CRC_CalcCRC(u32 Data);
+u32 CRC_CalcBlockCRC(u32 pBuffer[], u32 BufferLength);
+u32 CRC_GetCRC(void);
+void CRC_SetIDRegister(u8 IDValue);
+u8 CRC_GetIDRegister(void);
+
+
+
+ 
+#line 38 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dac.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dac.h"
+
+ 
+ 
+typedef struct
+{
+  u32 DAC_Trigger;
+  u32 DAC_WaveGeneration;
+  u32 DAC_LFSRUnmask_TriangleAmplitude;
+  u32 DAC_OutputBuffer; 
+}DAC_InitTypeDef;
+
+ 
+ 
+#line 45 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dac.h"
+
+#line 55 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dac.h"
+
+ 
+
+
+
+
+
+
+
+
+ 
+#line 78 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dac.h"
+
+#line 91 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dac.h"
+
+#line 116 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dac.h"
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+ 
+ 
+void DAC_DeInit(void);
+void DAC_Init(u32 DAC_Channel, DAC_InitTypeDef* DAC_InitStruct);
+void DAC_StructInit(DAC_InitTypeDef* DAC_InitStruct);
+void DAC_Cmd(u32 DAC_Channel, FunctionalState NewState);
+void DAC_DMACmd(u32 DAC_Channel, FunctionalState NewState);
+void DAC_SoftwareTriggerCmd(u32 DAC_Channel, FunctionalState NewState);
+void DAC_DualSoftwareTriggerCmd(FunctionalState NewState);
+void DAC_WaveGenerationCmd(u32 DAC_Channel, u32 DAC_Wave, FunctionalState NewState);
+void DAC_SetChannel1Data(u32 DAC_Align, u16 Data);
+void DAC_SetChannel2Data(u32 DAC_Align, u16 Data);
+void DAC_SetDualChannelData(u32 DAC_Align, u16 Data2, u16 Data1);
+u16 DAC_GetDataOutputValue(u32 DAC_Channel);
+
+
+
+ 
+#line 42 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dbgmcu.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dbgmcu.h"
+
+ 
+ 
+#line 42 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dbgmcu.h"
+                                           
+
+
+ 
+ 
+u32 DBGMCU_GetREVID(void);
+u32 DBGMCU_GetDEVID(void);
+void DBGMCU_Config(u32 DBGMCU_Periph, FunctionalState NewState);
+
+
+
+ 
+
+
+#line 46 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+
+ 
+ 
+typedef struct
+{
+  u32 DMA_PeripheralBaseAddr;
+  u32 DMA_MemoryBaseAddr;
+  u32 DMA_DIR;
+  u32 DMA_BufferSize;
+  u32 DMA_PeripheralInc;
+  u32 DMA_MemoryInc;
+  u32 DMA_PeripheralDataSize;
+  u32 DMA_MemoryDataSize;
+  u32 DMA_Mode;
+  u32 DMA_Priority;
+  u32 DMA_M2M;
+}DMA_InitTypeDef;
+
+ 
+#line 54 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+#line 153 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+ 
+#line 174 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+
+#line 200 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+
+ 
+ 
+#line 231 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+ 
+#line 252 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+
+#line 278 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_dma.h"
+
+ 
+
+
+ 
+ 
+void DMA_DeInit(DMA_Channel_TypeDef* DMAy_Channelx);
+void DMA_Init(DMA_Channel_TypeDef* DMAy_Channelx, DMA_InitTypeDef* DMA_InitStruct);
+void DMA_StructInit(DMA_InitTypeDef* DMA_InitStruct);
+void DMA_Cmd(DMA_Channel_TypeDef* DMAy_Channelx, FunctionalState NewState);
+void DMA_ITConfig(DMA_Channel_TypeDef* DMAy_Channelx, u32 DMA_IT, FunctionalState NewState);
+u16 DMA_GetCurrDataCounter(DMA_Channel_TypeDef* DMAy_Channelx);
+FlagStatus DMA_GetFlagStatus(u32 DMA_FLAG);
+void DMA_ClearFlag(u32 DMA_FLAG);
+ITStatus DMA_GetITStatus(u32 DMA_IT);
+void DMA_ClearITPendingBit(u32 DMA_IT);
+
+
+
+ 
+#line 50 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_exti.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_exti.h"
+
+ 
+ 
+typedef enum
+{
+  EXTI_Mode_Interrupt = 0x00,
+  EXTI_Mode_Event = 0x04
+}EXTIMode_TypeDef;
+
+
+                            
+ 
+typedef enum
+{
+  EXTI_Trigger_Rising = 0x08,
+  EXTI_Trigger_Falling = 0x0C,  
+  EXTI_Trigger_Rising_Falling = 0x10
+}EXTITrigger_TypeDef;
+
+
+
+
+
+ 
+typedef struct
+{
+  u32 EXTI_Line;
+  EXTIMode_TypeDef EXTI_Mode;
+  EXTITrigger_TypeDef EXTI_Trigger;
+  FunctionalState EXTI_LineCmd;
+}EXTI_InitTypeDef;
+
+ 
+ 
+#line 80 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_exti.h"
+
+
+
+#line 93 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_exti.h"
+                                 
+ 
+ 
+void EXTI_DeInit(void);
+void EXTI_Init(EXTI_InitTypeDef* EXTI_InitStruct);
+void EXTI_StructInit(EXTI_InitTypeDef* EXTI_InitStruct);
+void EXTI_GenerateSWInterrupt(u32 EXTI_Line);
+FlagStatus EXTI_GetFlagStatus(u32 EXTI_Line);
+void EXTI_ClearFlag(u32 EXTI_Line);
+ITStatus EXTI_GetITStatus(u32 EXTI_Line);
+void EXTI_ClearITPendingBit(u32 EXTI_Line);
+
+
+
+ 
+#line 54 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_flash.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_flash.h"
+
+ 
+
+ 
+typedef enum
+{ 
+  FLASH_BUSY = 1,
+  FLASH_ERROR_PG,
+  FLASH_ERROR_WRP,
+  FLASH_COMPLETE,
+  FLASH_TIMEOUT
+}FLASH_Status;
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+ 
+#line 97 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_flash.h"
+
+ 
+#line 132 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_flash.h"
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+								 
+ 
+ 
+ 
+void FLASH_SetLatency(u32 FLASH_Latency);
+void FLASH_HalfCycleAccessCmd(u32 FLASH_HalfCycleAccess);
+void FLASH_PrefetchBufferCmd(u32 FLASH_PrefetchBuffer);
+
+
+void FLASH_Unlock(void);
+void FLASH_Lock(void);
+FLASH_Status FLASH_ErasePage(u32 Page_Address);
+FLASH_Status FLASH_EraseAllPages(void);
+FLASH_Status FLASH_EraseOptionBytes(void);
+FLASH_Status FLASH_ProgramWord(u32 Address, u32 Data);
+FLASH_Status FLASH_ProgramHalfWord(u32 Address, u16 Data);
+FLASH_Status FLASH_ProgramOptionByteData(u32 Address, u8 Data);
+FLASH_Status FLASH_EnableWriteProtection(u32 FLASH_Pages);
+FLASH_Status FLASH_ReadOutProtection(FunctionalState NewState);
+FLASH_Status FLASH_UserOptionByteConfig(u16 OB_IWDG, u16 OB_STOP, u16 OB_STDBY);
+u32 FLASH_GetUserOptionByte(void);
+u32 FLASH_GetWriteProtectionOptionByte(void);
+FlagStatus FLASH_GetReadOutProtectionStatus(void);
+FlagStatus FLASH_GetPrefetchBufferStatus(void);
+void FLASH_ITConfig(u16 FLASH_IT, FunctionalState NewState);
+FlagStatus FLASH_GetFlagStatus(u16 FLASH_FLAG);
+void FLASH_ClearFlag(u16 FLASH_FLAG);
+FLASH_Status FLASH_GetStatus(void);
+FLASH_Status FLASH_WaitForLastOperation(u32 Timeout);
+
+
+
+
+ 
+#line 58 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_fsmc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_fsmc.h"
+
+ 
+ 
+typedef struct
+{
+  u32 FSMC_AddressSetupTime;
+  u32 FSMC_AddressHoldTime;
+  u32 FSMC_DataSetupTime;
+  u32 FSMC_BusTurnAroundDuration;
+  u32 FSMC_CLKDivision;
+  u32 FSMC_DataLatency;
+  u32 FSMC_AccessMode;
+}FSMC_NORSRAMTimingInitTypeDef;
+
+ 
+typedef struct
+{
+  u32 FSMC_Bank;
+  u32 FSMC_DataAddressMux;
+  u32 FSMC_MemoryType;
+  u32 FSMC_MemoryDataWidth;
+  u32 FSMC_BurstAccessMode;
+  u32 FSMC_WaitSignalPolarity;
+  u32 FSMC_WrapMode;
+  u32 FSMC_WaitSignalActive;
+  u32 FSMC_WriteOperation;
+  u32 FSMC_WaitSignal;
+  u32 FSMC_ExtendedMode;
+  u32 FSMC_AsyncWait;
+  u32 FSMC_WriteBurst;
+   
+  FSMC_NORSRAMTimingInitTypeDef* FSMC_ReadWriteTimingStruct;
+   
+  FSMC_NORSRAMTimingInitTypeDef* FSMC_WriteTimingStruct;
+}FSMC_NORSRAMInitTypeDef;
+
+ 
+typedef struct
+{
+  u32 FSMC_SetupTime;
+  u32 FSMC_WaitSetupTime;
+  u32 FSMC_HoldSetupTime;
+  u32 FSMC_HiZSetupTime;
+}FSMC_NAND_PCCARDTimingInitTypeDef;
+
+ 
+typedef struct
+{
+  u32 FSMC_Bank;
+  u32 FSMC_Waitfeature;
+  u32 FSMC_MemoryDataWidth;
+  u32 FSMC_ECC;
+  u32 FSMC_ECCPageSize;
+  u32 FSMC_AddressLowMapping;
+  u32 FSMC_TCLRSetupTime;
+  u32 FSMC_TARSetupTime;
+   
+  FSMC_NAND_PCCARDTimingInitTypeDef*  FSMC_CommonSpaceTimingStruct;
+   
+  FSMC_NAND_PCCARDTimingInitTypeDef*  FSMC_AttributeSpaceTimingStruct;
+}FSMC_NANDInitTypeDef;
+
+ 
+typedef struct
+{
+  u32 FSMC_Waitfeature;
+  u32 FSMC_AddressLowMapping;
+  u32 FSMC_TCLRSetupTime;
+  u32 FSMC_TARSetupTime;
+   
+  FSMC_NAND_PCCARDTimingInitTypeDef*  FSMC_CommonSpaceTimingStruct;
+   
+  FSMC_NAND_PCCARDTimingInitTypeDef*  FSMC_AttributeSpaceTimingStruct;
+   
+  FSMC_NAND_PCCARDTimingInitTypeDef*  FSMC_IOSpaceTimingStruct;
+}FSMC_PCCARDInitTypeDef;
+
+ 
+ 
+#line 109 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_fsmc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+                                     
+ 
+
+
+
+
+
+                                      
+                               
+ 
+
+
+
+
+
+
+                                   
+
+
+
+
+
+                                        
+  
+
+
+
+
+
+                                 
+                                  
+
+
+
+
+
+                                    
+ 
+
+
+
+
+
+                              
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+                               
+ 
+
+
+
+
+
+                                  
+                                   
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+                                  
+ 
+ 
+
+
+
+
+
+                                    
+ 
+
+
+
+
+
+                                    
+ 
+
+
+
+
+
+                                            
+ 
+#line 276 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_fsmc.h"
+
+#line 283 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_fsmc.h"
+                                                              
+ 
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+void FSMC_NORSRAMDeInit(u32 FSMC_Bank);
+void FSMC_NANDDeInit(u32 FSMC_Bank);
+void FSMC_PCCARDDeInit(void);
+void FSMC_NORSRAMInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct);
+void FSMC_NANDInit(FSMC_NANDInitTypeDef* FSMC_NANDInitStruct);
+void FSMC_PCCARDInit(FSMC_PCCARDInitTypeDef* FSMC_PCCARDInitStruct);
+void FSMC_NORSRAMStructInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct);
+void FSMC_NANDStructInit(FSMC_NANDInitTypeDef* FSMC_NANDInitStruct);
+void FSMC_PCCARDStructInit(FSMC_PCCARDInitTypeDef* FSMC_PCCARDInitStruct);
+void FSMC_NORSRAMCmd(u32 FSMC_Bank, FunctionalState NewState);
+void FSMC_NANDCmd(u32 FSMC_Bank, FunctionalState NewState);
+void FSMC_PCCARDCmd(FunctionalState NewState);
+void FSMC_NANDECCCmd(u32 FSMC_Bank, FunctionalState NewState);
+u32 FSMC_GetECC(u32 FSMC_Bank);
+void FSMC_ITConfig(u32 FSMC_Bank, u32 FSMC_IT, FunctionalState NewState);
+FlagStatus FSMC_GetFlagStatus(u32 FSMC_Bank, u32 FSMC_FLAG);
+void FSMC_ClearFlag(u32 FSMC_Bank, u32 FSMC_FLAG);
+ITStatus FSMC_GetITStatus(u32 FSMC_Bank, u32 FSMC_IT);
+void FSMC_ClearITPendingBit(u32 FSMC_Bank, u32 FSMC_IT);
+
+
+
+ 
+#line 62 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+
+ 
+#line 32 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+                                     
+ 
+typedef enum
+{ 
+  GPIO_Speed_10MHz = 1,
+  GPIO_Speed_2MHz, 
+  GPIO_Speed_50MHz
+}GPIOSpeed_TypeDef;
+
+
+
+                                         
+ 
+typedef enum
+{ GPIO_Mode_AIN = 0x0,
+  GPIO_Mode_IN_FLOATING = 0x04,
+  GPIO_Mode_IPD = 0x28,
+  GPIO_Mode_IPU = 0x48,
+  GPIO_Mode_Out_OD = 0x14,
+  GPIO_Mode_Out_PP = 0x10,
+  GPIO_Mode_AF_OD = 0x1C,
+  GPIO_Mode_AF_PP = 0x18
+}GPIOMode_TypeDef;
+
+
+
+
+
+                              
+ 
+typedef struct
+{
+  u16 GPIO_Pin;
+  GPIOSpeed_TypeDef GPIO_Speed;
+  GPIOMode_TypeDef GPIO_Mode;
+}GPIO_InitTypeDef;
+
+ 
+typedef enum
+{ Bit_RESET = 0,
+  Bit_SET
+}BitAction;
+
+
+ 
+ 
+#line 95 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+
+
+
+#line 114 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+                            
+ 
+#line 141 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+
+
+#line 156 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+                              
+ 
+#line 165 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+
+
+
+
+
+
+                                         
+#line 179 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+                                       
+ 
+#line 197 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+
+#line 214 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_gpio.h"
+                          
+ 
+ 
+void GPIO_DeInit(GPIO_TypeDef* GPIOx);
+void GPIO_AFIODeInit(void);
+void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct);
+void GPIO_StructInit(GPIO_InitTypeDef* GPIO_InitStruct);
+u8 GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, u16 GPIO_Pin);
+u16 GPIO_ReadInputData(GPIO_TypeDef* GPIOx);
+u8 GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, u16 GPIO_Pin);
+u16 GPIO_ReadOutputData(GPIO_TypeDef* GPIOx);
+void GPIO_SetBits(GPIO_TypeDef* GPIOx, u16 GPIO_Pin);
+void GPIO_ResetBits(GPIO_TypeDef* GPIOx, u16 GPIO_Pin);
+void GPIO_WriteBit(GPIO_TypeDef* GPIOx, u16 GPIO_Pin, BitAction BitVal);
+void GPIO_Write(GPIO_TypeDef* GPIOx, u16 PortVal);
+void GPIO_PinLockConfig(GPIO_TypeDef* GPIOx, u16 GPIO_Pin);
+void GPIO_EventOutputConfig(u8 GPIO_PortSource, u8 GPIO_PinSource);
+void GPIO_EventOutputCmd(FunctionalState NewState);
+void GPIO_PinRemapConfig(u32 GPIO_Remap, FunctionalState NewState);
+void GPIO_EXTILineConfig(u8 GPIO_PortSource, u8 GPIO_PinSource);
+
+
+
+ 
+#line 66 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+ 
+ 
+typedef struct
+{
+  u16 I2C_Mode;
+  u16 I2C_DutyCycle;
+  u16 I2C_OwnAddress1;
+  u16 I2C_Ack;
+  u16 I2C_AcknowledgedAddress;
+  u32 I2C_ClockSpeed;
+}I2C_InitTypeDef;
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+#line 86 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+#line 96 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+#line 133 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+#line 140 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+#line 148 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+ 
+#line 171 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+#line 178 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+#line 190 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+ 
+ 
+
+
+
+
+
+
+ 
+
+     
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+      
+ 
+
+                                          
+ 
+
+
+#line 246 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_i2c.h"
+
+ 
+
+ 
+
+
+ 
+ 
+void I2C_DeInit(I2C_TypeDef* I2Cx);
+void I2C_Init(I2C_TypeDef* I2Cx, I2C_InitTypeDef* I2C_InitStruct);
+void I2C_StructInit(I2C_InitTypeDef* I2C_InitStruct);
+void I2C_Cmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_DMACmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_DMALastTransferCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_GenerateSTART(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_GenerateSTOP(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_AcknowledgeConfig(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_OwnAddress2Config(I2C_TypeDef* I2Cx, u8 Address);
+void I2C_DualAddressCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_GeneralCallCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_ITConfig(I2C_TypeDef* I2Cx, u16 I2C_IT, FunctionalState NewState);
+void I2C_SendData(I2C_TypeDef* I2Cx, u8 Data);
+u8 I2C_ReceiveData(I2C_TypeDef* I2Cx);
+void I2C_Send7bitAddress(I2C_TypeDef* I2Cx, u8 Address, u8 I2C_Direction);
+u16 I2C_ReadRegister(I2C_TypeDef* I2Cx, u8 I2C_Register);
+void I2C_SoftwareResetCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_SMBusAlertConfig(I2C_TypeDef* I2Cx, u16 I2C_SMBusAlert);
+void I2C_TransmitPEC(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_PECPositionConfig(I2C_TypeDef* I2Cx, u16 I2C_PECPosition);
+void I2C_CalculatePEC(I2C_TypeDef* I2Cx, FunctionalState NewState);
+u8 I2C_GetPEC(I2C_TypeDef* I2Cx);
+void I2C_ARPCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_StretchClockCmd(I2C_TypeDef* I2Cx, FunctionalState NewState);
+void I2C_FastModeDutyCycleConfig(I2C_TypeDef* I2Cx, u16 I2C_DutyCycle);
+u32 I2C_GetLastEvent(I2C_TypeDef* I2Cx);
+ErrorStatus I2C_CheckEvent(I2C_TypeDef* I2Cx, u32 I2C_EVENT);
+FlagStatus I2C_GetFlagStatus(I2C_TypeDef* I2Cx, u32 I2C_FLAG);
+void I2C_ClearFlag(I2C_TypeDef* I2Cx, u32 I2C_FLAG);
+ITStatus I2C_GetITStatus(I2C_TypeDef* I2Cx, u32 I2C_IT);
+void I2C_ClearITPendingBit(I2C_TypeDef* I2Cx, u32 I2C_IT);
+
+
+
+ 
+#line 70 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_iwdg.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_iwdg.h"
+
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+#line 41 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_iwdg.h"
+
+#line 49 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_iwdg.h"
+
+ 
+
+
+
+
+
+
+
+ 
+ 
+void IWDG_WriteAccessCmd(u16 IWDG_WriteAccess);
+void IWDG_SetPrescaler(u8 IWDG_Prescaler);
+void IWDG_SetReload(u16 Reload);
+void IWDG_ReloadCounter(void);
+void IWDG_Enable(void);
+FlagStatus IWDG_GetFlagStatus(u16 IWDG_FLAG);
+
+
+
+ 
+#line 74 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+ 
+ 
+typedef struct
+{
+  u8 NVIC_IRQChannel;
+  u8 NVIC_IRQChannelPreemptionPriority;
+  u8 NVIC_IRQChannelSubPriority;
+  FunctionalState NVIC_IRQChannelCmd;
+} NVIC_InitTypeDef;
+
+ 
+ 
+#line 96 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+
+#line 158 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+
+ 
+#line 170 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+
+
+
+
+#line 182 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+
+
+
+
+
+
+
+
+
+
+
+#line 201 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+#line 239 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_nvic.h"
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+void NVIC_DeInit(void);
+void NVIC_SCBDeInit(void);
+void NVIC_PriorityGroupConfig(u32 NVIC_PriorityGroup);
+void NVIC_Init(NVIC_InitTypeDef* NVIC_InitStruct);
+void NVIC_StructInit(NVIC_InitTypeDef* NVIC_InitStruct);
+void NVIC_SETPRIMASK(void);
+void NVIC_RESETPRIMASK(void);
+void NVIC_SETFAULTMASK(void);
+void NVIC_RESETFAULTMASK(void);
+void NVIC_BASEPRICONFIG(u32 NewPriority);
+u32 NVIC_GetBASEPRI(void);
+u16 NVIC_GetCurrentPendingIRQChannel(void);
+ITStatus NVIC_GetIRQChannelPendingBitStatus(u8 NVIC_IRQChannel);
+void NVIC_SetIRQChannelPendingBit(u8 NVIC_IRQChannel);
+void NVIC_ClearIRQChannelPendingBit(u8 NVIC_IRQChannel);
+u16 NVIC_GetCurrentActiveHandler(void);
+ITStatus NVIC_GetIRQChannelActiveBitStatus(u8 NVIC_IRQChannel);
+u32 NVIC_GetCPUID(void);
+void NVIC_SetVectorTable(u32 NVIC_VectTab, u32 Offset);
+void NVIC_GenerateSystemReset(void);
+void NVIC_GenerateCoreReset(void);
+void NVIC_SystemLPConfig(u8 LowPowerMode, FunctionalState NewState);
+void NVIC_SystemHandlerConfig(u32 SystemHandler, FunctionalState NewState);
+void NVIC_SystemHandlerPriorityConfig(u32 SystemHandler, u8 SystemHandlerPreemptionPriority,
+                                      u8 SystemHandlerSubPriority);
+ITStatus NVIC_GetSystemHandlerPendingBitStatus(u32 SystemHandler);
+void NVIC_SetSystemHandlerPendingBit(u32 SystemHandler);
+void NVIC_ClearSystemHandlerPendingBit(u32 SystemHandler);
+ITStatus NVIC_GetSystemHandlerActiveBitStatus(u32 SystemHandler);
+u32 NVIC_GetFaultHandlerSources(u32 SystemHandler);
+u32 NVIC_GetFaultAddress(u32 SystemHandler);
+
+
+
+ 
+#line 78 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_pwr.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_pwr.h"
+
+ 
+ 
+ 
+#line 35 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_pwr.h"
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+ 
+ 
+void PWR_DeInit(void);
+void PWR_BackupAccessCmd(FunctionalState NewState);
+void PWR_PVDCmd(FunctionalState NewState);
+void PWR_PVDLevelConfig(u32 PWR_PVDLevel);
+void PWR_WakeUpPinCmd(FunctionalState NewState);
+void PWR_EnterSTOPMode(u32 PWR_Regulator, u8 PWR_STOPEntry);
+void PWR_EnterSTANDBYMode(void);
+FlagStatus PWR_GetFlagStatus(u32 PWR_FLAG);
+void PWR_ClearFlag(u32 PWR_FLAG);
+
+
+
+ 
+#line 82 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+ 
+typedef struct
+{
+  u32 SYSCLK_Frequency;
+  u32 HCLK_Frequency;
+  u32 PCLK1_Frequency;
+  u32 PCLK2_Frequency;
+  u32 ADCCLK_Frequency;
+}RCC_ClocksTypeDef;
+
+ 
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+#line 68 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+#line 77 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+ 
+
+
+
+
+
+
+
+
+ 
+#line 97 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+#line 122 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+#line 170 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+
+
+ 
+#line 190 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+
+
+ 
+#line 215 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+#line 241 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+#line 248 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rcc.h"
+
+
+
+ 
+ 
+void RCC_DeInit(void);
+void RCC_HSEConfig(u32 RCC_HSE);
+ErrorStatus RCC_WaitForHSEStartUp(void);
+void RCC_AdjustHSICalibrationValue(u8 HSICalibrationValue);
+void RCC_HSICmd(FunctionalState NewState);
+void RCC_PLLConfig(u32 RCC_PLLSource, u32 RCC_PLLMul);
+void RCC_PLLCmd(FunctionalState NewState);
+void RCC_SYSCLKConfig(u32 RCC_SYSCLKSource);
+u8 RCC_GetSYSCLKSource(void);
+void RCC_HCLKConfig(u32 RCC_SYSCLK);
+void RCC_PCLK1Config(u32 RCC_HCLK);
+void RCC_PCLK2Config(u32 RCC_HCLK);
+void RCC_ITConfig(u8 RCC_IT, FunctionalState NewState);
+void RCC_USBCLKConfig(u32 RCC_USBCLKSource);
+void RCC_ADCCLKConfig(u32 RCC_PCLK2);
+void RCC_LSEConfig(u8 RCC_LSE);
+void RCC_LSICmd(FunctionalState NewState);
+void RCC_RTCCLKConfig(u32 RCC_RTCCLKSource);
+void RCC_RTCCLKCmd(FunctionalState NewState);
+void RCC_GetClocksFreq(RCC_ClocksTypeDef* RCC_Clocks);
+void RCC_AHBPeriphClockCmd(u32 RCC_AHBPeriph, FunctionalState NewState);
+void RCC_APB2PeriphClockCmd(u32 RCC_APB2Periph, FunctionalState NewState);
+void RCC_APB1PeriphClockCmd(u32 RCC_APB1Periph, FunctionalState NewState);
+void RCC_APB2PeriphResetCmd(u32 RCC_APB2Periph, FunctionalState NewState);
+void RCC_APB1PeriphResetCmd(u32 RCC_APB1Periph, FunctionalState NewState);
+void RCC_BackupResetCmd(FunctionalState NewState);
+void RCC_ClockSecuritySystemCmd(FunctionalState NewState);
+void RCC_MCOConfig(u8 RCC_MCO);
+FlagStatus RCC_GetFlagStatus(u8 RCC_FLAG);
+void RCC_ClearFlag(void);
+ITStatus RCC_GetITStatus(u8 RCC_IT);
+void RCC_ClearITPendingBit(u8 RCC_IT);
+
+
+
+ 
+#line 86 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rtc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_rtc.h"
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+                                                                     
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           
+ 
+ 
+void RTC_ITConfig(u16 RTC_IT, FunctionalState NewState);
+void RTC_EnterConfigMode(void);
+void RTC_ExitConfigMode(void);
+u32  RTC_GetCounter(void);
+void RTC_SetCounter(u32 CounterValue);
+void RTC_SetPrescaler(u32 PrescalerValue);
+void RTC_SetAlarm(u32 AlarmValue);
+u32  RTC_GetDivider(void);
+void RTC_WaitForLastTask(void);
+void RTC_WaitForSynchro(void);
+FlagStatus RTC_GetFlagStatus(u16 RTC_FLAG);
+void RTC_ClearFlag(u16 RTC_FLAG);
+ITStatus RTC_GetITStatus(u16 RTC_IT);
+void RTC_ClearITPendingBit(u16 RTC_IT);
+
+
+
+ 
+#line 90 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+ 
+typedef struct
+{
+  u8 SDIO_ClockDiv;
+  u32 SDIO_ClockEdge;
+  u32 SDIO_ClockBypass;
+  u32 SDIO_ClockPowerSave;
+  u32 SDIO_BusWide;
+  u32 SDIO_HardwareFlowControl;
+} SDIO_InitTypeDef;
+
+typedef struct
+{
+  u32 SDIO_Argument;
+  u32 SDIO_CmdIndex;
+  u32 SDIO_Response;
+  u32 SDIO_Wait;
+  u32 SDIO_CPSM;
+} SDIO_CmdInitTypeDef;
+
+typedef struct
+{
+  u32 SDIO_DataTimeOut;
+  u32 SDIO_DataLength;
+  u32 SDIO_DataBlockSize;
+  u32 SDIO_TransferDir;
+  u32 SDIO_TransferMode;
+  u32 SDIO_DPSM;
+} SDIO_DataInitTypeDef;
+
+ 
+ 
+
+
+
+
+
+                                   
+
+
+
+
+
+
+  
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+                                
+  
+
+
+
+
+
+                                  
+ 
+
+
+
+
+
+ 
+#line 121 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+#line 178 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+#line 194 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+#line 240 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+#line 265 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+
+
+#line 292 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_sdio.h"
+
+
+                                                        
+ 
+
+
+
+
+
+
+ 
+ 
+void SDIO_DeInit(void);
+void SDIO_Init(SDIO_InitTypeDef* SDIO_InitStruct);
+void SDIO_StructInit(SDIO_InitTypeDef* SDIO_InitStruct);
+void SDIO_ClockCmd(FunctionalState NewState);
+void SDIO_SetPowerState(u32 SDIO_PowerState);
+u32 SDIO_GetPowerState(void);
+void SDIO_ITConfig(u32 SDIO_IT, FunctionalState NewState);
+void SDIO_DMACmd(FunctionalState NewState);
+void SDIO_SendCommand(SDIO_CmdInitTypeDef *SDIO_CmdInitStruct);
+void SDIO_CmdStructInit(SDIO_CmdInitTypeDef* SDIO_CmdInitStruct);
+u8 SDIO_GetCommandResponse(void);
+u32 SDIO_GetResponse(u32 SDIO_RESP);
+void SDIO_DataConfig(SDIO_DataInitTypeDef* SDIO_DataInitStruct);
+void SDIO_DataStructInit(SDIO_DataInitTypeDef* SDIO_DataInitStruct);
+u32 SDIO_GetDataCounter(void);
+u32 SDIO_ReadData(void);
+void SDIO_WriteData(u32 Data);
+u32 SDIO_GetFIFOCount(void);
+void SDIO_StartSDIOReadWait(FunctionalState NewState);
+void SDIO_StopSDIOReadWait(FunctionalState NewState);
+void SDIO_SetSDIOReadWaitMode(u32 SDIO_ReadWaitMode);
+void SDIO_SetSDIOOperation(FunctionalState NewState);
+void SDIO_SendSDIOSuspendCmd(FunctionalState NewState);
+void SDIO_CommandCompletionCmd(FunctionalState NewState);
+void SDIO_CEATAITCmd(FunctionalState NewState);
+void SDIO_SendCEATACmd(FunctionalState NewState);
+FlagStatus SDIO_GetFlagStatus(u32 SDIO_FLAG);
+void SDIO_ClearFlag(u32 SDIO_FLAG);
+ITStatus SDIO_GetITStatus(u32 SDIO_IT);
+void SDIO_ClearITPendingBit(u32 SDIO_IT);
+
+
+
+ 
+#line 94 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+ 
+ 
+typedef struct
+{
+  u16 SPI_Direction;
+  u16 SPI_Mode;
+  u16 SPI_DataSize;
+  u16 SPI_CPOL;
+  u16 SPI_CPHA;
+  u16 SPI_NSS;
+  u16 SPI_BaudRatePrescaler;
+  u16 SPI_FirstBit;
+  u16 SPI_CRCPolynomial;
+}SPI_InitTypeDef;
+
+ 
+typedef struct
+{
+  u16 I2S_Mode;
+  u16 I2S_Standard;
+  u16 I2S_DataFormat;
+  u16 I2S_MCLKOutput;
+  u16 I2S_AudioFreq;
+  u16 I2S_CPOL;
+}I2S_InitTypeDef;
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+#line 114 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+#line 123 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+ 
+#line 180 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+#line 187 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#line 253 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+#line 260 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_spi.h"
+
+ 
+
+
+ 
+ 
+void SPI_I2S_DeInit(SPI_TypeDef* SPIx);
+void SPI_Init(SPI_TypeDef* SPIx, SPI_InitTypeDef* SPI_InitStruct);
+void I2S_Init(SPI_TypeDef* SPIx, I2S_InitTypeDef* I2S_InitStruct);
+void SPI_StructInit(SPI_InitTypeDef* SPI_InitStruct);
+void I2S_StructInit(I2S_InitTypeDef* I2S_InitStruct);
+void SPI_Cmd(SPI_TypeDef* SPIx, FunctionalState NewState);
+void I2S_Cmd(SPI_TypeDef* SPIx, FunctionalState NewState);
+void SPI_I2S_ITConfig(SPI_TypeDef* SPIx, u8 SPI_I2S_IT, FunctionalState NewState);
+void SPI_I2S_DMACmd(SPI_TypeDef* SPIx, u16 SPI_I2S_DMAReq, FunctionalState NewState);
+void SPI_I2S_SendData(SPI_TypeDef* SPIx, u16 Data);
+u16 SPI_I2S_ReceiveData(SPI_TypeDef* SPIx);
+void SPI_NSSInternalSoftwareConfig(SPI_TypeDef* SPIx, u16 SPI_NSSInternalSoft);
+void SPI_SSOutputCmd(SPI_TypeDef* SPIx, FunctionalState NewState);
+void SPI_DataSizeConfig(SPI_TypeDef* SPIx, u16 SPI_DataSize);
+void SPI_TransmitCRC(SPI_TypeDef* SPIx);
+void SPI_CalculateCRC(SPI_TypeDef* SPIx, FunctionalState NewState);
+u16 SPI_GetCRC(SPI_TypeDef* SPIx, u8 SPI_CRC);
+u16 SPI_GetCRCPolynomial(SPI_TypeDef* SPIx);
+void SPI_BiDirectionalLineConfig(SPI_TypeDef* SPIx, u16 SPI_Direction);
+FlagStatus SPI_I2S_GetFlagStatus(SPI_TypeDef* SPIx, u16 SPI_I2S_FLAG);
+void SPI_I2S_ClearFlag(SPI_TypeDef* SPIx, u16 SPI_I2S_FLAG);
+ITStatus SPI_I2S_GetITStatus(SPI_TypeDef* SPIx, u8 SPI_I2S_IT);
+void SPI_I2S_ClearITPendingBit(SPI_TypeDef* SPIx, u8 SPI_I2S_IT);
+
+
+
+ 
+#line 98 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_systick.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_systick.h"
+
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+void SysTick_CLKSourceConfig(u32 SysTick_CLKSource);
+void SysTick_SetReload(u32 Reload);
+void SysTick_CounterCmd(u32 SysTick_Counter);
+void SysTick_ITConfig(FunctionalState NewState);
+u32 SysTick_GetCounter(void);
+FlagStatus SysTick_GetFlagStatus(u8 SysTick_FLAG);
+
+
+
+ 
+#line 102 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+
+ 
+typedef struct
+{
+  u16 TIM_Prescaler;
+  u16 TIM_CounterMode;
+  u16 TIM_Period;
+  u16 TIM_ClockDivision;
+  u8 TIM_RepetitionCounter;
+} TIM_TimeBaseInitTypeDef;
+
+ 
+typedef struct
+{
+  u16 TIM_OCMode;
+  u16 TIM_OutputState;
+  u16 TIM_OutputNState;
+  u16 TIM_Pulse;
+  u16 TIM_OCPolarity;
+  u16 TIM_OCNPolarity;
+  u16 TIM_OCIdleState;
+  u16 TIM_OCNIdleState;
+} TIM_OCInitTypeDef;
+
+ 
+typedef struct
+{
+  u16 TIM_Channel;
+  u16 TIM_ICPolarity;
+  u16 TIM_ICSelection;
+  u16 TIM_ICPrescaler;
+  u16 TIM_ICFilter;
+} TIM_ICInitTypeDef;
+
+ 
+typedef struct
+{
+  u16 TIM_OSSRState;
+  u16 TIM_OSSIState;
+  u16 TIM_LOCKLevel; 
+  u16 TIM_DeadTime;
+  u16 TIM_Break;
+  u16 TIM_BreakPolarity;
+  u16 TIM_AutomaticOutput;
+} TIM_BDTRInitTypeDef;
+
+                              
+
+#line 81 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+
+
+
+#line 91 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+#line 99 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 106 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 115 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+#line 298 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+
+
+#line 308 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 317 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+#line 338 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 358 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+#line 378 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 397 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+#line 406 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+
+
+#line 416 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+#line 437 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 446 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+ 
+#line 500 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+
+
+#line 510 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+                                     
+ 
+
+
+
+
+
+
+  
+#line 548 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 557 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 593 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+#line 625 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 638 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 646 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+
+#line 665 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_tim.h"
+                                                                                            
+ 
+
+
+ 
+
+
+ 
+ 
+
+void TIM_DeInit(TIM_TypeDef* TIMx);
+void TIM_TimeBaseInit(TIM_TypeDef* TIMx, TIM_TimeBaseInitTypeDef* TIM_TimeBaseInitStruct);
+void TIM_OC1Init(TIM_TypeDef* TIMx, TIM_OCInitTypeDef* TIM_OCInitStruct);
+void TIM_OC2Init(TIM_TypeDef* TIMx, TIM_OCInitTypeDef* TIM_OCInitStruct);
+void TIM_OC3Init(TIM_TypeDef* TIMx, TIM_OCInitTypeDef* TIM_OCInitStruct);
+void TIM_OC4Init(TIM_TypeDef* TIMx, TIM_OCInitTypeDef* TIM_OCInitStruct);
+void TIM_ICInit(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct);
+void TIM_PWMIConfig(TIM_TypeDef* TIMx, TIM_ICInitTypeDef* TIM_ICInitStruct);
+void TIM_BDTRConfig(TIM_TypeDef* TIMx, TIM_BDTRInitTypeDef *TIM_BDTRInitStruct);
+void TIM_TimeBaseStructInit(TIM_TimeBaseInitTypeDef* TIM_TimeBaseInitStruct);
+void TIM_OCStructInit(TIM_OCInitTypeDef* TIM_OCInitStruct);
+void TIM_ICStructInit(TIM_ICInitTypeDef* TIM_ICInitStruct);
+void TIM_BDTRStructInit(TIM_BDTRInitTypeDef* TIM_BDTRInitStruct);
+void TIM_Cmd(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_CtrlPWMOutputs(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_ITConfig(TIM_TypeDef* TIMx, u16 TIM_IT, FunctionalState NewState);
+void TIM_GenerateEvent(TIM_TypeDef* TIMx, u16 TIM_EventSource);
+void TIM_DMAConfig(TIM_TypeDef* TIMx, u16 TIM_DMABase, u16 TIM_DMABurstLength);
+void TIM_DMACmd(TIM_TypeDef* TIMx, u16 TIM_DMASource, FunctionalState NewState);
+void TIM_InternalClockConfig(TIM_TypeDef* TIMx);
+void TIM_ITRxExternalClockConfig(TIM_TypeDef* TIMx, u16 TIM_InputTriggerSource);
+void TIM_TIxExternalClockConfig(TIM_TypeDef* TIMx, u16 TIM_TIxExternalCLKSource,
+                                u16 TIM_ICPolarity, u16 ICFilter);                                
+void TIM_ETRClockMode1Config(TIM_TypeDef* TIMx, u16 TIM_ExtTRGPrescaler, u16 TIM_ExtTRGPolarity,
+                             u16 ExtTRGFilter);
+void TIM_ETRClockMode2Config(TIM_TypeDef* TIMx, u16 TIM_ExtTRGPrescaler, 
+                             u16 TIM_ExtTRGPolarity, u16 ExtTRGFilter);
+void TIM_ETRConfig(TIM_TypeDef* TIMx, u16 TIM_ExtTRGPrescaler, u16 TIM_ExtTRGPolarity,
+                   u16 ExtTRGFilter);
+void TIM_PrescalerConfig(TIM_TypeDef* TIMx, u16 Prescaler, u16 TIM_PSCReloadMode);
+void TIM_CounterModeConfig(TIM_TypeDef* TIMx, u16 TIM_CounterMode);
+void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, u16 TIM_InputTriggerSource);
+void TIM_EncoderInterfaceConfig(TIM_TypeDef* TIMx, u16 TIM_EncoderMode,
+                                u16 TIM_IC1Polarity, u16 TIM_IC2Polarity);
+void TIM_ForcedOC1Config(TIM_TypeDef* TIMx, u16 TIM_ForcedAction);
+void TIM_ForcedOC2Config(TIM_TypeDef* TIMx, u16 TIM_ForcedAction);
+void TIM_ForcedOC3Config(TIM_TypeDef* TIMx, u16 TIM_ForcedAction);
+void TIM_ForcedOC4Config(TIM_TypeDef* TIMx, u16 TIM_ForcedAction);
+void TIM_ARRPreloadConfig(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_SelectCOM(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_SelectCCDMA(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_CCPreloadControl(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_OC1PreloadConfig(TIM_TypeDef* TIMx, u16 TIM_OCPreload);
+void TIM_OC2PreloadConfig(TIM_TypeDef* TIMx, u16 TIM_OCPreload);
+void TIM_OC3PreloadConfig(TIM_TypeDef* TIMx, u16 TIM_OCPreload);
+void TIM_OC4PreloadConfig(TIM_TypeDef* TIMx, u16 TIM_OCPreload);
+void TIM_OC1FastConfig(TIM_TypeDef* TIMx, u16 TIM_OCFast);
+void TIM_OC2FastConfig(TIM_TypeDef* TIMx, u16 TIM_OCFast);
+void TIM_OC3FastConfig(TIM_TypeDef* TIMx, u16 TIM_OCFast);
+void TIM_OC4FastConfig(TIM_TypeDef* TIMx, u16 TIM_OCFast);
+void TIM_ClearOC1Ref(TIM_TypeDef* TIMx, u16 TIM_OCClear);
+void TIM_ClearOC2Ref(TIM_TypeDef* TIMx, u16 TIM_OCClear);
+void TIM_ClearOC3Ref(TIM_TypeDef* TIMx, u16 TIM_OCClear);
+void TIM_ClearOC4Ref(TIM_TypeDef* TIMx, u16 TIM_OCClear);
+void TIM_OC1PolarityConfig(TIM_TypeDef* TIMx, u16 TIM_OCPolarity);
+void TIM_OC1NPolarityConfig(TIM_TypeDef* TIMx, u16 TIM_OCNPolarity);
+void TIM_OC2PolarityConfig(TIM_TypeDef* TIMx, u16 TIM_OCPolarity);
+void TIM_OC2NPolarityConfig(TIM_TypeDef* TIMx, u16 TIM_OCNPolarity);
+void TIM_OC3PolarityConfig(TIM_TypeDef* TIMx, u16 TIM_OCPolarity);
+void TIM_OC3NPolarityConfig(TIM_TypeDef* TIMx, u16 TIM_OCNPolarity);
+void TIM_OC4PolarityConfig(TIM_TypeDef* TIMx, u16 TIM_OCPolarity);
+void TIM_CCxCmd(TIM_TypeDef* TIMx, u16 TIM_Channel, u16 TIM_CCx);
+void TIM_CCxNCmd(TIM_TypeDef* TIMx, u16 TIM_Channel, u16 TIM_CCxN);
+void TIM_SelectOCxM(TIM_TypeDef* TIMx, u16 TIM_Channel, u16 TIM_OCMode);
+void TIM_UpdateDisableConfig(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_UpdateRequestConfig(TIM_TypeDef* TIMx, u16 TIM_UpdateSource);
+void TIM_SelectHallSensor(TIM_TypeDef* TIMx, FunctionalState NewState);
+void TIM_SelectOnePulseMode(TIM_TypeDef* TIMx, u16 TIM_OPMode);
+void TIM_SelectOutputTrigger(TIM_TypeDef* TIMx, u16 TIM_TRGOSource);
+void TIM_SelectSlaveMode(TIM_TypeDef* TIMx, u16 TIM_SlaveMode);
+void TIM_SelectMasterSlaveMode(TIM_TypeDef* TIMx, u16 TIM_MasterSlaveMode);
+void TIM_SetCounter(TIM_TypeDef* TIMx, u16 Counter);
+void TIM_SetAutoreload(TIM_TypeDef* TIMx, u16 Autoreload);
+void TIM_SetCompare1(TIM_TypeDef* TIMx, u16 Compare1);
+void TIM_SetCompare2(TIM_TypeDef* TIMx, u16 Compare2);
+void TIM_SetCompare3(TIM_TypeDef* TIMx, u16 Compare3);
+void TIM_SetCompare4(TIM_TypeDef* TIMx, u16 Compare4);
+void TIM_SetIC1Prescaler(TIM_TypeDef* TIMx, u16 TIM_ICPSC);
+void TIM_SetIC2Prescaler(TIM_TypeDef* TIMx, u16 TIM_ICPSC);
+void TIM_SetIC3Prescaler(TIM_TypeDef* TIMx, u16 TIM_ICPSC);
+void TIM_SetIC4Prescaler(TIM_TypeDef* TIMx, u16 TIM_ICPSC);
+void TIM_SetClockDivision(TIM_TypeDef* TIMx, u16 TIM_CKD);
+u16 TIM_GetCapture1(TIM_TypeDef* TIMx);
+u16 TIM_GetCapture2(TIM_TypeDef* TIMx);
+u16 TIM_GetCapture3(TIM_TypeDef* TIMx);
+u16 TIM_GetCapture4(TIM_TypeDef* TIMx);
+u16 TIM_GetCounter(TIM_TypeDef* TIMx);
+u16 TIM_GetPrescaler(TIM_TypeDef* TIMx);
+FlagStatus TIM_GetFlagStatus(TIM_TypeDef* TIMx, u16 TIM_FLAG);
+void TIM_ClearFlag(TIM_TypeDef* TIMx, u16 TIM_FLAG);
+ITStatus TIM_GetITStatus(TIM_TypeDef* TIMx, u16 TIM_IT);
+void TIM_ClearITPendingBit(TIM_TypeDef* TIMx, u16 TIM_IT);
+                                                                                                             
+
+
+ 
+
+
+
+
+
+
+
+
+#line 106 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_usart.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_usart.h"
+
+ 
+ 
+typedef struct
+{
+  u32 USART_BaudRate;
+  u16 USART_WordLength;
+  u16 USART_StopBits;
+  u16 USART_Parity;
+  u16 USART_Mode;
+  u16 USART_HardwareFlowControl;  
+} USART_InitTypeDef;
+
+ 
+typedef struct
+{
+  u16 USART_Clock;
+  u16 USART_CPOL;
+  u16 USART_CPHA;
+  u16 USART_LastBit;
+} USART_ClockInitTypeDef;
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+                                    
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+                               
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+#line 146 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_usart.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+#line 207 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_usart.h"
+
+
+
+
+
+
+                              
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+void USART_DeInit(USART_TypeDef* USARTx);
+void USART_Init(USART_TypeDef* USARTx, USART_InitTypeDef* USART_InitStruct);
+void USART_StructInit(USART_InitTypeDef* USART_InitStruct);
+void USART_ClockInit(USART_TypeDef* USARTx, USART_ClockInitTypeDef* USART_ClockInitStruct);
+void USART_ClockStructInit(USART_ClockInitTypeDef* USART_ClockInitStruct);
+void USART_Cmd(USART_TypeDef* USARTx, FunctionalState NewState);
+void USART_ITConfig(USART_TypeDef* USARTx, u16 USART_IT, FunctionalState NewState);
+void USART_DMACmd(USART_TypeDef* USARTx, u16 USART_DMAReq, FunctionalState NewState);
+void USART_SetAddress(USART_TypeDef* USARTx, u8 USART_Address);
+void USART_WakeUpConfig(USART_TypeDef* USARTx, u16 USART_WakeUp);
+void USART_ReceiverWakeUpCmd(USART_TypeDef* USARTx, FunctionalState NewState);
+void USART_LINBreakDetectLengthConfig(USART_TypeDef* USARTx, u16 USART_LINBreakDetectLength);
+void USART_LINCmd(USART_TypeDef* USARTx, FunctionalState NewState);
+void USART_SendData(USART_TypeDef* USARTx, u16 Data);
+u16 USART_ReceiveData(USART_TypeDef* USARTx);
+void USART_SendBreak(USART_TypeDef* USARTx);
+void USART_SetGuardTime(USART_TypeDef* USARTx, u8 USART_GuardTime);
+void USART_SetPrescaler(USART_TypeDef* USARTx, u8 USART_Prescaler);
+void USART_SmartCardCmd(USART_TypeDef* USARTx, FunctionalState NewState);
+void USART_SmartCardNACKCmd(USART_TypeDef* USARTx, FunctionalState NewState);
+void USART_HalfDuplexCmd(USART_TypeDef* USARTx, FunctionalState NewState);
+void USART_IrDAConfig(USART_TypeDef* USARTx, u16 USART_IrDAMode);
+void USART_IrDACmd(USART_TypeDef* USARTx, FunctionalState NewState);
+FlagStatus USART_GetFlagStatus(USART_TypeDef* USARTx, u16 USART_FLAG);
+void USART_ClearFlag(USART_TypeDef* USARTx, u16 USART_FLAG);
+ITStatus USART_GetITStatus(USART_TypeDef* USARTx, u16 USART_IT);
+void USART_ClearITPendingBit(USART_TypeDef* USARTx, u16 USART_IT);
+
+
+
+ 
+#line 110 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+#line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_wwdg.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+#line 23 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_wwdg.h"
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+void WWDG_DeInit(void);
+void WWDG_SetPrescaler(u32 WWDG_Prescaler);
+void WWDG_SetWindowValue(u8 WindowValue);
+void WWDG_EnableIT(void);
+void WWDG_SetCounter(u8 Counter);
+void WWDG_Enable(u8 Counter);
+FlagStatus WWDG_GetFlagStatus(void);
+void WWDG_ClearFlag(void);
+
+
+
+ 
+#line 114 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
+
+
+ 
+ 
+ 
+ 
+void debug(void);
+
+
+
+ 
+#line 126 "rs274ngc_pre.c"
+#line 1 "Queue.h"
+
+
+
+    
+    
+    
 
 #line 1 "f:\\Keil\\ARM\\RV31\\INC\\stdio.h"
  
@@ -967,2067 +7876,10 @@ extern __declspec(__nothrow) void __use_no_semihosting(void);
 
 
  
-#line 123 "rs274ngc_pre.c"
-#line 1 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
- 
- 
- 
-
-
-
-
- 
- 
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
- 
-
-
-
-
-
-
-
-
-#line 45 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-
-
-  
-  typedef unsigned int size_t;
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    typedef unsigned short wchar_t;  
-#line 74 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-
-typedef struct div_t { int quot, rem; } div_t;
-    
-typedef struct ldiv_t { long int quot, rem; } ldiv_t;
-    
-
-typedef struct lldiv_t { __int64 quot, rem; } lldiv_t;
-    
-
-
-#line 95 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-   
-
-
-
- 
-
-   
-
-
-
-
- 
-#line 114 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-   
-
-
- 
-extern __declspec(__nothrow) int __aeabi_MB_CUR_MAX(void);
-
-   
-
-
-
-
- 
-
-   
-
-
-
-
- 
-
-
-
-
-extern __declspec(__nothrow) double atof(const char *  ) __attribute__((__nonnull__(1)));
-   
-
-
-
- 
-extern __declspec(__nothrow) int atoi(const char *  ) __attribute__((__nonnull__(1)));
-   
-
-
-
- 
-extern __declspec(__nothrow) long int atol(const char *  ) __attribute__((__nonnull__(1)));
-   
-
-
-
- 
-
-extern __declspec(__nothrow) __int64 atoll(const char *  ) __attribute__((__nonnull__(1)));
-   
-
-
-
- 
-
-
-extern __declspec(__nothrow) double strtod(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) float strtof(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
-extern __declspec(__nothrow) long double strtold(const char * __restrict  , char ** __restrict  ) __attribute__((__nonnull__(1)));
-   
-
- 
-
-extern __declspec(__nothrow) long int strtol(const char * __restrict  ,
-                        char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) unsigned long int strtoul(const char * __restrict  ,
-                                       char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
- 
-extern __declspec(__nothrow) __int64 strtoll(const char * __restrict  ,
-                               char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
-   
-
-
-
-
- 
-extern __declspec(__nothrow) unsigned __int64 strtoull(const char * __restrict  ,
-                                         char ** __restrict  , int  ) __attribute__((__nonnull__(1)));
-   
-
-
-
- 
-
-extern __declspec(__nothrow) int rand(void);
-   
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) void srand(unsigned int  );
-   
-
-
-
-
-
-
- 
-
-struct _rand_state { int __x[57]; };
-extern __declspec(__nothrow) int _rand_r(struct _rand_state *);
-extern __declspec(__nothrow) void _srand_r(struct _rand_state *, unsigned int);
-struct _ANSI_rand_state { int __x[1]; };
-extern __declspec(__nothrow) int _ANSI_rand_r(struct _ANSI_rand_state *);
-extern __declspec(__nothrow) void _ANSI_srand_r(struct _ANSI_rand_state *, unsigned int);
-   
-
-
- 
-
-extern __declspec(__nothrow) void *calloc(size_t  , size_t  );
-   
-
-
-
- 
-extern __declspec(__nothrow) void free(void *  );
-   
-
-
-
-
-
- 
-extern __declspec(__nothrow) void *malloc(size_t  );
-   
-
-
-
- 
-extern __declspec(__nothrow) void *realloc(void *  , size_t  );
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) int posix_memalign(void **  , size_t  , size_t  );
-   
-
-
-
-
-
-
-
-
-
- 
-
-typedef int (*__heapprt)(void *, char const *, ...);
-extern __declspec(__nothrow) void __heapstats(int (*  )(void *  ,
-                                           char const *  , ...),
-                        void *  ) __attribute__((__nonnull__(1)));
-   
-
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) int __heapvalid(int (*  )(void *  ,
-                                           char const *  , ...),
-                       void *  , int  ) __attribute__((__nonnull__(1)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) __declspec(__noreturn) void abort(void);
-   
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) int atexit(void (*  )(void)) __attribute__((__nonnull__(1)));
-   
-
-
-
-
- 
-#line 414 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-
-
-extern __declspec(__nothrow) __declspec(__noreturn) void exit(int  );
-   
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) __declspec(__noreturn) void _Exit(int  );
-   
-
-
-
-
-
-
-
-      
-
-extern __declspec(__nothrow) char *getenv(const char *  ) __attribute__((__nonnull__(1)));
-   
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) int  system(const char *  );
-   
-
-
-
-
-
-
-
-
-
- 
-
-extern  void *bsearch(const void *  , const void *  ,
-              size_t  , size_t  ,
-              int (*  )(const void *, const void *)) __attribute__((__nonnull__(1,2,5)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
- 
-#line 502 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-
-
-extern  void qsort(void *  , size_t  , size_t  ,
-           int (*  )(const void *, const void *)) __attribute__((__nonnull__(1,4)));
-   
-
-
-
-
-
-
-
-
-
- 
-
-#line 531 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-
-extern __declspec(__nothrow) __pure int abs(int  );
-   
-
-
-
- 
-
-extern __declspec(__nothrow) __pure div_t div(int  , int  );
-   
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) __pure long int labs(long int  );
-   
-
-
-
- 
-
-
-
-
-extern __declspec(__nothrow) __pure ldiv_t ldiv(long int  , long int  );
-   
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-extern __declspec(__nothrow) __pure __int64 llabs(__int64  );
-   
-
-
-
- 
-
-
-
-
-extern __declspec(__nothrow) __pure lldiv_t lldiv(__int64  , __int64  );
-   
-
-
-
-
-
-
-
-
-
-
-
- 
-#line 612 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-
-
-
- 
-typedef struct __sdiv32by16 { int quot, rem; } __sdiv32by16;
-typedef struct __udiv32by16 { unsigned int quot, rem; } __udiv32by16;
-    
-typedef struct __sdiv64by32 { int rem, quot; } __sdiv64by32;
-
-__value_in_regs extern __declspec(__nothrow) __pure __sdiv32by16 __rt_sdiv32by16(
-     int  ,
-     short int  );
-   
-
- 
-__value_in_regs extern __declspec(__nothrow) __pure __udiv32by16 __rt_udiv32by16(
-     unsigned int  ,
-     unsigned short  );
-   
-
- 
-__value_in_regs extern __declspec(__nothrow) __pure __sdiv64by32 __rt_sdiv64by32(
-     int  , unsigned int  ,
-     int  );
-   
-
- 
-
-
-
- 
-extern __declspec(__nothrow) unsigned int __fp_status(unsigned int  , unsigned int  );
-   
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) int mblen(const char *  , size_t  );
-   
-
-
-
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) int mbtowc(wchar_t * __restrict  ,
-                   const char * __restrict  , size_t  );
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) int wctomb(char *  , wchar_t  );
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
- 
-extern __declspec(__nothrow) size_t mbstowcs(wchar_t * __restrict  ,
-                      const char * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) size_t wcstombs(char * __restrict  ,
-                      const wchar_t * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) void __use_realtime_heap(void);
-extern __declspec(__nothrow) void __use_realtime_division(void);
-extern __declspec(__nothrow) void __use_two_region_memory(void);
-extern __declspec(__nothrow) void __use_no_heap(void);
-extern __declspec(__nothrow) void __use_no_heap_region(void);
-
-extern __declspec(__nothrow) char const *__C_library_version_string(void);
-extern __declspec(__nothrow) int __C_library_version_number(void);
-
-
-
-
-
-
-
-
-
-
-
-#line 866 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
-
-
- 
-#line 124 "rs274ngc_pre.c"
-#line 1 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-
-
-
- 
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-#line 47 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-#line 61 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-   
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-#line 92 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-extern __softfp unsigned __ARM_dcmp4(double  , double  );
-extern __softfp unsigned __ARM_fcmp4(float  , float  );
-    
-
-
-
-
- 
-
-extern __declspec(__nothrow) __softfp int __ARM_fpclassifyf(float  );
-extern __declspec(__nothrow) __softfp int __ARM_fpclassify(double  );
-     
-     
-
-__inline __declspec(__nothrow) __softfp int __ARM_isfinitef(float __x)
-{
-    return (((*(unsigned *)&(__x)) >> 23) & 0xff) != 0xff;
-}
-__inline __declspec(__nothrow) __softfp int __ARM_isfinite(double __x)
-{
-    return (((*(1 + (unsigned *)&(__x))) >> 20) & 0x7ff) != 0x7ff;
-}
-     
-     
-
-__inline __declspec(__nothrow) __softfp int __ARM_isinff(float __x)
-{
-    return ((*(unsigned *)&(__x)) << 1) == 0xff000000;
-}
-__inline __declspec(__nothrow) __softfp int __ARM_isinf(double __x)
-{
-    return (((*(1 + (unsigned *)&(__x))) << 1) == 0xffe00000) && ((*(unsigned *)&(__x)) == 0);
-}
-     
-     
-
-__inline __declspec(__nothrow) __softfp int __ARM_islessgreaterf(float __x, float __y)
-{
-    unsigned __f = __ARM_fcmp4(__x, __y) >> 28;
-    return (__f == 8) || (__f == 2);  
-}
-__inline __declspec(__nothrow) __softfp int __ARM_islessgreater(double __x, double __y)
-{
-    unsigned __f = __ARM_dcmp4(__x, __y) >> 28;
-    return (__f == 8) || (__f == 2);  
-}
-    
-
-
- 
-
-__inline __declspec(__nothrow) __softfp int __ARM_isnanf(float __x)
-{
-    return (0x7f800000 - ((*(unsigned *)&(__x)) & 0x7fffffff)) >> 31;
-}
-__inline __declspec(__nothrow) __softfp int __ARM_isnan(double __x)
-{
-    unsigned __xf = (*(1 + (unsigned *)&(__x))) | (((*(unsigned *)&(__x)) == 0) ? 0 : 1);
-    return (0x7ff00000 - (__xf & 0x7fffffff)) >> 31;
-}
-     
-     
-
-__inline __declspec(__nothrow) __softfp int __ARM_isnormalf(float __x)
-{
-    unsigned __xe = ((*(unsigned *)&(__x)) >> 23) & 0xff;
-    return (__xe != 0xff) && (__xe != 0);
-}
-__inline __declspec(__nothrow) __softfp int __ARM_isnormal(double __x)
-{
-    unsigned __xe = ((*(1 + (unsigned *)&(__x))) >> 20) & 0x7ff;
-    return (__xe != 0x7ff) && (__xe != 0);
-}
-     
-     
-
-__inline __declspec(__nothrow) __softfp int __ARM_signbitf(float __x)
-{
-    return (*(unsigned *)&(__x)) >> 31;
-}
-__inline __declspec(__nothrow) __softfp int __ARM_signbit(double __x)
-{
-    return (*(1 + (unsigned *)&(__x))) >> 31;
-}
-     
-     
-
-
-
-
-
-
-
-
-#line 210 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-
-
-   
-  typedef float float_t;
-  typedef double double_t;
-
-
-
-
-
-
-
-extern const int math_errhandling;
-
-
-
-extern __declspec(__nothrow) double acos(double  );
-    
-    
-    
-extern __declspec(__nothrow) double asin(double  );
-    
-    
-    
-    
-
-extern __declspec(__nothrow) __pure double atan(double  );
-    
-    
-
-extern __declspec(__nothrow) double atan2(double  , double  );
-    
-    
-    
-    
-
-extern __declspec(__nothrow) double cos(double  );
-    
-    
-    
-    
-extern __declspec(__nothrow) double sin(double  );
-    
-    
-    
-    
-
-extern void __use_accurate_range_reduction(void);
-    
-    
-
-extern __declspec(__nothrow) double tan(double  );
-    
-    
-    
-    
-
-extern __declspec(__nothrow) double cosh(double  );
-    
-    
-    
-    
-extern __declspec(__nothrow) double sinh(double  );
-    
-    
-    
-    
-    
-
-extern __declspec(__nothrow) __pure double tanh(double  );
-    
-    
-
-extern __declspec(__nothrow) double exp(double  );
-    
-    
-    
-    
-    
-
-extern __declspec(__nothrow) double frexp(double  , int *  ) __attribute__((__nonnull__(2)));
-    
-    
-    
-    
-    
-    
-
-extern __declspec(__nothrow) double ldexp(double  , int  );
-    
-    
-    
-    
-extern __declspec(__nothrow) double log(double  );
-    
-    
-    
-    
-    
-extern __declspec(__nothrow) double log10(double  );
-    
-    
-    
-extern __declspec(__nothrow) double modf(double  , double *  ) __attribute__((__nonnull__(2)));
-    
-    
-    
-    
-
-extern __declspec(__nothrow) double pow(double  , double  );
-    
-    
-    
-    
-    
-    
-extern __declspec(__nothrow) double sqrt(double  );
-    
-    
-    
-
-
-
-
-    __inline double _sqrt(double __x) { return sqrt(__x); }
-
-
-
-
-    __inline float _sqrtf(float __x) { return (float)sqrt(__x); }
-
-    
-
-
-
- 
-
-extern __declspec(__nothrow) __pure double ceil(double  );
-    
-    
-extern __declspec(__nothrow) __pure double fabs(double  );
-    
-    
-
-extern __declspec(__nothrow) __pure double floor(double  );
-    
-    
-
-extern __declspec(__nothrow) double fmod(double  , double  );
-    
-    
-    
-    
-    
-
-    
-
-
-
-
-
-
-
-
-
- 
-
-
-
-extern __declspec(__nothrow) double acosh(double  );
-    
-
- 
-extern __declspec(__nothrow) double asinh(double  );
-    
-
- 
-extern __declspec(__nothrow) double atanh(double  );
-    
-
- 
-extern __declspec(__nothrow) double cbrt(double  );
-    
-
- 
-__inline __declspec(__nothrow) __pure double copysign(double __x, double __y)
-    
-
- 
-{
-    (*(1 + (unsigned *)&(__x))) = ((*(1 + (unsigned *)&(__x))) & 0x7fffffff) | ((*(1 + (unsigned *)&(__y))) & 0x80000000);
-    return __x;
-}
-__inline __declspec(__nothrow) __pure float copysignf(float __x, float __y)
-    
-
- 
-{
-    (*(unsigned *)&(__x)) = ((*(unsigned *)&(__x)) & 0x7fffffff) | ((*(unsigned *)&(__y)) & 0x80000000);
-    return __x;
-}
-extern __declspec(__nothrow) double erf(double  );
-    
-
- 
-extern __declspec(__nothrow) double erfc(double  );
-    
-
- 
-extern __declspec(__nothrow) double expm1(double  );
-    
-
- 
-
-
-
-    
-
- 
-
-
-
-
-
-
-#line 444 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-
-extern __declspec(__nothrow) double hypot(double  , double  );
-    
-
-
-
-
- 
-extern __declspec(__nothrow) int ilogb(double  );
-    
-
- 
-extern __declspec(__nothrow) int ilogbf(float  );
-    
-
- 
-extern __declspec(__nothrow) int ilogbl(long double  );
-    
-
- 
-
-
-
-
-
-
-
-    
-
- 
-
-
-
-
-
-    
-
-
-
- 
-
-
-
-
-
-    
-
-
-
- 
-
-
-
-
-
-    
-
- 
-
-
-
-
-
-    
-
-
-
- 
-
-
-
-
-
-    
-
-
-
- 
-
-
-
-
-
-    
-
-
-
- 
-
-
-
-
-
-    
-
- 
-
-
-
-
-
-    
-
- 
-
-
-
-
-
-    
-
-
- 
-
-extern __declspec(__nothrow) double lgamma (double  );
-    
-
-
- 
-extern __declspec(__nothrow) double log1p(double  );
-    
-
- 
-extern __declspec(__nothrow) double logb(double  );
-    
-
- 
-extern __declspec(__nothrow) float logbf(float  );
-    
-
- 
-extern __declspec(__nothrow) long double logbl(long double  );
-    
-
- 
-extern __declspec(__nothrow) double nextafter(double  , double  );
-    
-
-
- 
-extern __declspec(__nothrow) float nextafterf(float  , float  );
-    
-
-
- 
-extern __declspec(__nothrow) long double nextafterl(long double  , long double  );
-    
-
-
- 
-extern __declspec(__nothrow) double nexttoward(double  , long double  );
-    
-
-
- 
-extern __declspec(__nothrow) float nexttowardf(float  , long double  );
-    
-
-
- 
-extern __declspec(__nothrow) long double nexttowardl(long double  , long double  );
-    
-
-
- 
-extern __declspec(__nothrow) double remainder(double  , double  );
-    
-
- 
-extern __declspec(__nothrow) __pure double rint(double  );
-    
-
- 
-extern __declspec(__nothrow) double scalbln(double  , long int  );
-    
-
- 
-extern __declspec(__nothrow) float scalblnf(float  , long int  );
-    
-
- 
-extern __declspec(__nothrow) long double scalblnl(long double  , long int  );
-    
-
- 
-extern __declspec(__nothrow) double scalbn(double  , int  );
-    
-
- 
-extern __declspec(__nothrow) float scalbnf(float  , int  );
-    
-
- 
-extern __declspec(__nothrow) long double scalbnl(long double  , int  );
-    
-
- 
-
-
-
-
-    
-
- 
-
-
-
- 
-extern __declspec(__nothrow) __pure float _fabsf(float);  
-__inline __declspec(__nothrow) __pure float fabsf(float __f) { return _fabsf(__f); }
-extern __declspec(__nothrow) float sinf(float  );
-extern __declspec(__nothrow) float cosf(float  );
-extern __declspec(__nothrow) float tanf(float  );
-extern __declspec(__nothrow) float acosf(float  );
-extern __declspec(__nothrow) float asinf(float  );
-extern __declspec(__nothrow) float atanf(float  );
-extern __declspec(__nothrow) float atan2f(float  , float  );
-extern __declspec(__nothrow) float sinhf(float  );
-extern __declspec(__nothrow) float coshf(float  );
-extern __declspec(__nothrow) float tanhf(float  );
-extern __declspec(__nothrow) float expf(float  );
-extern __declspec(__nothrow) float logf(float  );
-extern __declspec(__nothrow) float log10f(float  );
-extern __declspec(__nothrow) float powf(float  , float  );
-extern __declspec(__nothrow) float sqrtf(float  );
-extern __declspec(__nothrow) float ldexpf(float  , int  );
-extern __declspec(__nothrow) float frexpf(float  , int *  ) __attribute__((__nonnull__(2)));
-extern __declspec(__nothrow) __pure float ceilf(float  );
-extern __declspec(__nothrow) __pure float floorf(float  );
-extern __declspec(__nothrow) float fmodf(float  , float  );
-extern __declspec(__nothrow) float modff(float  , float *  ) __attribute__((__nonnull__(2)));
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-__declspec(__nothrow) long double acosl(long double );
-__declspec(__nothrow) long double asinl(long double );
-__declspec(__nothrow) long double atanl(long double );
-__declspec(__nothrow) long double atan2l(long double , long double );
-__declspec(__nothrow) long double ceill(long double );
-__declspec(__nothrow) long double cosl(long double );
-__declspec(__nothrow) long double coshl(long double );
-__declspec(__nothrow) long double expl(long double );
-__declspec(__nothrow) long double fabsl(long double );
-__declspec(__nothrow) long double floorl(long double );
-__declspec(__nothrow) long double fmodl(long double , long double );
-__declspec(__nothrow) long double frexpl(long double , int* ) __attribute__((__nonnull__(2)));
-__declspec(__nothrow) long double ldexpl(long double , int );
-__declspec(__nothrow) long double logl(long double );
-__declspec(__nothrow) long double log10l(long double );
-__declspec(__nothrow) long double modfl(long double  , long double *  ) __attribute__((__nonnull__(2)));
-__declspec(__nothrow) long double powl(long double , long double );
-__declspec(__nothrow) long double sinl(long double );
-__declspec(__nothrow) long double sinhl(long double );
-__declspec(__nothrow) long double sqrtl(long double );
-__declspec(__nothrow) long double tanl(long double );
-__declspec(__nothrow) long double tanhl(long double );
-
-
-
-
-
- 
-extern __declspec(__nothrow) float acoshf(float  );
-__declspec(__nothrow) long double acoshl(long double );
-extern __declspec(__nothrow) float asinhf(float  );
-__declspec(__nothrow) long double asinhl(long double );
-extern __declspec(__nothrow) float atanhf(float  );
-__declspec(__nothrow) long double atanhl(long double );
-__declspec(__nothrow) long double copysignl(long double , long double );
-extern __declspec(__nothrow) float cbrtf(float  );
-__declspec(__nothrow) long double cbrtl(long double );
-extern __declspec(__nothrow) float erff(float  );
-__declspec(__nothrow) long double erfl(long double );
-extern __declspec(__nothrow) float erfcf(float  );
-__declspec(__nothrow) long double erfcl(long double );
-extern __declspec(__nothrow) float expm1f(float  );
-__declspec(__nothrow) long double expm1l(long double );
-extern __declspec(__nothrow) float log1pf(float  );
-__declspec(__nothrow) long double log1pl(long double );
-extern __declspec(__nothrow) float hypotf(float  , float  );
-__declspec(__nothrow) long double hypotl(long double , long double );
-extern __declspec(__nothrow) float lgammaf(float  );
-__declspec(__nothrow) long double lgammal(long double );
-extern __declspec(__nothrow) float remainderf(float  , float  );
-__declspec(__nothrow) long double remainderl(long double , long double );
-extern __declspec(__nothrow) float rintf(float  );
-__declspec(__nothrow) long double rintl(long double );
-
-
-
-#line 824 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-
-
-
-
-#line 979 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-
-
-
-
-
-
-
-
-
-
-#line 1181 "f:\\Keil\\ARM\\RV31\\INC\\math.h"
-
-
-
- 
-#line 125 "rs274ngc_pre.c"
-#line 1 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
- 
- 
- 
- 
-
-
-
-
- 
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-#line 37 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
-
-
-  
-  typedef unsigned int size_t;
-
-
-
-
-
-
-
-
-extern __declspec(__nothrow) void *memcpy(void * __restrict  ,
-                    const void * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
- 
-extern __declspec(__nothrow) void *memmove(void *  ,
-                    const void *  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) char *strcpy(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
- 
-extern __declspec(__nothrow) char *strncpy(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) char *strcat(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
- 
-extern __declspec(__nothrow) char *strncat(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
-
- 
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) int memcmp(const void *  , const void *  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
- 
-extern __declspec(__nothrow) int strcmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
- 
-extern __declspec(__nothrow) int strncmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) int strcasecmp(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
- 
-extern __declspec(__nothrow) int strncasecmp(const char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
-
- 
-extern __declspec(__nothrow) int strcoll(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) size_t strxfrm(char * __restrict  , const char * __restrict  , size_t  ) __attribute__((__nonnull__(2)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-#line 184 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
-extern __declspec(__nothrow) void *memchr(const void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
-
-   
-
-
-
-
-
- 
-
-#line 200 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
-extern __declspec(__nothrow) char *strchr(const char *  , int  ) __attribute__((__nonnull__(1)));
-
-   
-
-
-
-
- 
-
-extern __declspec(__nothrow) size_t strcspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
- 
-
-#line 223 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
-extern __declspec(__nothrow) char *strpbrk(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
-
-   
-
-
-
-
- 
-
-#line 238 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
-extern __declspec(__nothrow) char *strrchr(const char *  , int  ) __attribute__((__nonnull__(1)));
-
-   
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) size_t strspn(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
- 
-
-#line 261 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
-extern __declspec(__nothrow) char *strstr(const char *  , const char *  ) __attribute__((__nonnull__(1,2)));
-
-   
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) char *strtok(char * __restrict  , const char * __restrict  ) __attribute__((__nonnull__(2)));
-extern __declspec(__nothrow) char *_strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
-
-extern __declspec(__nothrow) char *strtok_r(char *  , const char *  , char **  ) __attribute__((__nonnull__(2,3)));
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) void *memset(void *  , int  , size_t  ) __attribute__((__nonnull__(1)));
-   
-
-
-
- 
-extern __declspec(__nothrow) char *strerror(int  );
-   
-
-
-
-
-
- 
-extern __declspec(__nothrow) size_t strlen(const char *  ) __attribute__((__nonnull__(1)));
-   
-
-
-
- 
-
-extern __declspec(__nothrow) size_t strlcpy(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) size_t strlcat(char *  , const char *  , size_t  ) __attribute__((__nonnull__(1,2)));
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-extern __declspec(__nothrow) void _membitcpybl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitcpybb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitcpyhl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitcpyhb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitcpywl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitcpywb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitmovebl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitmovebb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitmovehl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitmovehb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitmovewl(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-extern __declspec(__nothrow) void _membitmovewb(void *  , const void *  , int  , int  , size_t  ) __attribute__((__nonnull__(1,2)));
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-#line 493 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
-
-
-
- 
-#line 126 "rs274ngc_pre.c"
-#line 1 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
- 
- 
- 
- 
-
-
-
-
-
- 
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-#line 32 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
-
-
-
-
-
-
-#line 46 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
-
- 
-#line 56 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
-
- 
- 
-
-
-
-
-
-
-
-
-
- 
-#line 78 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
-
-
-
-
-
-#line 130 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
-
-extern __declspec(__nothrow) __pure unsigned char **__rt_ctype_table(void);
-
-
-
-
-
-
-
-    extern int (isalnum)(int  );
-
-     
-
-
-
-
-
-    extern int (isalpha)(int  );
-
-     
-
-
-
-
-
-    extern int (iscntrl)(int  );
-
-     
-     
-
- 
-
-
-
-
-    extern int (isdigit)(int  );
-
-     
-
-    extern int (isblank)(int  );
-     
-     
-     
-
-
-
-
-
-    extern int (isgraph)(int  );
-
-     
-
-
-
-
-
-    extern int (islower)(int  );
-
-     
-
-
-
-
-
-    extern int (isprint)(int  );
-
-     
-     
-
-
-
-
-
-    extern int (ispunct)(int  );
-
-     
-
-
-
-
-
-    extern int (isspace)(int  );
-
-     
-
-
-
-
-
-    extern int (isupper)(int  );
-
-     
-
- 
- 
-
-__inline int __isxdigit_helper(int __t) { return (__t ^ (__t << 2)); }
-
-
-
-
-    extern int (isxdigit)(int  );
-
-     
-
-
-
-extern int tolower(int  );
-     
-     
-
-extern int toupper(int  );
-     
-     
-
-
-
-
-
-
-
-#line 269 "f:\\Keil\\ARM\\RV31\\INC\\ctype.h"
-
-
-
- 
-#line 127 "rs274ngc_pre.c"
+#line 9 "Queue.h"
+#line 10 "Queue.h"
+#line 11 "Queue.h"
+#line 12 "Queue.h"
 #line 1 "rs274ngc.h"
    
 
@@ -4017,6 +8869,7 @@ typedef setup * setup_pointer;
    
 typedef int (*read_function_pointer) (char *, int *, block_pointer, double *);
 
+
     
    
 
@@ -4104,7 +8957,63 @@ extern int rs274ngc_sequence_number(void);
    
 extern void rs274ngc_stack_name(int stack_index, char * function_name,
 int max_size);
-#line 128 "rs274ngc_pre.c"
+
+#line 13 "Queue.h"
+
+
+typedef block Item;
+
+
+
+
+typedef struct node
+{
+	Item item;
+	struct node * next;
+}Node;
+
+typedef struct queue
+{
+	Node *front;		 
+	Node *rear;			 
+	int items;			 
+}Queue;
+
+ 
+ 
+ 
+extern void InitializeQueue(Queue *pq);
+
+ 
+ 
+ 
+extern bool QueueIsFull(const Queue *pq);
+
+ 
+ 
+ 
+extern bool QueueIsEmpty(const Queue *pq);
+
+ 
+ 
+ 
+extern int QueueItemCount(const Queue *pq);
+
+ 
+ 
+ 
+extern bool EnQueue(Item item,Queue *pq);
+
+ 
+ 
+ 
+extern bool DeQueue(Item *pitem,Queue *pq);
+
+ 
+ 
+ 
+extern void EmptyTheQueue(Queue *pq);
+#line 127 "rs274ngc_pre.c"
 #line 1 "rs274ngc_return.h"
    
 
@@ -4135,7 +9044,8 @@ int max_size);
 
 #line 226 "rs274ngc_return.h"
 
-#line 129 "rs274ngc_pre.c"
+#line 128 "rs274ngc_pre.c"
+
 
 char * _rs274ngc_errors[] =
 {
@@ -4340,6 +9250,9 @@ char * _rs274ngc_errors[] =
     "The End"
 };
 
+Queue qline;										  	 
+Item item;										  		 
+
 
 
    
@@ -4359,7 +9272,7 @@ char * _rs274ngc_errors[] =
 
  
 
-#line 358 "rs274ngc_pre.c"
+#line 361 "rs274ngc_pre.c"
 
 
 
@@ -4367,9 +9280,9 @@ char * _rs274ngc_errors[] =
 
 
 
-#line 371 "rs274ngc_pre.c"
+#line 374 "rs274ngc_pre.c"
 
-#line 383 "rs274ngc_pre.c"
+#line 386 "rs274ngc_pre.c"
 
    
 
@@ -4932,30 +9845,30 @@ static const int _gees[] =
     static const int _required_parameters[] =
     {
         5161, 5162, 5163,                          
-#line 954 "rs274ngc_pre.c"
+#line 957 "rs274ngc_pre.c"
             5181, 5182, 5183,                      
-#line 964 "rs274ngc_pre.c"
+#line 967 "rs274ngc_pre.c"
             5211, 5212, 5213,                      
-#line 974 "rs274ngc_pre.c"
+#line 977 "rs274ngc_pre.c"
             5220,                                  
             5221, 5222, 5223,                      
-#line 985 "rs274ngc_pre.c"
+#line 988 "rs274ngc_pre.c"
             5241, 5242, 5243,                      
-#line 995 "rs274ngc_pre.c"
+#line 998 "rs274ngc_pre.c"
             5261, 5262, 5263,                      
-#line 1005 "rs274ngc_pre.c"
+#line 1008 "rs274ngc_pre.c"
             5281, 5282, 5283,                      
-#line 1015 "rs274ngc_pre.c"
+#line 1018 "rs274ngc_pre.c"
             5301, 5302, 5303,                      
-#line 1025 "rs274ngc_pre.c"
+#line 1028 "rs274ngc_pre.c"
             5321, 5322, 5323,                      
-#line 1035 "rs274ngc_pre.c"
+#line 1038 "rs274ngc_pre.c"
             5341, 5342, 5343,                      
-#line 1045 "rs274ngc_pre.c"
+#line 1048 "rs274ngc_pre.c"
             5361, 5362, 5363,                      
-#line 1055 "rs274ngc_pre.c"
+#line 1058 "rs274ngc_pre.c"
             5381, 5382, 5383,                      
-#line 1065 "rs274ngc_pre.c"
+#line 1068 "rs274ngc_pre.c"
             5400
     };
 
@@ -5534,7 +10447,7 @@ static const int _gees[] =
         int motion;
 
         motion = block->motion_to_be;
-#line 1664 "rs274ngc_pre.c"
+#line 1667 "rs274ngc_pre.c"
         if (block->d_number != -1)
         {
             if (((block->g_modes[7] != 410) && (block->g_modes[7] != 420))) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 71; } else;
@@ -5748,7 +10661,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 1886 "rs274ngc_pre.c"
+#line 1889 "rs274ngc_pre.c"
 
         ijk_flag =
             ((block->i_flag || block->j_flag) || block->k_flag) ? 1 : 0;
@@ -5975,7 +10888,7 @@ static const int _gees[] =
     double end1,                                   
     double end2,                                   
     double end3,                                   
-#line 2121 "rs274ngc_pre.c"
+#line 2124 "rs274ngc_pre.c"
     double offset1,                                
     double offset2)                                
     {
@@ -6005,12 +10918,12 @@ static const int _gees[] =
                 turn, end1, end2, end3, block, settings);
         ARC_FEED(end1, end2, center1, center2, turn,
             end3
-#line 2171 "rs274ngc_pre.c"
+#line 2174 "rs274ngc_pre.c"
             );
         *current1 = end1;
         *current2 = end2;
         *current3 = end3;
-#line 2184 "rs274ngc_pre.c"
+#line 2187 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -6049,7 +10962,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z                                   
-#line 2231 "rs274ngc_pre.c"
+#line 2234 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_arc_comp1";
@@ -6105,12 +11018,12 @@ static const int _gees[] =
                 end_x, end_y, end_z, block, settings);
         ARC_FEED(end_x, end_y, center_x, center_y, turn,
             end_z
-#line 2307 "rs274ngc_pre.c"
+#line 2310 "rs274ngc_pre.c"
             );
         settings->current_x = end_x;
         settings->current_y = end_y;
         settings->current_z = end_z;
-#line 2320 "rs274ngc_pre.c"
+#line 2323 "rs274ngc_pre.c"
 
         return 0;
     }
@@ -6161,7 +11074,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z                                   
-#line 2379 "rs274ngc_pre.c"
+#line 2382 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_arc_comp2";
@@ -6252,11 +11165,11 @@ static const int _gees[] =
                 end_x, end_y, end_z, block, settings);
             ARC_FEED(mid_x, mid_y, start_x, start_y, ((side == 2) ? -1 : 1),
                 settings->current_z
-#line 2490 "rs274ngc_pre.c"
+#line 2493 "rs274ngc_pre.c"
                 );
             ARC_FEED(end_x, end_y, center_x, center_y, turn,
                 end_z
-#line 2514 "rs274ngc_pre.c"
+#line 2517 "rs274ngc_pre.c"
                 );
         }
         else                                       
@@ -6267,14 +11180,14 @@ static const int _gees[] =
                     end_x, end_y, end_z, block, settings);
             ARC_FEED(end_x, end_y, center_x, center_y, turn,
                 end_z
-#line 2545 "rs274ngc_pre.c"
+#line 2548 "rs274ngc_pre.c"
                 );
         }
 
         settings->current_x = end_x;
         settings->current_y = end_y;
         settings->current_z = end_z;
-#line 2560 "rs274ngc_pre.c"
+#line 2563 "rs274ngc_pre.c"
 
         return 0;
     }
@@ -6372,21 +11285,21 @@ static const int _gees[] =
                 settings->current_z = block->z_number;
             }
 
-#line 2673 "rs274ngc_pre.c"
+#line 2676 "rs274ngc_pre.c"
 
-#line 2690 "rs274ngc_pre.c"
+#line 2693 "rs274ngc_pre.c"
 
-#line 2707 "rs274ngc_pre.c"
+#line 2710 "rs274ngc_pre.c"
 
             SET_ORIGIN_OFFSETS(settings->origin_offset_x + settings->axis_offset_x,
                 settings->origin_offset_y + settings->axis_offset_y,
                 settings->origin_offset_z + settings->axis_offset_z
-#line 2732 "rs274ngc_pre.c"
+#line 2735 "rs274ngc_pre.c"
                 );
             pars[5211] = settings->axis_offset_x;
             pars[5212] = settings->axis_offset_y;
             pars[5213] = settings->axis_offset_z;
-#line 2748 "rs274ngc_pre.c"
+#line 2751 "rs274ngc_pre.c"
 
         }
         else if ((g_code == 921) || (g_code == 922))
@@ -6397,22 +11310,22 @@ static const int _gees[] =
                 settings->current_y + settings->axis_offset_y;
             settings->current_z =
                 settings->current_z + settings->axis_offset_z;
-#line 2779 "rs274ngc_pre.c"
+#line 2782 "rs274ngc_pre.c"
             SET_ORIGIN_OFFSETS(settings->origin_offset_x,
                 settings->origin_offset_y,
                 settings->origin_offset_z
-#line 2803 "rs274ngc_pre.c"
+#line 2806 "rs274ngc_pre.c"
                 );
             settings->axis_offset_x = 0.0;
             settings->axis_offset_y = 0.0;
             settings->axis_offset_z = 0.0;
-#line 2816 "rs274ngc_pre.c"
+#line 2819 "rs274ngc_pre.c"
             if (g_code == 921)
             {
                 pars[5211] = 0.0;
                 pars[5212] = 0.0;
                 pars[5213] = 0.0;
-#line 2830 "rs274ngc_pre.c"
+#line 2833 "rs274ngc_pre.c"
             }
         }
         else if (g_code == 923)
@@ -6423,15 +11336,15 @@ static const int _gees[] =
                 settings->current_y + settings->axis_offset_y - pars[5212];
             settings->current_z =
                 settings->current_z + settings->axis_offset_z - pars[5213];
-#line 2861 "rs274ngc_pre.c"
+#line 2864 "rs274ngc_pre.c"
             settings->axis_offset_x = pars[5211];
             settings->axis_offset_y = pars[5212];
             settings->axis_offset_z = pars[5213];
-#line 2876 "rs274ngc_pre.c"
+#line 2879 "rs274ngc_pre.c"
             SET_ORIGIN_OFFSETS(settings->origin_offset_x + settings->axis_offset_x,
                 settings->origin_offset_y + settings->axis_offset_y,
                 settings->origin_offset_z + settings->axis_offset_z
-#line 2900 "rs274ngc_pre.c"
+#line 2903 "rs274ngc_pre.c"
                 );
         }
         else
@@ -6635,7 +11548,7 @@ static const int _gees[] =
         double x;
         double y;
         double z;
-#line 3112 "rs274ngc_pre.c"
+#line 3115 "rs274ngc_pre.c"
         double * parameters;
 
         parameters = settings->parameters;
@@ -6692,27 +11605,27 @@ static const int _gees[] =
             (settings->current_y + settings->origin_offset_y);
         settings->current_z =
             (settings->current_z + settings->origin_offset_z);
-#line 3189 "rs274ngc_pre.c"
+#line 3192 "rs274ngc_pre.c"
 
         x = parameters[5201 + (origin * 20)];
         y = parameters[5202 + (origin * 20)];
         z = parameters[5203 + (origin * 20)];
-#line 3202 "rs274ngc_pre.c"
+#line 3205 "rs274ngc_pre.c"
 
         settings->origin_offset_x = x;
         settings->origin_offset_y = y;
         settings->origin_offset_z = z;
-#line 3215 "rs274ngc_pre.c"
+#line 3218 "rs274ngc_pre.c"
 
         settings->current_x = (settings->current_x - x);
         settings->current_y = (settings->current_y - y);
         settings->current_z = (settings->current_z - z);
-#line 3231 "rs274ngc_pre.c"
+#line 3234 "rs274ngc_pre.c"
 
         SET_ORIGIN_OFFSETS(x + settings->axis_offset_x,
             y + settings->axis_offset_y,
             z + settings->axis_offset_z
-#line 3256 "rs274ngc_pre.c"
+#line 3259 "rs274ngc_pre.c"
             );
         return 0;
     }
@@ -7570,7 +12483,7 @@ static const int _gees[] =
 
  
 
-#line 4125 "rs274ngc_pre.c"
+#line 4128 "rs274ngc_pre.c"
 
         static int convert_cycle_xy(               
         int motion,                                
@@ -7629,7 +12542,7 @@ static const int _gees[] =
         if (old_cc < r)
         {
             STRAIGHT_TRAVERSE(settings->current_x, settings->current_y, r
-#line 4204 "rs274ngc_pre.c"
+#line 4207 "rs274ngc_pre.c"
                 );
             old_cc = r;
         }
@@ -7836,7 +12749,7 @@ static const int _gees[] =
         if (old_cc < r)
         {
             STRAIGHT_TRAVERSE(r, settings->current_y, settings->current_z
-#line 4431 "rs274ngc_pre.c"
+#line 4434 "rs274ngc_pre.c"
                 );
             old_cc = r;
         }
@@ -8051,7 +12964,7 @@ static const int _gees[] =
         if (old_cc < r)
         {
             STRAIGHT_TRAVERSE(settings->current_x, r, settings->current_z
-#line 4666 "rs274ngc_pre.c"
+#line 4669 "rs274ngc_pre.c"
                 );
             old_cc = r;
         }
@@ -8398,7 +13311,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 5030 "rs274ngc_pre.c"
+#line 5033 "rs274ngc_pre.c"
         double * parameters;
 
         parameters = settings->parameters;
@@ -8420,13 +13333,13 @@ static const int _gees[] =
         if ((settings->cutter_comp_side != 0)) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 60; } else;
 
         STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 5072 "rs274ngc_pre.c"
+#line 5075 "rs274ngc_pre.c"
             );
         if (move == 280)
         {
             find_relative
                 (parameters[5161], parameters[5162], parameters[5163],
-#line 5086 "rs274ngc_pre.c"
+#line 5089 "rs274ngc_pre.c"
                 &end_x, &end_y, &end_z
 
 
@@ -8445,7 +13358,7 @@ static const int _gees[] =
         {
             find_relative
                 (parameters[5181], parameters[5182], parameters[5183],
-#line 5113 "rs274ngc_pre.c"
+#line 5116 "rs274ngc_pre.c"
                 &end_x, &end_y, &end_z
 
 
@@ -8463,12 +13376,12 @@ static const int _gees[] =
         else
             if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 19; } else;
         STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 5151 "rs274ngc_pre.c"
+#line 5154 "rs274ngc_pre.c"
             );
         settings->current_x = end_x;
         settings->current_y = end_y;
         settings->current_z = end_z;
-#line 5164 "rs274ngc_pre.c"
+#line 5167 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -8839,7 +13752,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 5543 "rs274ngc_pre.c"
+#line 5546 "rs274ngc_pre.c"
 
         if ((((block->x_flag == 0) && (block->y_flag == 0)) && (block->z_flag == 0))) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 192; } else;
 
@@ -8863,7 +13776,7 @@ static const int _gees[] =
 
             );
         if (0
-#line 5575 "rs274ngc_pre.c"
+#line 5578 "rs274ngc_pre.c"
             )
             if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 44; } else;
         distance = sqrt(pow((settings->current_x - end_x), 2) +
@@ -8873,7 +13786,7 @@ static const int _gees[] =
 
         TURN_PROBE_ON();
         STRAIGHT_PROBE(end_x, end_y, end_z
-#line 5605 "rs274ngc_pre.c"
+#line 5608 "rs274ngc_pre.c"
             );
         TURN_PROBE_OFF();
         settings->motion_mode = 382;
@@ -8962,7 +13875,7 @@ static const int _gees[] =
         double x;
         double y;
         double z;
-#line 5702 "rs274ngc_pre.c"
+#line 5705 "rs274ngc_pre.c"
         double * parameters;
         int p_int;
 
@@ -8992,11 +13905,11 @@ static const int _gees[] =
         else
             z = parameters[5203 + (p_int * 20)];
 
-#line 5740 "rs274ngc_pre.c"
+#line 5743 "rs274ngc_pre.c"
 
-#line 5750 "rs274ngc_pre.c"
+#line 5753 "rs274ngc_pre.c"
 
-#line 5760 "rs274ngc_pre.c"
+#line 5763 "rs274ngc_pre.c"
 
    
 
@@ -9009,22 +13922,22 @@ static const int _gees[] =
                 (settings->current_y + settings->origin_offset_y);
             settings->current_z =
                 (settings->current_z + settings->origin_offset_z);
-#line 5793 "rs274ngc_pre.c"
+#line 5796 "rs274ngc_pre.c"
 
             settings->origin_offset_x = x;
             settings->origin_offset_y = y;
             settings->origin_offset_z = z;
-#line 5806 "rs274ngc_pre.c"
+#line 5809 "rs274ngc_pre.c"
 
             settings->current_x = (settings->current_x - x);
             settings->current_y = (settings->current_y - y);
             settings->current_z = (settings->current_z - z);
-#line 5822 "rs274ngc_pre.c"
+#line 5825 "rs274ngc_pre.c"
 
             SET_ORIGIN_OFFSETS(x + settings->axis_offset_x,
                 y + settings->axis_offset_y,
                 z + settings->axis_offset_z
-#line 5847 "rs274ngc_pre.c"
+#line 5850 "rs274ngc_pre.c"
                 );
         }
 
@@ -9201,19 +14114,19 @@ static const int _gees[] =
                 + settings->origin_offset_y + settings->axis_offset_y;
             settings->current_z = settings->current_z
                 + settings->origin_offset_z + settings->axis_offset_z;
-#line 6047 "rs274ngc_pre.c"
+#line 6050 "rs274ngc_pre.c"
 
             settings->origin_index = 1;
             settings->parameters[5220] = 1.0;
             settings->origin_offset_x = settings->parameters[5221];
             settings->origin_offset_y = settings->parameters[5222];
             settings->origin_offset_z = settings->parameters[5223];
-#line 6065 "rs274ngc_pre.c"
+#line 6068 "rs274ngc_pre.c"
 
             settings->axis_offset_x = 0;
             settings->axis_offset_x = 0;
             settings->axis_offset_x = 0;
-#line 6078 "rs274ngc_pre.c"
+#line 6081 "rs274ngc_pre.c"
 
             settings->current_x = settings->current_x -
                 settings->origin_offset_x;
@@ -9221,12 +14134,12 @@ static const int _gees[] =
                 settings->origin_offset_y;
             settings->current_z = settings->current_z -
                 settings->origin_offset_z;
-#line 6106 "rs274ngc_pre.c"
+#line 6109 "rs274ngc_pre.c"
 
             SET_ORIGIN_OFFSETS(settings->origin_offset_x,
                 settings->origin_offset_y,
                 settings->origin_offset_z
-#line 6131 "rs274ngc_pre.c"
+#line 6134 "rs274ngc_pre.c"
                 );
 
               if (settings->plane != 1)
@@ -9359,7 +14272,7 @@ static const int _gees[] =
         double end_x;
         double end_y;
         double end_z;
-#line 6272 "rs274ngc_pre.c"
+#line 6275 "rs274ngc_pre.c"
         int status;
 
         if (move == 10)
@@ -9439,7 +14352,7 @@ static const int _gees[] =
         else if (move == 0)
         {
             STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 6372 "rs274ngc_pre.c"
+#line 6375 "rs274ngc_pre.c"
                 );
             settings->current_x = end_x;
             settings->current_y = end_y;
@@ -9462,7 +14375,7 @@ static const int _gees[] =
 
                     , block, settings);
             STRAIGHT_FEED(end_x, end_y, end_z
-#line 6415 "rs274ngc_pre.c"
+#line 6418 "rs274ngc_pre.c"
                 );
             settings->current_x = end_x;
             settings->current_y = end_y;
@@ -9471,7 +14384,7 @@ static const int _gees[] =
             if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 16; } else;
 
         settings->current_z = end_z;
-#line 6432 "rs274ngc_pre.c"
+#line 6435 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -9518,7 +14431,7 @@ static const int _gees[] =
     double px,                                     
     double py,                                     
     double end_z                                   
-#line 6487 "rs274ngc_pre.c"
+#line 6490 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_straight_comp1";
@@ -9548,7 +14461,7 @@ static const int _gees[] =
         cy = (py + (radius * sin(alpha)));
         if (move == 0)
             STRAIGHT_TRAVERSE(cx, cy, end_z
-#line 6537 "rs274ngc_pre.c"
+#line 6540 "rs274ngc_pre.c"
                 );
         else if (move == 10)
         {
@@ -9568,7 +14481,7 @@ static const int _gees[] =
 
                     , block, settings);
             STRAIGHT_FEED(cx, cy, end_z
-#line 6577 "rs274ngc_pre.c"
+#line 6580 "rs274ngc_pre.c"
                 );
         }
         else
@@ -9660,7 +14573,7 @@ static const int _gees[] =
     double px,                                     
     double py,                                     
     double end_z                                   
-#line 6677 "rs274ngc_pre.c"
+#line 6680 "rs274ngc_pre.c"
     )
     {
         static char name[] = "convert_straight_comp2";
@@ -9686,7 +14599,7 @@ static const int _gees[] =
             end_y = settings->current_y;
             if (move == 0)
                 STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 6723 "rs274ngc_pre.c"
+#line 6726 "rs274ngc_pre.c"
                     );
             else if (move == 10)
             {
@@ -9706,7 +14619,7 @@ static const int _gees[] =
 
                         , block, settings);
                 STRAIGHT_FEED(end_x, end_y, end_z
-#line 6763 "rs274ngc_pre.c"
+#line 6766 "rs274ngc_pre.c"
                     );
             }
             else
@@ -9746,7 +14659,7 @@ static const int _gees[] =
 
             if (move == 0)
                 STRAIGHT_TRAVERSE(end_x, end_y, end_z
-#line 6823 "rs274ngc_pre.c"
+#line 6826 "rs274ngc_pre.c"
                     );
             else if (move == 10)
             {
@@ -9771,10 +14684,10 @@ static const int _gees[] =
                         block, settings);
                     ARC_FEED(mid_x,mid_y,start_x, start_y,((side == 2) ? -1 : 1),
                         settings->current_z
-#line 6868 "rs274ngc_pre.c"
+#line 6871 "rs274ngc_pre.c"
                         );
                     STRAIGHT_FEED(end_x, end_y, end_z
-#line 6891 "rs274ngc_pre.c"
+#line 6894 "rs274ngc_pre.c"
                         );
                 }
                 else
@@ -9795,7 +14708,7 @@ static const int _gees[] =
 
                             , block, settings);
                     STRAIGHT_FEED(end_x, end_y, end_z
-#line 6932 "rs274ngc_pre.c"
+#line 6935 "rs274ngc_pre.c"
                         );
                 }
             }
@@ -10019,15 +14932,15 @@ static const int _gees[] =
 
         if (plane == 1)
             STRAIGHT_FEED(end1, end2, end3
-#line 7176 "rs274ngc_pre.c"
+#line 7179 "rs274ngc_pre.c"
                 );
         else if (plane == 2)
             STRAIGHT_FEED(end3, end1, end2
-#line 7200 "rs274ngc_pre.c"
+#line 7203 "rs274ngc_pre.c"
                     );
         else                                       
             STRAIGHT_FEED(end2, end3, end1
-#line 7224 "rs274ngc_pre.c"
+#line 7227 "rs274ngc_pre.c"
                 );
 
         return 0;
@@ -10067,15 +14980,15 @@ static const int _gees[] =
 
         if (plane == 1)
             STRAIGHT_TRAVERSE(end1, end2, end3
-#line 7284 "rs274ngc_pre.c"
+#line 7287 "rs274ngc_pre.c"
                 );
         else if (plane == 2)
             STRAIGHT_TRAVERSE(end3, end1, end2
-#line 7308 "rs274ngc_pre.c"
+#line 7311 "rs274ngc_pre.c"
                     );
         else                                       
             STRAIGHT_TRAVERSE(end2, end3, end1
-#line 7332 "rs274ngc_pre.c"
+#line 7335 "rs274ngc_pre.c"
                 );
         return 0;
     }
@@ -10126,7 +15039,7 @@ static const int _gees[] =
 
         axis_flag = ((block->x_flag == 1) ||
             (block->y_flag == 1) ||
-#line 7391 "rs274ngc_pre.c"
+#line 7394 "rs274ngc_pre.c"
             (block->z_flag == 1));
         mode_zero_covets_axes = ((block->g_modes[0] == 500) ||
             (block->g_modes[0] == 280) ||
@@ -10369,7 +15282,7 @@ static const int _gees[] =
         }
         if (block->f_number > -1.0)
         {
-    
+   			 
             if (settings->feed_mode == 1);
             else
             {
@@ -10589,7 +15502,7 @@ static const int _gees[] =
     double * px,                                   
     double * py,                                   
     double * pz                                    
-#line 7862 "rs274ngc_pre.c"
+#line 7865 "rs274ngc_pre.c"
     )
     {
         int mode;
@@ -10614,7 +15527,7 @@ static const int _gees[] =
             *pz = (block->z_flag == 1) ? (block->z_number -
                 (settings->tool_length_offset + settings->origin_offset_z
                 + settings->axis_offset_z)) : settings->current_z;
-#line 7920 "rs274ngc_pre.c"
+#line 7923 "rs274ngc_pre.c"
         }
         else if (mode == MODE_ABSOLUTE)
         {
@@ -10628,7 +15541,7 @@ static const int _gees[] =
 
             *pz = (block->z_flag == 1) ? block->z_number     :
             settings->current_z ;
-#line 7954 "rs274ngc_pre.c"
+#line 7957 "rs274ngc_pre.c"
         }
         else                                       
         {
@@ -10646,7 +15559,7 @@ static const int _gees[] =
 
             *pz = (block->z_flag == 1) ?
                 (settings->current_z + block->z_number) : settings->current_z;
-#line 7992 "rs274ngc_pre.c"
+#line 7995 "rs274ngc_pre.c"
         }
         return 0;
     }
@@ -10677,18 +15590,18 @@ static const int _gees[] =
     double x1,                                     
     double y1,                                     
     double z1,                                     
-#line 8031 "rs274ngc_pre.c"
+#line 8034 "rs274ngc_pre.c"
     double * x2,                                   
     double * y2,                                   
     double * z2,                                   
-#line 8043 "rs274ngc_pre.c"
+#line 8046 "rs274ngc_pre.c"
     setup_pointer settings)                        
     {
         *x2 = (x1 - (settings->origin_offset_x + settings->axis_offset_x));
         *y2 = (y1 - (settings->origin_offset_y + settings->axis_offset_y));
         *z2 = (z1 - (settings->tool_length_offset +
             settings->origin_offset_z + settings->axis_offset_z));
-#line 8070 "rs274ngc_pre.c"
+#line 8073 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -10729,21 +15642,21 @@ static const int _gees[] =
     double x2,                                     
     double y2,                                     
     double z2,                                     
-#line 8119 "rs274ngc_pre.c"
+#line 8122 "rs274ngc_pre.c"
     double x1,                                     
     double y1,                                     
     double z1                                      
-#line 8131 "rs274ngc_pre.c"
+#line 8134 "rs274ngc_pre.c"
     )
     {
         if ((x1 != x2) || (y1 != y2) || (z1 != z2) ||
             (1
-#line 8144 "rs274ngc_pre.c"
+#line 8147 "rs274ngc_pre.c"
             ))                                     
             return sqrt(pow((x2 - x1),2) + pow((y2 - y1),2) + pow((z2 - z1),2));
         else
             return sqrt(0 +
-#line 8157 "rs274ngc_pre.c"
+#line 8160 "rs274ngc_pre.c"
                 0);
     }
 
@@ -10835,7 +15748,7 @@ static const int _gees[] =
     block_pointer block)                           
     {
         int n;
-#line 8257 "rs274ngc_pre.c"
+#line 8260 "rs274ngc_pre.c"
         block->comment[0] = 0;
         block->d_number = -1;
         block->f_number = -1.0;
@@ -10994,7 +15907,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z,                                  
-#line 8424 "rs274ngc_pre.c"
+#line 8427 "rs274ngc_pre.c"
     block_pointer block,                           
     setup_pointer settings)                        
     {
@@ -11060,7 +15973,7 @@ static const int _gees[] =
     double end_x,                                  
     double end_y,                                  
     double end_z,                                  
-#line 8498 "rs274ngc_pre.c"
+#line 8501 "rs274ngc_pre.c"
     block_pointer block,                           
     setup_pointer settings)                        
     {
@@ -11136,6 +16049,7 @@ static const int _gees[] =
         if ((status = (read_items(block, line, settings->parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
         if ((status = (enhance_block(block, settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
         if ((status = (check_items (block, settings))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
+
         return 0;
     }
 
@@ -11223,7 +16137,7 @@ static const int _gees[] =
 
 
         if ((status = (read_real_value(line, counter, &value, parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-#line 8668 "rs274ngc_pre.c"
+#line 8672 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -11340,7 +16254,7 @@ static const int _gees[] =
 
 
         if ((status = (read_real_value(line, counter, &value, parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-#line 8792 "rs274ngc_pre.c"
+#line 8796 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -11400,7 +16314,7 @@ static const int _gees[] =
 
 
         if ((status = (read_real_value(line, counter, &value, parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
-#line 8859 "rs274ngc_pre.c"
+#line 8863 "rs274ngc_pre.c"
         return 0;
     }
 
@@ -12206,7 +17120,8 @@ static const int _gees[] =
         char letter;
 
         letter = line[*counter];              
-        if (((letter < 0) || (letter > 'z'))) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 12; } else;
+
+        if ((letter > 'z')) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 12; } else;
         function_pointer = _readers[letter];
         if ((function_pointer == 0)) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 12; } else;
         if ((status = (function_pointer(line, counter, block, parameters))) != 0) { if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return status; } else {return status;} } else;
@@ -12966,7 +17881,7 @@ static const int _gees[] =
 
  
 
-#line 10452 "rs274ngc_pre.c"
+#line 10457 "rs274ngc_pre.c"
 
     
 
@@ -13240,7 +18155,7 @@ static const int _gees[] =
 
  
 
-#line 10750 "rs274ngc_pre.c"
+#line 10755 "rs274ngc_pre.c"
 
     
 
@@ -13273,7 +18188,7 @@ static const int _gees[] =
 
  
 
-#line 10811 "rs274ngc_pre.c"
+#line 10816 "rs274ngc_pre.c"
 
     
 
@@ -13725,11 +18640,11 @@ static const int _gees[] =
         settings->current_x = GET_EXTERNAL_POSITION_X();
         settings->current_y = GET_EXTERNAL_POSITION_Y();
         settings->current_z = GET_EXTERNAL_POSITION_Z();
-#line 11274 "rs274ngc_pre.c"
+#line 11279 "rs274ngc_pre.c"
         settings->parameters[5061] = GET_EXTERNAL_PROBE_POSITION_X();
         settings->parameters[5062] = GET_EXTERNAL_PROBE_POSITION_Y();
         settings->parameters[5063] = GET_EXTERNAL_PROBE_POSITION_Z();
-#line 11289 "rs274ngc_pre.c"
+#line 11294 "rs274ngc_pre.c"
         settings->parameters[5067] = GET_EXTERNAL_PROBE_VALUE();
         return 0;
     }
@@ -14054,7 +18969,7 @@ static const int _gees[] =
         SET_ORIGIN_OFFSETS((pars[k + 1] + pars[5211]),
             (pars[k + 2] + pars[5212]),
             (pars[k + 3] + pars[5213])
-#line 11634 "rs274ngc_pre.c"
+#line 11639 "rs274ngc_pre.c"
             );
         SET_FEED_REFERENCE(2);
 
@@ -14348,6 +19263,18 @@ static const int _gees[] =
         else if (read_status == 3);
         else
             if (_setup . stack_index < 49) { strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return read_status; } else return read_status;
+
+		
+
+
+
+
+ 
+  		if (!QueueIsFull(&qline))
+		{
+			EnQueue(_setup.block1,&qline);
+		}
+
         return read_status;
     }
 
@@ -14535,8 +19462,8 @@ static const int _gees[] =
         FILE * infile;
         FILE * outfile;
         char line[256];
-        int variable;
-        double value;
+
+
         int required;                             
         int index;                                
         int k;
@@ -14563,32 +19490,32 @@ static const int _gees[] =
             {
                 break;
             }
-   
-            if (sscanf(line, "%d %f", &variable, &value) == 2)
-            {
-                if (((variable <= 0) || (variable >= 5400))) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 142; } else;
 
-                for (; k < 5400; k++)
-                {
-                    if (k > variable)
-                        if (1) { _setup . stack_index = 0; strcpy(_setup . stack[_setup . stack_index++], name); _setup . stack[_setup . stack_index][0] = 0; return 141; } else;
-                    else if (k == variable)
-                    {
-                        sprintf(line, "%d\t%f\r\n", k, parameters[k]);
-                        fputs(line, outfile);
-                        if (k == required)
-                            required = _required_parameters[index++];
-                        k++;
-                        break;
-                    }
-                    else if (k == required)       
-                    {
-                        sprintf(line, "%d\t%f\r\n", k, parameters[k]);
-                        fputs(line, outfile);
-                        required = _required_parameters[index++];
-                    }
-                }
-            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
         fclose(infile);
         for (; k < 5400; k++)
@@ -14627,7 +19554,7 @@ static const int _gees[] =
     int rs274ngc_synch()                           
     {
         _setup.control_mode = GET_EXTERNAL_MOTION_CONTROL_MODE();
-#line 12218 "rs274ngc_pre.c"
+#line 12235 "rs274ngc_pre.c"
         _setup.current_slot = GET_EXTERNAL_TOOL_SLOT();
         _setup.current_x = GET_EXTERNAL_POSITION_X();
         _setup.current_y = GET_EXTERNAL_POSITION_Y();

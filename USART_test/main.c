@@ -1,17 +1,3 @@
-/*******************************************************************************
-* File Name          : main.c
-* Author             : POWER AVR
-* Date First Issued  : 08/08/2008
-* Description        : Main program body
-********************************************************************************/
-
-/* Includes ------------------------------------------------------------------*/
-#include "stm32f10x_lib.h"
-#include <stdio.h>
-#include <rtl.h>
-
-
-
 /************************************************************************
 
    Copyright 2008 Mark Pictor
@@ -35,12 +21,13 @@ This software is based on software that was produced by the National
 Institute of Standards and Technology (NIST).
 
 ************************************************************************/
-
-#include "rs274ngc.h"
-#include "rs274ngc_return.h"
+#include <rtl.h>
 #include <stdio.h>                                /* gets, etc. */
 #include <stdlib.h>                               /* exit       */
 #include <string.h>                               /* strcpy     */
+#include <stm32f10x_lib.h>
+#include "rs274ngc.h"
+#include "rs274ngc_return.h"
 
 extern CANON_TOOL_TABLE _tools[];                 /* in canon.cc */
 extern int _tool_max;                             /* in canon.cc */
@@ -48,8 +35,8 @@ extern char _parameter_file_name[];               /* in canon.cc */
 
 FILE * _outfile;                                  /* where to print, set in main */
 
-#define Line_Length 256
 
+#define Line_Length 256
 /*
 
 This file contains the source code for an emulation of using the six-axis
@@ -163,7 +150,7 @@ char _nc_code_buffer[]=
 "%"};
 
 volatile int gAllChar;
-volatile int gNowChar=0;
+volatile int gNowCount=0;
 
 int interpret_from_keyboard(                      /* ARGUMENTS                 */
 int block_delete,                                 /* switch which is ON or OFF */
@@ -178,9 +165,9 @@ int print_stack)                                  /* option which is ON or OFF *
     {
 		while(1)
 		{	
-			temp =  _nc_code_buffer[gNowChar];
-			gNowChar = gNowChar + 1;
-			if(gNowChar<strlen(_nc_code_buffer))
+			temp =  _nc_code_buffer[gNowCount];
+			gNowCount = gNowCount + 1;
+			if(gNowCount<strlen(_nc_code_buffer))
 			{
 				if(temp=='%')
 				{
@@ -193,7 +180,7 @@ int print_stack)                                  /* option which is ON or OFF *
 					{
 						for(;count<RS274NGC_TEXT_SIZE;count++)			
 						{
-							line[count]='\0';
+							line[count]='\0';	/*将数组line中count与RS274NGC_TEXT_SIZE之间的空间填充为‘\0’*/
 						}
 						count=0;
 						break;
@@ -208,6 +195,7 @@ int print_stack)                                  /* option which is ON or OFF *
         if (strcmp (line, "quit") IS 0)
             return 0;
         status SET_TO rs274ngc_read(line);
+		
         if ((status IS RS274NGC_EXECUTE_FINISH) AND (block_delete IS ON));
         else if (status IS RS274NGC_ENDFILE);
         else if ((status ISNT RS274NGC_EXECUTE_FINISH) AND

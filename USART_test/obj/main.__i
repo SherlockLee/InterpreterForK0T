@@ -1,1 +1,0 @@
--c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections --asm --interleave --asm_dir ".\\listing\\" -I..\..\library\inc -I..\..\library\src -I..\uvsion -I "f:\Keil\ARM\CMSIS\Include" -I "f:\Keil\ARM\INC\ST\STM32F10x" -o ".\obj\main.o" --list_dir ".\\listing\\" --list --omf_browse ".\obj\main.crf" --depend ".\obj\main.d" "main.c"

@@ -456,6 +456,16 @@
               <FileType>1</FileType>
               <FilePath>.\rs274ngc_pre.c</FilePath>
             </File>
+            <File>
+              <FileName>Queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>Queue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Queue.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

@@ -1,1 +1,0 @@
-"main.c" -E -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I..\..\library\inc -I..\..\library\src -I..\uvsion -I "f:\Keil\ARM\CMSIS\Include" -I "f:\Keil\ARM\INC\ST\STM32F10x" -o ".\listing\main.i" --list_dir ".\\listing\\" --list

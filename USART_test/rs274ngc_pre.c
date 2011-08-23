@@ -118,14 +118,14 @@
    */
 
    /****************************************************************************/
-
-#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
-#include "rs274ngc.h"
+#include <stm32f10x_lib.h>
+#include "Queue.h"
 #include "rs274ngc_return.h"
+
 
 char * _rs274ngc_errors[] =
 {
@@ -329,6 +329,9 @@ char * _rs274ngc_errors[] =
     /* 197 */ "Zero radius arc", // arc_data_ijk
     "The End"
 };
+
+Queue qline;										  	/*声明一个处于读取与执行间的环形队列*/
+Item item;										  		/*声明一个队列中的一个节点变量*/
 
 #define DEBUG_EMC
 
@@ -7630,7 +7633,7 @@ repeat--) \
         }
         if (block->f_number > -1.0)
         {
-   /* handle elsewhere */
+   			/* handle elsewhere */
             if (settings->feed_mode IS INVERSE_TIME);
             else
             {
@@ -8570,6 +8573,7 @@ repeat--) \
         CHP(read_items(block, line, settings->parameters));
         CHP(enhance_block(block, settings));
         CHP(check_items (block, settings));
+
         return RS274NGC_OK;
     }
 
@@ -9661,7 +9665,8 @@ repeat--) \
         char letter;
 
         letter SET_TO line[*counter];             /* check if in array range */
-        CHK(((letter < 0) OR (letter > 'z')), NCE_BAD_CHARACTER_USED);
+//        CHK(((letter < 0) OR (letter > 'z')), NCE_BAD_CHARACTER_USED);
+        CHK((letter > 'z'), NCE_BAD_CHARACTER_USED);
         function_pointer SET_TO _readers[letter];
         CHK((function_pointer IS 0), NCE_BAD_CHARACTER_USED);
         CHP(function_pointer(line, counter, block, parameters));
@@ -11924,6 +11929,18 @@ repeat--) \
         else if (read_status IS RS274NGC_ENDFILE);
         else
             ERP(read_status);
+
+		/*--------------------环形队列--------------------
+		在这里添加一个环形队列，用来进行提前解释，初步设定队列长度为10
+		当编辑缓冲区中仍有数据且队列长度小于10时不进行译码操作，当且仅当队列长度等于10时开始执行队列中已读取的程序段;
+		当编辑缓冲区中没有数据时，无论队列长度为多少，均执行队列中已读取的程序段。
+
+		*/
+  		if (!QueueIsFull(&qline))
+		{
+			EnQueue(_setup.block1,&qline);
+		}
+
         return read_status;
     }
 
@@ -12111,8 +12128,8 @@ repeat--) \
         FILE * infile;
         FILE * outfile;
         char line[256];
-        int variable;
-        double value;
+//        int variable;
+//        double value;
         int required;                             // number of next required parameter
         int index;                                // index into _required_parameters
         int k;
@@ -12139,32 +12156,32 @@ repeat--) \
             {
                 break;
             }
-   // try for a variable-value match
-            if (sscanf(line, "%d %f", &variable, &value) IS 2)
-            {
-                CHK(((variable <= 0) OR (variable >= RS274NGC_MAX_PARAMETERS)),
-                    NCE_PARAMETER_NUMBER_OUT_OF_RANGE);
-                for (; k < RS274NGC_MAX_PARAMETERS; k++)
-                {
-                    if (k > variable)
-                        ERM(NCE_PARAMETER_FILE_OUT_OF_ORDER);
-                    else if (k IS variable)
-                    {
-                        sprintf(line, "%d\t%f\r\n", k, parameters[k]);
-                        fputs(line, outfile);
-                        if (k IS required)
-                            required SET_TO _required_parameters[index++];
-                        k++;
-                        break;
-                    }
-                    else if (k IS required)       // know (k < variable)
-                    {
-                        sprintf(line, "%d\t%f\r\n", k, parameters[k]);
-                        fputs(line, outfile);
-                        required SET_TO _required_parameters[index++];
-                    }
-                }
-            }
+// try for a variable-value match
+//            if (sscanf(line, "%d %f", &variable, &value) IS 2)
+//            {
+//                CHK(((variable <= 0) OR (variable >= RS274NGC_MAX_PARAMETERS)),
+//                    NCE_PARAMETER_NUMBER_OUT_OF_RANGE);
+//                for (; k < RS274NGC_MAX_PARAMETERS; k++)
+//                {
+//                    if (k > variable)
+//                        ERM(NCE_PARAMETER_FILE_OUT_OF_ORDER);
+//                    else if (k IS variable)
+//                    {
+//                        sprintf(line, "%d\t%f\r\n", k, parameters[k]);
+//                        fputs(line, outfile);
+//                        if (k IS required)
+//                            required SET_TO _required_parameters[index++];
+//                        k++;
+//                        break;
+//                    }
+//                    else if (k IS required)       // know (k < variable)
+//                    {
+//                        sprintf(line, "%d\t%f\r\n", k, parameters[k]);
+//                        fputs(line, outfile);
+//                        required SET_TO _required_parameters[index++];
+//                    }
+//                }
+//            }
         }
         fclose(infile);
         for (; k < RS274NGC_MAX_PARAMETERS; k++)

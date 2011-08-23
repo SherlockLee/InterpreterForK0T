@@ -7,15 +7,16 @@
 ### List of Objects: adding '"..\common\STM32F10xR.LIB"'
 ### List of Objects: adding '".\obj\canon_pre.o"'
 ### List of Objects: adding '".\obj\rs274ngc_pre.o"'
+### List of Objects: adding '".\obj\queue.o"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 ".\obj\stm32f10x.o" ".\obj\main.o" ".\obj\stm32f10x_it.o" "..\common\STM32F10xR.LIB" ".\obj\canon_pre.o" ".\obj\rs274ngc_pre.o" --library_type=microlib --strict --scatter ".\obj\InterpreterForK0T.sct" 
+--cpu Cortex-M3 ".\obj\stm32f10x.o" ".\obj\main.o" ".\obj\stm32f10x_it.o" "..\common\STM32F10xR.LIB" ".\obj\canon_pre.o" ".\obj\rs274ngc_pre.o" ".\obj\queue.o" --library_type=microlib --strict --scatter ".\obj\InterpreterForK0T.sct" 
 --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\listing\InterpreterForK0T.map" -o ".\obj\InterpreterForK0T.axf"### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: '.\obj\InterpreterForK0T.axf'
 ### ADS-LD Command File: '.\obj\InterpreterForK0T.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\obj\InterpreterForK0T.lnp', Handle=0x00000460
+### Creating CmdFile '.\obj\InterpreterForK0T.lnp', Handle=0x00000C08
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\obj\InterpreterForK0T.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

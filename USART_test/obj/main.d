@@ -1,4 +1,8 @@
 .\obj\main.o: main.c
+.\obj\main.o: f:\Keil\ARM\RV31\INC\rtl.h
+.\obj\main.o: f:\Keil\ARM\RV31\INC\stdio.h
+.\obj\main.o: f:\Keil\ARM\RV31\INC\stdlib.h
+.\obj\main.o: f:\Keil\ARM\RV31\INC\string.h
 .\obj\main.o: f:\Keil\ARM\INC\ST\STM32F10x\stm32f10x_lib.h
 .\obj\main.o: f:\Keil\ARM\INC\ST\STM32F10x\stm32f10x_map.h
 .\obj\main.o: f:\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h
@@ -27,10 +31,6 @@
 .\obj\main.o: f:\Keil\ARM\INC\ST\STM32F10x\stm32f10x_tim.h
 .\obj\main.o: f:\Keil\ARM\INC\ST\STM32F10x\stm32f10x_usart.h
 .\obj\main.o: f:\Keil\ARM\INC\ST\STM32F10x\stm32f10x_wwdg.h
-.\obj\main.o: f:\Keil\ARM\RV31\INC\stdio.h
-.\obj\main.o: f:\Keil\ARM\RV31\INC\rtl.h
 .\obj\main.o: rs274ngc.h
 .\obj\main.o: canon.h
 .\obj\main.o: rs274ngc_return.h
-.\obj\main.o: f:\Keil\ARM\RV31\INC\stdlib.h
-.\obj\main.o: f:\Keil\ARM\RV31\INC\string.h

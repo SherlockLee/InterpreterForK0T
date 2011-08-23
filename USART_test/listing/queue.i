@@ -1,386 +1,12 @@
-#line 1 "main.c"
+#line 1 "Queue.c"
+#line 1 "Queue.h"
 
 
 
+    
+    
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-#line 1 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
- 
-
- 
-
-
-#line 27 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-
-
-
-
-
-
- typedef unsigned int   size_t;
-
-
-typedef signed char     S8;
-typedef unsigned char   U8;
-typedef short           S16;
-typedef unsigned short  U16;
-typedef int             S32;
-typedef unsigned int    U32;
-typedef long long       S64;
-typedef unsigned long long U64;
-typedef unsigned char   BIT;
-typedef unsigned int    BOOL;
-
-#line 54 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-#line 66 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-
-
- 
-
-
-
-
-
- 
-typedef U32 OS_SEM[2];
-
- 
-
-typedef U32 OS_MBX[];
-
- 
-typedef U32 OS_MUT[3];
-
- 
-typedef U32 OS_TID;
-
- 
-typedef void *OS_ID;
-
- 
-typedef U32 OS_RESULT;
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-#line 194 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-
-
- 
-
-
-
- 
-extern void      os_set_env    (void);
-extern void      rt_sys_init   (void (*task)(void), U8 priority, void *stk);
-extern void      rt_tsk_pass   (void);
-extern OS_TID    rt_tsk_self   (void);
-extern OS_RESULT rt_tsk_prio   (OS_TID task_id, U8 new_prio);
-extern OS_TID    rt_tsk_create (void (*task)(void), U8 priority, void *stk, void *argv);
-extern OS_RESULT rt_tsk_delete (OS_TID task_id);
-
-#line 230 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
-extern void      _os_sys_init(U32 p, void (*task)(void), U32 prio_stksz,
-                                     void *stk)                        __svc_indirect(0);
-extern OS_TID    _os_tsk_create (U32 p, void (*task)(void), U32 prio_stksz,
-                                        void *stk, void *argv)         __svc_indirect(0);
-extern OS_TID    _os_tsk_create_ex (U32 p, void (*task)(void *), U32 prio_stksz,
-                                           void *stk, void *argv)      __svc_indirect(0);
-extern OS_TID    _os_tsk_self (U32 p)                                  __svc_indirect(0);
-extern void      _os_tsk_pass (U32 p)                                  __svc_indirect(0);
-extern OS_RESULT _os_tsk_prio (U32 p, OS_TID task_id, U8 new_prio)     __svc_indirect(0);
-extern OS_RESULT _os_tsk_delete (U32 p, OS_TID task_id)                __svc_indirect(0);
-
- 
-extern OS_RESULT rt_evt_wait (U16 wait_flags,  U16 timeout, BOOL and_wait);
-extern void      rt_evt_set  (U16 event_flags, OS_TID task_id);
-extern void      rt_evt_clr  (U16 clear_flags, OS_TID task_id);
-extern U16       rt_evt_get  (void);
-
-
-
-
-
-
-
-extern OS_RESULT _os_evt_wait(U32 p, U16 wait_flags, U16 timeout,
-                                     BOOL and_wait)                    __svc_indirect(0);
-extern void      _os_evt_set (U32 p, U16 event_flags, OS_TID task_id)  __svc_indirect(0);
-extern void      _os_evt_clr (U32 p, U16 clear_flags, OS_TID task_id)  __svc_indirect(0);
-extern U16       _os_evt_get (U32 p)                                   __svc_indirect(0);
-extern void      isr_evt_set (U16 event_flags, OS_TID task_id);
-
- 
-extern void      rt_sem_init (OS_ID semaphore, U16 token_count);
-extern OS_RESULT rt_sem_send (OS_ID semaphore);
-extern OS_RESULT rt_sem_wait (OS_ID semaphore, U16 timeout);
-
-
-
-
-
-extern void      _os_sem_init (U32 p, OS_ID semaphore, 
-                                      U16 token_count)                 __svc_indirect(0);
-extern OS_RESULT _os_sem_send (U32 p, OS_ID semaphore)                 __svc_indirect(0);
-extern OS_RESULT _os_sem_wait (U32 p, OS_ID semaphore, U16 timeout)    __svc_indirect(0);
-extern void      isr_sem_send (OS_ID semaphore);
-
- 
-extern void      rt_mbx_init  (OS_ID mailbox, U16 mbx_size);
-extern OS_RESULT rt_mbx_send  (OS_ID mailbox, void *p_msg,    U16 timeout);
-extern OS_RESULT rt_mbx_wait  (OS_ID mailbox, void **message, U16 timeout);
-extern OS_RESULT rt_mbx_check (OS_ID mailbox);
-
-
-
-
-
-
-
-extern void      _os_mbx_init (U32 p, OS_ID mailbox, U16 mbx_size)     __svc_indirect(0);
-extern OS_RESULT _os_mbx_send (U32 p, OS_ID mailbox, void *message_ptr,
-                                      U16 timeout)                     __svc_indirect(0);
-extern OS_RESULT _os_mbx_wait (U32 p, OS_ID mailbox, void  **message,
-                                      U16 timeout)                     __svc_indirect(0);
-extern OS_RESULT _os_mbx_check (U32 p, OS_ID mailbox)                  __svc_indirect(0);
-extern void      isr_mbx_send (OS_ID mailbox, void *message_ptr);
-extern OS_RESULT isr_mbx_receive (OS_ID mailbox, void **message);
-
- 
-extern void      rt_mut_init    (OS_ID mutex);
-extern OS_RESULT rt_mut_release (OS_ID mutex);
-extern OS_RESULT rt_mut_wait    (OS_ID mutex, U16 timeout);
-
-
-
-
-
-extern void      _os_mut_init (U32 p, OS_ID mutex)                     __svc_indirect(0);
-extern OS_RESULT _os_mut_release (U32 p, OS_ID mutex)                  __svc_indirect(0);
-extern OS_RESULT _os_mut_wait (U32 p, OS_ID mutex, U16 timeout)        __svc_indirect(0);
-
- 
-extern void      rt_dly_wait (U16 delay_time);
-extern void      rt_itv_set  (U16 interval_time);
-extern void      rt_itv_wait (void);
-
-
-
-
-
-extern void      _os_dly_wait (U32 p, U16 delay_time)                  __svc_indirect(0);
-extern void      _os_itv_set (U32 p, U16 interval_time)                __svc_indirect(0);
-extern void      _os_itv_wait (U32 p)                                  __svc_indirect(0);
-
- 
-extern OS_ID     rt_tmr_create (U16 tcnt, U16 info);
-extern OS_ID     rt_tmr_kill   (OS_ID timer);
-
-
-
-
-extern OS_ID     _os_tmr_create (U32 p, U16 tcnt, U16 info)            __svc_indirect(0);
-extern OS_ID     _os_tmr_kill (U32 p, OS_ID timer)                     __svc_indirect(0);
-
- 
-extern void      rt_tsk_lock   (void);
-extern void      rt_tsk_unlock (void);
-
-
-
-
-extern void      _os_tsk_lock (U32 p)                                  __svc_indirect(0);
-extern void      _os_tsk_unlock (U32 p)                                __svc_indirect(0);
-
- 
-extern int       _init_box (void *box_mem, U32 box_size, U32 blk_size);
-extern void     *_alloc_box (void *box_mem);
-extern void     *_calloc_box (void *box_mem);
-extern int       _free_box (void *box_mem, void *box);
-
-
-
-
-
-
-
-
- 
-
-
-
-
- 
-
-typedef struct {                         
-  U8  hr;                                
-  U8  min;                               
-  U8  sec;                               
-  U8  day;                               
-  U8  mon;                               
-  U16 year;                              
-} RL_TIME;
-
-typedef struct {                         
-  S8  name[256];                         
-  U32 size;                              
-  U16 fileID;                            
-  U8  attrib;                            
-  RL_TIME time;                          
-} FINFO;
-
-extern int finit (const char *drive);
-extern int funinit (const char *drive);
-extern int fdelete (const char *filename);
-extern int frename (const char *oldname, const char *newname);
-extern int ffind (const char *pattern, FINFO *info);
-extern U64 ffree (const char *drive);
-extern int fformat (const char *drive);
-extern int fanalyse (const char *drive);
-extern int fcheck (const char *drive);
-extern int fdefrag (const char *drive);
-
- 
-
-
-
-
- 
-
- 
-
-
-
- 
-#line 409 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
- 
-#line 417 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
- 
-#line 430 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
- 
-
-
-
-
-
- 
-#line 444 "f:\\Keil\\ARM\\RV31\\INC\\rtl.h"
-
- 
-
-
-
-
- 
-
-
-
-extern void init_TcpNet (void);
-extern void main_TcpNet (void);
-extern void timer_tick (void);
-extern U8   udp_get_socket (U8 tos, U8 opt, 
-                            U16 (*listener)(U8 socket, U8 *remip, U16 port, U8 *buf, U16 len));
-extern BOOL udp_release_socket (U8 socket);
-extern BOOL udp_open (U8 socket, U16 locport);
-extern BOOL udp_close (U8 socket);
-extern BOOL udp_mcast_ttl (U8 socket, U8 ttl);
-extern U8  *udp_get_buf (U16 size);
-extern BOOL udp_send (U8 socket, U8 *remip, U16 remport, U8 *buf, U16 dlen);
-extern U8   tcp_get_socket (U8 type, U8 tos, U16 tout,
-                            U16 (*listener)(U8 socket, U8 event, U8 *buf, U16 len));
-extern BOOL tcp_release_socket (U8 socket);
-extern BOOL tcp_listen (U8 socket, U16 locport);
-extern BOOL tcp_connect (U8 socket, U8 *remip, U16 remport, U16 locport);
-extern U8  *tcp_get_buf (U16 size);
-extern U16  tcp_max_dsize (U8 socket);
-extern BOOL tcp_check_send (U8 socket);
-extern U8   tcp_get_state (U8 socket);
-extern BOOL tcp_send (U8 socket, U8 *buf, U16 dlen);
-extern BOOL tcp_close (U8 socket);
-extern BOOL tcp_abort (U8 socket);
-extern void tcp_reset_window (U8 socket);
-extern BOOL arp_cache_ip (U8 *ipadr, U8 type);
-extern void ppp_listen (char const *user, char const *passw);
-extern void ppp_connect (char const *dialnum, char const *user, char const *passw);
-extern void ppp_close (void);
-extern BOOL ppp_is_up (void);
-extern void slip_listen (void);
-extern void slip_connect (char const *dialnum);
-extern void slip_close (void);
-extern BOOL slip_is_up (void);
-extern U8   get_host_by_name (U8 *hostn, void (*cbfunc)(U8 event, U8 *host_ip));
-extern BOOL smtp_connect (U8 *ipadr, U16 port, void (*cbfunc)(U8 event));
-extern void dhcp_disable (void);
-extern BOOL igmp_join (U8 *group_ip);
-extern BOOL igmp_leave (U8 *group_ip);
-extern BOOL snmp_trap (U8 *manager_ip, U8 gen_trap, U8 spec_trap, U16 *obj_list);
-extern BOOL snmp_set_community (const char *community);
-
-
-
-
-
-
- 
-  
-
- 
-#line 25 "main.c"
 #line 1 "f:\\Keil\\ARM\\RV31\\INC\\stdio.h"
  
  
@@ -1228,7 +854,7 @@ extern __declspec(__nothrow) void __use_no_semihosting(void);
 
 
  
-#line 26 "main.c"
+#line 9 "Queue.h"
 #line 1 "f:\\Keil\\ARM\\RV31\\INC\\stdlib.h"
  
  
@@ -1950,7 +1576,7 @@ extern __declspec(__nothrow) int __C_library_version_number(void);
 
 
  
-#line 27 "main.c"
+#line 10 "Queue.h"
 #line 1 "f:\\Keil\\ARM\\RV31\\INC\\string.h"
  
  
@@ -2371,7 +1997,7 @@ extern __declspec(__nothrow) void _membitmovewb(void *  , const void *  , int  ,
 
 
  
-#line 28 "main.c"
+#line 11 "Queue.h"
 #line 1 "f:\\Keil\\ARM\\INC\\ST\\STM32F10x\\stm32f10x_lib.h"
 
 
@@ -7213,7 +6839,7 @@ void debug(void);
 
 
  
-#line 29 "main.c"
+#line 12 "Queue.h"
 #line 1 "rs274ngc.h"
    
 
@@ -8292,922 +7918,210 @@ extern int rs274ngc_sequence_number(void);
 extern void rs274ngc_stack_name(int stack_index, char * function_name,
 int max_size);
 
-#line 30 "main.c"
-#line 1 "rs274ngc_return.h"
-   
+#line 13 "Queue.h"
+
+
+typedef block Item;
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-#line 226 "rs274ngc_return.h"
-
-#line 31 "main.c"
-
-extern CANON_TOOL_TABLE _tools[];                  
-extern int _tool_max;                              
-extern char _parameter_file_name[];                
-
-FILE * _outfile;                                   
-
-
-
-
-
-
-
-
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-void report_error(                                 
-int error_code,                                    
-int print_stack)                                   
+typedef struct node
 {
-    char buffer[256];
-    int k;
+	Item item;
+	struct node * next;
+}Node;
 
-    rs274ngc_error_text(error_code, buffer, 5);    
-    rs274ngc_error_text(error_code, buffer, 256);
-    fprintf((& __stderr), "%s\r\n",
-        ((buffer[0] == 0) ? "Unknown error, bad error code" : buffer));
-    rs274ngc_line_text(buffer, 256);
-    fprintf((& __stderr), "%s\r\n", buffer);
-    if (print_stack == 1)
-    {
-        for (k = 0; ; k++)
-        {
-            rs274ngc_stack_name(k, buffer, 256);
-            if (buffer[0] != 0)
-                fprintf((& __stderr), "%s\r\n", buffer);
-            else
-                break;
-        }
-    }
+typedef struct queue
+{
+	Node *front;		 
+	Node *rear;			 
+	int items;			 
+}Queue;
+
+ 
+ 
+ 
+extern void InitializeQueue(Queue *pq);
+
+ 
+ 
+ 
+extern bool QueueIsFull(const Queue *pq);
+
+ 
+ 
+ 
+extern bool QueueIsEmpty(const Queue *pq);
+
+ 
+ 
+ 
+extern int QueueItemCount(const Queue *pq);
+
+ 
+ 
+ 
+extern bool EnQueue(Item item,Queue *pq);
+
+ 
+ 
+ 
+extern bool DeQueue(Item *pitem,Queue *pq);
+
+ 
+ 
+ 
+extern void EmptyTheQueue(Queue *pq);
+#line 2 "Queue.c"
+
+static void CopyToNode(Item item,Node *pn);
+static void CopyToItem(Node *pn,Item *pi);
+
+void InitializeQueue(Queue *pq)
+{
+	pq->front=pq->rear=0;
+	pq->items=0;
 }
 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-char _nc_code_buffer[]=
+bool QueueIsFull(const Queue *pq)
 {
-
-
-"n0010 G50 L2 P1 X 3.5 Y 17.2;"
-"n0020 G98;"
-"n0030 G99;"
-"%"};
-
-volatile int gAllChar;
-volatile int gNowCount=0;
-
-int interpret_from_keyboard(                       
-int block_delete,                                  
-int print_stack)                                   
-{
-    char line[256];
-    int status;
-	char temp;
-	u16 count=0;
-
-    for(; ;)
-    {
-		while(1)
-		{	
-			temp =  _nc_code_buffer[gNowCount];
-			gNowCount = gNowCount + 1;
-			if(gNowCount<strlen(_nc_code_buffer))
-			{
-				if(temp=='%')
-				{
-					
-					break;
-				}
-				else
-				{
-					if(temp==';')
-					{
-						for(;count<256;count++)			
-						{
-							line[count]='\0';	 
-						}
-						count=0;
-						break;
-					}
-					else
-					{
-						line[count++]=temp;
-					}
-				}
-			}
-		}
-        if (strcmp (line, "quit") == 0)
-            return 0;
-        status = rs274ngc_read(line);
-		
-        if ((status == 2) && (block_delete == 1));
-        else if (status == 3);
-        else if ((status != 2) &&
-            (status != 0))
-            report_error(status, print_stack);
-        else
-        {
-            status = rs274ngc_execute();    
-            if ((status == 1) ||
-                (status == 2));
-            else if (status != 0)
-                report_error(status, print_stack);
-        }
-    }
-}
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-int interpret_from_file(                           
-int do_next,                                       
-int block_delete,                                  
-int print_stack)                                   
-{
-    int status;
-    char line[256];
-
-    for(; ;)
-    {
-        status = rs274ngc_read(0);
-        if ((status == 2) && (block_delete == 1))
-            continue;
-        else if (status == 3)
-            break;
-        if ((status != 0) &&         
-            (status != 2))
-        {
-            report_error(status, print_stack);
-            if ((status == 80) ||
-                (do_next == 2))                    
-            {
-                status = 1;
-                break;
-            }
-            else if (do_next == 1)                 
-            {
-                fprintf((& __stderr), "starting MDI\r\n");
-                interpret_from_keyboard(block_delete, print_stack);
-                fprintf((& __stderr), "continue program? y/n =>");
-                gets(line);
-                if (line[0] != 'y')
-                {
-                    status = 1;
-                    break;
-                }
-                else
-                    continue;
-            }
-            else                                   
-                continue;
-        }
-        status = rs274ngc_execute();
-        if ((status != 0) &&
-            (status != 1) &&
-            (status != 2))
-        {
-            report_error(status, print_stack);
-            status = 1;
-            if (do_next == 1)                      
-            {
-                fprintf((& __stderr), "starting MDI\r\n");
-                interpret_from_keyboard(block_delete, print_stack);
-                fprintf((& __stderr), "continue program? y/n =>");
-                gets(line);
-                if (line[0] != 'y')
-                    break;
-            }
-            else if (do_next == 2)                 
-                break;
-        }
-        else if (status == 1)
-            break;
-    }
-    return ((status == 1) ? 1 : 0);
-}
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-int read_tool_file(                                
-char * file_name)                                  
-{
-
-
-		int slot;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	    for (slot = 0; slot <= _tool_max; slot++) 
-	    {
-	        _tools[slot].id = -1;
-	        _tools[slot].length = 0;
-	        _tools[slot].diameter = 0;
-	    }
-
-        _tools[5].id = 5;
-        _tools[5].length = 1.5;
-        _tools[5].diameter = 0.25;
-
-
-
-    return 0;
-}
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-int designate_parameter_file(char * file_name)
-{
-    FILE * test_port;
-
-    fprintf((& __stderr), "name of parameter file => ");
-    gets(file_name);
-    test_port = fopen(file_name, "r");
-    if (test_port == 0)
-    {
-        fprintf((& __stderr), "Cannot open %s\r\n", file_name);
-        return 1;
-    }
-    fclose(test_port);
-    return 0;
-}
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-int adjust_error_handling(
-int args,
-int * print_stack,
-int * do_next)
-{
-    char buffer[80];
-    int choice;
-
-    for(;;)
-    {
-        fprintf((& __stderr), "enter a number:\r\n");
-        fprintf((& __stderr), "1 = done with error handling\r\n");
-        fprintf((& __stderr), "2 = %sprint stack on error\r\n",
-            ((*print_stack == 1) ? "do not " : ""));
-        if (args == 3)
-        {
-            if (*do_next == 0)                     
-                fprintf((& __stderr),
-                    "3 = stop on error (do not continue)\r\n");
-            else                                   
-                fprintf((& __stderr),
-                    "3 = continue on error (do not stop)\r\n");
-        }
-        else if (args == 2)
-        {
-            if (*do_next == 0)                     
-                fprintf((& __stderr),
-                    "3 = mdi on error (do not continue or stop)\r\n");
-            else if (*do_next == 1)                
-                fprintf((& __stderr),
-                        "3 = stop on error (do not mdi or continue)\r\n");
-            else                                   
-                fprintf((& __stderr),
-                    "3 = continue on error (do not stop or mdi)\r\n");
-        }
-        fprintf((& __stderr), "enter choice => ");
-        gets(buffer);
-        if (sscanf(buffer, "%d", &choice) != 1)
-            continue;
-        if (choice == 1)
-            break;
-        else if (choice == 2)
-            *print_stack = ((*print_stack == 0) ? 1 : 0);
-        else if ((choice == 3) && (args == 3))
-            *do_next = ((*do_next == 0) ? 2 : 0);
-        else if ((choice == 3) && (args == 2))
-            *do_next = ((*do_next == 2) ? 0 : (*do_next + 1));
-    }
-    return 0;
-}
-
-
-    
-
-
- 
- 
- 
- 
-ErrorStatus HSEStartUpStatus;
-
- 
-void RCC_Configuration(void);
-void NVIC_Configuration(void);
-void GPIO_Configuration(void);
-void USART_Configuration(void);
-
- 
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
- 
-
-int main(int argc, char ** argv)
-{  
- 
-	int status;
-	int choice;
-	int do_next;                                   
-	int block_delete;
-	int tool_flag;
-	int gees[12];
-	int ems[7];
-	double sets[3];
-	char default_name[] = "rs274ngc.var";
-	int print_stack;
- 	
-	
-	
-   
-   
-
-
-
-
-	 
-	RCC_Configuration();
-	
-	 
-	NVIC_Configuration();
-	
-	 
-	GPIO_Configuration();
-	
-	 
-	USART_Configuration();
-	
-	
-	
-	
-
-    
- 
-  	
-
-
-
-
-
-
-
-
- 
-	choice=1;
-
-	do_next = 2;                              
-	block_delete = 0;
-	print_stack = 0;
-	tool_flag = 0;
-	strcpy(_parameter_file_name, default_name);
-	_outfile = (& __stdout);                        
-	
-	for(; ;)
+	if(pq->items == 10)
 	{
-	    fprintf((& __stderr), "\r\nenter a number:\r\n");
-	    fprintf((& __stderr), "1 = start interpreting\r\n");
-	    fprintf((& __stderr), "2 = choose parameter file ...\r\n");
-	    fprintf((& __stderr), "3 = read tool file ...\r\n");
-	    fprintf((& __stderr), "4 = turn block delete switch %s\r\n",
-	        ((block_delete == 0) ? "ON" : "OFF"));
-	    fprintf((& __stderr), "5 = adjust error handling...\r\n");
-	    fprintf((& __stderr), "enter choice => 1\r\n");
-	    
-	    
-	    
-	    if (choice == 1)
-	        break;
-	    else if (choice == 2)
-	    {
-	        if (designate_parameter_file(_parameter_file_name) != 0)
-				return 1;
- 
-	    }
-	    else if (choice == 3)
-	    {
-	        if (read_tool_file("") != 0)
-				return 1;
- 
-	        tool_flag = 1;
-	    }
-	    else if (choice == 4)
-	        block_delete = ((block_delete == 0) ? 1 : 0);
-	    else if (choice == 5)
-	        adjust_error_handling(argc, &print_stack, &do_next);
+		return TRUE;
 	}
-	fprintf((& __stderr), "executing\r\n");
-	if (tool_flag == 0)
+	return FALSE;
+}
+
+bool QueueIsEmpty(const Queue *pq)
+{
+	if(pq->items == 0)
 	{
-	    if (read_tool_file("rs274ngc.tool_default") != 0)
-			return 1;
- 
+		return TRUE;
+	}
+	return FALSE;
+}
+
+int QueueItemCount(const Queue *pq)
+{
+	return (pq->items);
+}
+
+bool EnQueue(Item item,Queue *pq)
+{
+	Node *pnew;
+	if (QueueIsFull(pq))
+	{
+		return FALSE;
 	}
 	
-	if (argc == 3)
+	pnew=(Node *)malloc(sizeof(Node));
+	if (pnew == 0)
 	{
-	    _outfile = fopen(argv[2], "w");
-	    if (_outfile == 0)
-	    {
-	        fprintf((& __stderr), "could not open output file %s\r\n", argv[2]);
-			return 1;
- 
-	    }
+		fprintf((& __stderr),"Unable to allocate memory!\n");
+		return FALSE;
 	}
-	
-	if ((status = rs274ngc_init()) != 0)
+	CopyToNode(item,pnew);
+	pnew->next = 0;
+	if (QueueIsEmpty(pq))
 	{
-	    report_error(status, print_stack);
-		return 1;
- 
+		pq->front = pnew;		
+	} 
+	else
+	{
+		pq->rear->next = pnew;	
 	}
-	
-
-	    status = interpret_from_keyboard(block_delete, print_stack);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	rs274ngc_line_length();                        
-	rs274ngc_sequence_number();                    
-	rs274ngc_active_g_codes(gees);                 
-	rs274ngc_active_m_codes(ems);                  
-	rs274ngc_active_settings(sets);                
-	rs274ngc_exit();                               
-	return(status);
- 
- 
-
-
-
-
-
-
-
-
- 
+	pq->rear=pnew;				
+	pq->items++;
+	return TRUE;
 }
 
-#line 823 "main.c"
-
-
-
-
-
-
-
- 
-void RCC_Configuration(void)
+bool DeQueue(Item *pitem,Queue *pq)
 {
-   
-  RCC_DeInit();
-
-   
-  RCC_HSEConfig(((u32)0x00010000));
-
-   
-  HSEStartUpStatus = RCC_WaitForHSEStartUp();
-
-  if(HSEStartUpStatus == SUCCESS)
-  {
-     
-    RCC_HCLKConfig(((u32)0x00000000)); 
-  
-     
-    RCC_PCLK2Config(((u32)0x00000000)); 
-
-     
-    RCC_PCLK1Config(((u32)0x00000400));
-
-     
-    FLASH_SetLatency(((u32)0x00000002));
-     
-    FLASH_PrefetchBufferCmd(((u32)0x00000010));
-
-     
-    RCC_PLLConfig(((u32)0x00010000), ((u32)0x001C0000));
-
-      
-    RCC_PLLCmd(ENABLE);
-
-     
-    while(RCC_GetFlagStatus(((u8)0x39)) == RESET)
-    {
-    }
-
-     
-    RCC_SYSCLKConfig(((u32)0x00000002));
-
-     
-    while(RCC_GetSYSCLKSource() != 0x08)
-    {
-    }
-  }
-   
-   
-  RCC_APB2PeriphClockCmd(((u32)0x00004000) | ((u32)0x00000004), ENABLE);
+	Node *pt;
+	if (QueueIsEmpty(pq))
+	{
+		return FALSE;
+	}
+	CopyToItem(pq->front,pitem);
+	pt = pq->front;
+	pq->front = pq->front->next;
+	free(pt);
+	pq->items--;
+	if (pq->items == 0)
+	{
+		pq->rear = 0;
+	}
+	return TRUE;
 }
 
-
-
-
-
-
-
- 
-void NVIC_Configuration(void)
+void EmptyTheQueue(Queue *pq)
 {
-
-
-
-
-    
-  NVIC_SetVectorTable(((u32)0x08000000), 0x0);   
-
+	Item dummy;
+	while(!QueueIsEmpty(pq))
+	{
+		DeQueue(&dummy,pq);
+	}
 }
 
-
-
-
-
-
-
- 
-void GPIO_Configuration(void)
+static void CopyToNode(Item item,Node *pn)
 {
-  GPIO_InitTypeDef GPIO_InitStructure;
+	 
+	int i=0,j=0;
 
-   
-  GPIO_InitStructure.GPIO_Pin = ((u16)0x0200);
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0800)), &GPIO_InitStructure);
-    
-   
-  GPIO_InitStructure.GPIO_Pin = ((u16)0x0400);
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-  GPIO_Init(((GPIO_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x0800)), &GPIO_InitStructure);
+
+
+
+
+
+
+
+
+
+
+
+
+
+	strcpy((pn->item).comment,item.comment);
+	(pn->item).d_number=item.d_number;
+	(pn->item).f_number=item.f_number;
+	for(;i<14;i++)
+	{
+		(pn->item).g_modes[i]=item.g_modes[i];
+	}
+	(pn->item).h_number=item.h_number;
+	(pn->item).i_flag=item.i_flag;
+	(pn->item).i_number=item.i_number;
+	(pn->item).j_flag=item.j_flag;
+	(pn->item).j_number=item.j_number;
+	(pn->item).k_flag=item.k_flag;
+	(pn->item).k_number=item.k_number;
+	(pn->item).l_number=item.l_number;
+	(pn->item).line_number=item.line_number;
+	(pn->item).motion_to_be=item.motion_to_be;
+	(pn->item).m_count=item.m_count;
+	for(;j<10;j++)
+	{
+		(pn->item).m_modes[j]=item.m_modes[j];
+	}
+	(pn->item).p_number=item.p_number;
+	(pn->item).q_number=item.q_number;
+	(pn->item).r_flag=item.r_flag;
+	(pn->item).r_number=item.r_number;
+	(pn->item).s_number=item.s_number;
+	(pn->item).t_number=item.t_number;
+	(pn->item).x_flag=item.x_flag;
+	(pn->item).x_number=item.x_number;
+	(pn->item).y_flag=item.y_flag;
+	(pn->item).y_number=item.y_number;
+	(pn->item).z_flag=item.z_flag;
+	(pn->item).z_number=item.z_number;	
+	 
 }
 
-
-
-
-
-
-
- 
-void USART_Configuration(void)
+static void CopyToItem(Node *pn,Item *pi)
 {
-  USART_InitTypeDef USART_InitStructure;
-  USART_ClockInitTypeDef  USART_ClockInitStructure;
-
-
- 
-  
+	int i=0,j=0;
 
 
 
@@ -9221,51 +8135,39 @@ void USART_Configuration(void)
 
 
 
- 
-USART_ClockInitStructure.USART_Clock = ((u16)0x0000);
-USART_ClockInitStructure.USART_CPOL = ((u16)0x0000);
-USART_ClockInitStructure.USART_CPHA = ((u16)0x0200);
-USART_ClockInitStructure.USART_LastBit = ((u16)0x0000);
- 
-USART_ClockInit(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), &USART_ClockInitStructure);
 
-USART_InitStructure.USART_BaudRate = 115200;
-USART_InitStructure.USART_WordLength = ((u16)0x0000);
-USART_InitStructure.USART_StopBits = ((u16)0x0000);
-USART_InitStructure.USART_Parity = ((u16)0x0000) ;
-USART_InitStructure.USART_HardwareFlowControl = 
-
-((u16)0x0000);
-
-
-USART_InitStructure.USART_Mode = ((u16)0x0004) | ((u16)0x0008);
- 
-USART_Init(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), &USART_InitStructure);
-    
-   
-  USART_Cmd(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), ENABLE);
+	strcpy((*pi).comment,(pn->item).comment);
+	(*pi).d_number=(pn->item).d_number;
+	(*pi).f_number=(pn->item).f_number;
+	for(;i<14;i++)
+	{
+		(*pi).g_modes[i]=(pn->item).g_modes[i];
+	}
+	(*pi).h_number=(pn->item).h_number;
+	(*pi).i_flag=(pn->item).i_flag;
+	(*pi).i_number=(pn->item).i_number;
+	(*pi).j_flag=(pn->item).j_flag;
+	(*pi).j_number=(pn->item).j_number;
+	(*pi).k_flag=(pn->item).k_flag;
+	(*pi).k_number=(pn->item).k_number;
+	(*pi).l_number=(pn->item).l_number;
+	(*pi).line_number=(pn->item).line_number;
+	(*pi).motion_to_be=(pn->item).motion_to_be;
+	(*pi).m_count=(pn->item).m_count;
+	for(;j<10;j++)
+	{
+		(*pi).m_modes[j]=(pn->item).m_modes[j];
+	}
+	(*pi).p_number=(pn->item).p_number;
+	(*pi).q_number=(pn->item).q_number;
+	(*pi).r_flag=(pn->item).r_flag;
+	(*pi).r_number=(pn->item).r_number;
+	(*pi).s_number=(pn->item).s_number;
+	(*pi).t_number=(pn->item).t_number;
+	(*pi).x_flag=(pn->item).x_flag;
+	(*pi).x_number=(pn->item).x_number;
+	(*pi).y_flag=(pn->item).y_flag;
+	(*pi).y_number=(pn->item).y_number;
+	(*pi).z_flag=(pn->item).z_flag;
+	(*pi).z_number=(pn->item).z_number;
 }
-
-
-
-
-
-
-
- 
-int fputc(int ch, FILE *f)
-{
-   
-   
-  USART_SendData(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), (u8) ch);
-
-   
-  while(USART_GetFlagStatus(((USART_TypeDef *) ((((u32)0x40000000) + 0x10000) + 0x3800)), ((u16)0x0040)) == RESET)
-  {
-  }
-
-  return ch;
-}
-
- 
-
